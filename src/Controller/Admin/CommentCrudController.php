@@ -18,7 +18,8 @@ class CommentCrudController extends AbstractCrudController
     {
         return [
             AssociationField::new('publisher','Proprietaire'),
-            TextEditorField::new('content','Commentaire')
+            TextEditorField::new('content','Commentaire'),
+            AssociationField::new('news','article'),
         ];
     }
 
