@@ -151,3 +151,11 @@ b7a098,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudId=105d882
 3fe29c,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudId=105d882&menuIndex=0&referrer=http%3A%2F%2F127.0.0.1%3A8000%2Fadmin%3FcrudAction%3Dindex%26crudId%3D105d882%26menuIndex%3D0%26submenuIndex%3D-1&submenuIndex=-1,1598967122,,200
 908f78,127.0.0.1,GET,http://127.0.0.1:8000/admin,1598967129,,302
 1405a2,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudId=105d882,1598967129,,200
+bdc104,127.0.0.1,GET,http://127.0.0.1:8000/,1599139760,,302
+6ad65a,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599139761,d324c4,500
+d324c4,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599139761,,500
+09265f,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599139782,,200
+a47c94,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1599139783,50a91f,404
+50a91f,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1599139783,,404
+266509,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599139819,,302
+8c8ad4,127.0.0.1,GET,http://127.0.0.1:8000/login,1599139819,,200
