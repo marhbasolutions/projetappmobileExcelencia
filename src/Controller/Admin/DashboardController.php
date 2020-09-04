@@ -9,6 +9,7 @@ use App\Entity\News;
 use App\Entity\NewsCategory;
 use App\Entity\Quote;
 use App\Entity\Service;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -35,13 +36,16 @@ class DashboardController extends AbstractDashboardController
         return $this->redirect($routeBuilder->setController(UserCrudController::class)->generateUrl());
     }
 
-
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addCssFile('css/admin.css');
+    }
   
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Assurance')
+            ->setTitle('<div style="background-color: #242c62;"> <img class="img-fluid" src="http://excel-assurance.com/wp-content/uploads/2019/08/logo_excel-assur_v2_2_275px.png" width="200" /></div>')
             ->setTranslationDomain('admin');
     }
 

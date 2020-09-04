@@ -159,6 +159,7 @@ a47c94,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1599139783,50a91f,404
 50a91f,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1599139783,,404
 266509,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599139819,,302
 8c8ad4,127.0.0.1,GET,http://127.0.0.1:8000/login,1599139819,,200
+<<<<<<< HEAD
 80fe52,105.189.51.133,GET,http://quickcar.irun-code.com/,1599140502,,302
 a034fd,105.189.51.133,GET,http://quickcar.irun-code.com/login,1599140503,,200
 393f89,105.189.51.133,POST,http://quickcar.irun-code.com/login_check,1599140508,,302
@@ -269,3 +270,39 @@ b61aed,41.92.127.171,GET,http://quickcar.irun-code.com/?crudAction=index&crudId=
 c620d1,41.92.127.171,GET,http://quickcar.irun-code.com/?crudAction=index&crudId=fd05496&menuIndex=1&submenuIndex=0,1599149173,,200
 4183e6,41.92.32.13,GET,http://quickcar.irun-code.com/?crudAction=index&crudId=e7f36fe&menuIndex=2&submenuIndex=0,1599149182,,200
 334f8a,41.92.32.13,GET,http://quickcar.irun-code.com/?crudAction=new&crudId=e7f36fe&menuIndex=2&referrer=http%3A%2F%2Fquickcar.irun-code.com%2F%3FcrudAction%3Dindex%26crudId%3De7f36fe%26menuIndex%3D2%26submenuIndex%3D0&submenuIndex=0,1599149202,,200
+=======
+980853,127.0.0.1,GET,http://127.0.0.1:8000/login,1599140272,,200
+443a4e,127.0.0.1,GET,http://127.0.0.1:8000/,1599255080,,302
+46cc2b,127.0.0.1,GET,http://127.0.0.1:8000/login,1599255080,,200
+caad52,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1599255081,ef1fea,404
+ef1fea,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1599255081,,404
+f9afb2,127.0.0.1,POST,http://127.0.0.1:8000/login_check,1599255107,,302
+30e3b2,127.0.0.1,GET,http://127.0.0.1:8000/,1599255107,,302
+9e1cdb,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255108,,200
+9cb0e3,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255258,,200
+b31fe7,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255356,,200
+80c88c,127.0.0.1,GET,http://127.0.0.1:8000/,1599255359,,302
+52ac8c,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255359,,200
+3eb5b1,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255382,,200
+8af2dc,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255412,,200
+828b78,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255456,,200
+677a5d,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255494,,200
+8704b7,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255527,,200
+a71eaf,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599255586,,200
+f143bb,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599256228,,200
+c0702b,127.0.0.1,GET,http://127.0.0.1:8000/css/admin.css,1599256228,655fe8,404
+655fe8,127.0.0.1,GET,http://127.0.0.1:8000/css/admin.css,1599256228,,404
+c3a948,127.0.0.1,GET,http://127.0.0.1:8000/css/admin.css,1599256231,321313,404
+321313,127.0.0.1,GET,http://127.0.0.1:8000/css/admin.css,1599256231,,404
+69c6d9,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599256276,,200
+6d2414,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599256576,,200
+7137ef,127.0.0.1,GET,http://127.0.0.1:8000/logout,1599256589,,302
+c3fe0f,127.0.0.1,GET,http://127.0.0.1:8000/,1599256589,,302
+7ea04b,127.0.0.1,GET,http://127.0.0.1:8000/login,1599256589,,200
+7675b9,127.0.0.1,GET,http://127.0.0.1:8000/login,1599256846,,200
+fcb789,127.0.0.1,GET,http://127.0.0.1:8000/login,1599256908,,200
+40eeb5,127.0.0.1,GET,http://127.0.0.1:8000/login,1599257152,,200
+0d82ad,127.0.0.1,POST,http://127.0.0.1:8000/login_check,1599257162,,302
+bf964c,127.0.0.1,GET,http://127.0.0.1:8000/,1599257163,,302
+3d4561,127.0.0.1,GET,http://127.0.0.1:8000/?crudAction=index&crudId=105d882,1599257163,,200
+>>>>>>> 8022ee435aad0888f62ca0090f1787222075591d
