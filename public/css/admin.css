@@ -1,0 +1,13 @@
+.login-wrapper
+{
+    height: 100vh;
+    width: 100%;
+}
+.login-wrapper .content
+{
+    width: 330px;
+}
+.login-wrapper .content form
+{
+    width: 100%;
+}
