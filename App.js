@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, FlatList, TouchableOpacity , ActivityIndicator } from 'react-native';
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from "react-navigation-stack"
@@ -10,11 +10,16 @@ import Devis from './src/screen/devis/deviScreen';
 import Guide from './src/screen/guide/guideScreen';
 import TabContract from './src/screen/contract/TabContractScreen';
 import Account from './src/screen/account/accountScreen';
+import Sinistre from './src/screen/sinistre/SinistreScreen';
 
 import Services from './src/screen/services/servicesScreen';
 import Home from './src/screen/homeScreen';
 import Header from './src/screen/HeaderScreen';
 import LoginScreen from './src/screen/login/loginScreen';
+import Text from './src/components/CustomText';
+
+import * as Font  from 'expo-font';
+
 
 // const Header =({name, openDrawer})=> (
 //     <View style={styles.header}>
@@ -141,6 +146,7 @@ const Drawer = createDrawerNavigator(
     Guide: { screen: Guide },
     TabContract: { screen: TabContract },
     Account: { screen: Account },
+    Sinistre: { screen: Sinistre },
 
 
   },
@@ -175,13 +181,35 @@ const AppContainer = createAppContainer(AppNavigator);
 
 
 export default class App extends React.Component {
-  render() {
 
+  constructor() {
+    super();
+    this.state = {
+      fontLoaded: false
+    };
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'Poppins-Black': require('./assets/fonts/Poppins-Black.ttf'),
+      'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
+      'Poppins-Light': require('./assets/fonts/Poppins-Light.ttf'),
+      'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
+      'Poppins-Medium': require('./assets/fonts/Poppins-Medium.ttf')
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
+
+  render() {
     return (
       <>
-        {/* <Header></Header> */}
-
+       {this.state.fontLoaded ? (
         <AppContainer />
+        ) : (
+          <ActivityIndicator size="large" />
+        )}
       </>
     );
   }
@@ -193,8 +221,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#30336b",
     paddingTop: 40,
     alignItems: "center",
-    flex: 1
-
+    flex: 1,
   },
   containerDrawer: {
     backgroundColor: "#30336b",

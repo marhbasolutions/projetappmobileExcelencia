@@ -2,8 +2,9 @@ import React, { Component } from "react";
 
 import styles from "./style";
 import { Keyboard, View, TextInput, TouchableWithoutFeedback, Alert, KeyboardAvoidingView, Image, TouchableOpacity } from 'react-native';
-import { Container, Header, Content, List, ListItem, Text, Input, Item, } from 'native-base';
+import { Container, Header, Content, List, ListItem,  Input, Item } from 'native-base';
 import { Button } from 'react-native-elements';
+import Text from '../../components/CustomText';
 
 const appId = "1047121222092614"
 
@@ -24,29 +25,30 @@ const appId = "1047121222092614"
 
               </Image>
 
-              <Text style={{ fontSize: 29, fontWeight: 'bold', color: '#fff', alignContent: 'center', textAlign: 'center', marginBottom: '15%' }}>LOG IN</Text>
+              <Text type="bold" style={{ fontSize: 29,  color: '#fff', alignContent: 'center', textAlign: 'center', marginBottom: '15%' }}>LOG IN</Text>
               {/* <TextInput placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} /> */}
 
               <Item rounded style={styles.loginFormTextInput} >
-                <Input placeholder='Username' />
+                <Input placeholder='Username' style={{fontFamily:"Poppins-Light"}} />
               </Item>
 
               <Item rounded style={styles.loginFormTextInput} >
-                <Input placeholder='Password' secureTextEntry={true} />
+                <Input placeholder='Password' secureTextEntry={true} style={{fontFamily:"Poppins-Light"}}  />
               </Item>
 
               {/* <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} secureTextEntry={true} /> */}
               <Button
                 buttonStyle={styles.loginButton}
                 onPress={() => navigation.navigate('Home')}
-                title="Login"
+                title="Login" 
+                titleStyle={{fontFamily:'Poppins-Medium'}}
               />
               <TouchableOpacity>
-                <Text style={{ fontSize: 14, color: '#ddd', alignContent: 'center', textAlign: 'center',marginTop:15 }}>Forget Password ?</Text>
+                <Text type="light" style={{ fontSize: 14, color: '#ddd', alignContent: 'center', textAlign: 'center',marginTop:15 }}>Forget Password ?</Text>
               </TouchableOpacity>
 
               <TouchableOpacity>
-                <Text style={{ fontSize: 20,fontWeight:'bold', color: '#fff', alignContent: 'center', textAlign: 'center',marginTop:35 }}>Register here</Text>
+                <Text type="bold" style={{ fontSize: 20, color: '#fff', alignContent: 'center', textAlign: 'center',marginTop:35 }}>Register here</Text>
               </TouchableOpacity>
 
 

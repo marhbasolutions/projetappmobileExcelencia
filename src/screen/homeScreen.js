@@ -1,7 +1,7 @@
 
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
+import { StyleSheet, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import Header from './HeaderScreen';
 import FooterCompement from './FooterScreen';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,6 +10,8 @@ import Carousel from "@rhysforyou/react-native-carousel";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+import Text from '../components/CustomText';
 
 
 const { width } = Dimensions.get('window');
@@ -133,18 +135,18 @@ export default class Home extends Component {
           </View>
 
 
-          <View style={{ width: '100%', height: '55%', }} >
+          <View style={{ width: '100%', height: '100%', }} >
 
-            <View style={{ flex: 1, flexDirection: 'column', padding: 10, marginTop: -85 }}>
+            <View style={styles.actionsBlock}>
 
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.div} >
                   <TouchableOpacity style={styles.divToutch}
                     onPress={() => this.props.navigation.navigate('Contract')}
                   >
-
-                    <FontAwesome5 style={{ alignSelf: 'flex-end' }} color={'#fff'} name="file-signature" size={24} />
                     <Text style={styles.titleDiv}>Prepare Create contrat</Text>
+                    <FontAwesome5 color={'#fff'} name="file-signature" size={24} />
+                    
 
                   </TouchableOpacity>
                 </View>
@@ -153,13 +155,14 @@ export default class Home extends Component {
                     onPress={() => this.props.navigation.navigate('Rdv')}
                     style={styles.divToutch} >
 
-                    <FontAwesome5 style={{ alignSelf: 'flex-end' }} color={'#fff'} name="calendar-alt" size={24} />
-
                     <Text style={styles.titleDiv}>Prendre RDV</Text>
+
+                    <FontAwesome5  color={'#fff'} name="calendar-alt" size={24} />
+
+                    
 
                   </TouchableOpacity>
                 </View>
-
               </View>
 
               <View style={{ flexDirection: 'row' }}>
@@ -169,8 +172,9 @@ export default class Home extends Component {
 
                     style={styles.divToutch} >
 
-                    <FontAwesome5 style={{ alignSelf: 'flex-end' }} color={'#fff'} name="calculator" size={24} />
                     <Text style={styles.titleDiv}>Simuler devis</Text>
+                    <FontAwesome5  color={'#fff'} name="calculator" size={24} />
+                    
 
                   </TouchableOpacity>
                 </View>
@@ -180,8 +184,9 @@ export default class Home extends Component {
                     onPress={() => this.props.navigation.navigate('Guide')}
                   >
 
-                    <FontAwesome style={{ alignSelf: 'flex-end' }} color={'#fff'} size={24} name="handshake-o" />
                     <Text style={styles.titleDiv}>Guider rensigner</Text>
+                    <FontAwesome  color={'#fff'} size={24} name="handshake-o" />
+                    
 
                   </TouchableOpacity>
                 </View>
@@ -191,14 +196,9 @@ export default class Home extends Component {
 
             </View>
 
-
-
-
-
-
             <ScrollView
               ref={(scrollView) => { this.scrollView = scrollView; }}
-              style={styles.container}
+              style={[styles.container,styles.containerBottom]}
               //pagingEnabled={true}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
@@ -314,23 +314,8 @@ const styles = StyleSheet.create({
     // height:'100%'
   },
   div: {
-
-    width: '50%', height: 90, padding: 5,
+    width: '50%', height: '100%', padding: 8,
   },
-
-
-  divToutch: {
-
-    width: '100%', height: '100%', backgroundColor: '#f6b93b', padding: 8, borderRadius: 6,
-    padding: 10,
-    elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.9,
-    shadowRadius: 15,
-  },
-
-
   titleScroll2: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -342,11 +327,22 @@ const styles = StyleSheet.create({
     color: '#30336b',
 
   },
+  divToutch: {
+    width: '100%', height: 60, backgroundColor: '#f6b93b', padding: 8, borderRadius: 6,
+    padding: 6,
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.9,
+    shadowRadius: 15,
+    flexDirection: 'row',
+    alignItems:'center',
+    justifyContent:'space-between'
+  },
   titleDiv: {
-    fontSize: 15,
-    fontWeight: 'bold',
+    fontSize: 14,
     color: '#fff',
-
+    width:'80%'
   },
   titleFirst: {
     fontSize: 18,
@@ -437,4 +433,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
 
   },
+  actionsBlock:{
+     flex: 1, 
+     flexDirection: 'column', 
+     padding: 10 ,
+     position:'absolute',
+     top:-70
+  },
+  containerBottom:{
+    position:'relative',
+     top:60,
+  }
 });

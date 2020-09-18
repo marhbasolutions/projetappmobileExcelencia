@@ -1,12 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground, StatusBar, BackHandler, } from 'react-native';
+import { StyleSheet,  View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground, StatusBar, BackHandler, } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import Text from '../components/CustomText';
 
-const Header = ({ Isreturn, name, openDrawer, navigation }) => {
+import styles from "./globalStyle/style";
+
+const Header = ({ Isreturn, name, openDrawer, navigation,title }) => {
 
 
 
@@ -39,6 +42,13 @@ const Header = ({ Isreturn, name, openDrawer, navigation }) => {
         </TouchableOpacity>
 
       }
+
+{title ? (
+        <View style={styles.headerTextContainer}><Text style={styles.headerText} type="bold">{title}</Text></View>
+      ) :
+        null
+      }
+
 
       <TouchableOpacity
         onPress={() => openDrawer.openDrawer()}

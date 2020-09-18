@@ -40,14 +40,13 @@ loginFormTextInput: {
 
 },
 loginButton: {
-      height: 53,
-
+  height: 53,
   backgroundColor: '#f9db4d',
   borderRadius: 25,
   marginTop: 10,
-    paddingLeft: 10,
-    marginLeft: 15,
-    marginRight: 15,
+  paddingLeft: 10,
+  marginLeft: 15,
+  marginRight: 15,
 },
 fbLoginButton: {
   height: 45,

@@ -1,7 +1,7 @@
 
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
+import { StyleSheet,  View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import Header from './../HeaderScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { Container, Content, Footer, FooterTab, Icon, Button } from 'native-base';
@@ -11,6 +11,12 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import FooterCompement from './../FooterScreen';
 
+import Text from '../../components/CustomText';
+
+
+
+
+
 
 const { width } = Dimensions.get('window');
 const image1 = { uri: "https://www.alwihdainfo.com/photo/art/grande/29285521-28425818.jpg" };
@@ -19,10 +25,16 @@ const image3 = { uri: "https://www.top-faq.com/wp-content/uploads/2020/07/assura
 const image4 = { uri: "https://www.bj-assurances.be/wp-content/uploads/2019/04/BJ_Assurance_familiale_header.jpg" };
 
 export default class servicesScreen extends Component {
+
+   
+
     constructor(props) {
         super(props);
         this.index = 0;
     }
+
+    
+
     componentDidMount() {
         // setTimeout(() => { this.scrollView.scrollTo({ x: -30 }) }, 1) // scroll view position fix
     }
@@ -39,7 +51,7 @@ export default class servicesScreen extends Component {
                 <Header name="Home" openDrawer={this.props.navigation} />
 
                 <View style={{ flex: 1, flexDirection: 'column',  backgroundColor: '#30336b' }}>
-                         <Text style={styles.titleFirst}>Nos services</Text>
+                         <Text type='bold' style={styles.titleFirst}>Nos services</Text>
                    <Content style={{ flex:1, padding: 15 }} >
 
                             <View style={styles.view2}>
@@ -53,7 +65,7 @@ export default class servicesScreen extends Component {
                                         </View>
                                         <View style={{ width: '60%', height: '100%', padding: 5 }} >
 
-                                            <Text style={styles.titleScroll2}>Sinistres</Text>
+                                            <Text type='bold' style={styles.titleScroll2}>Sinistres</Text>
                                             <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
 
                                         </View>
@@ -78,7 +90,7 @@ export default class servicesScreen extends Component {
                                         </View>
                                         <View style={{ width: '60%', height: '100%', padding: 5 }} >
 
-                                            <Text style={styles.titleScroll2}>Assurance vie</Text>
+                                            <Text type='bold' style={styles.titleScroll2}>Assurance vie</Text>
                                             <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
 
                                         </View>
@@ -100,7 +112,7 @@ export default class servicesScreen extends Component {
                                         </View>
                                         <View style={{ width: '60%', height: '100%', padding: 5 }} >
 
-                                            <Text style={styles.titleScroll2}>Assutrance Auto & Moto</Text>
+                                            <Text type='bold' style={styles.titleScroll2}>Assutrance Auto & Moto</Text>
                                             <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
 
                                         </View>
@@ -122,31 +134,7 @@ export default class servicesScreen extends Component {
                                         </View>
                                         <View style={{ width: '60%', height: '100%', padding: 5 }} >
 
-                                            <Text style={styles.titleScroll2}>Service1</Text>
-                                            <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                                        </View>
-
-                                    </TouchableOpacity>
-
-                                </View>
-
-
-                            </View>
-
-
-                            <View style={styles.view2}>
-
-                                <View style={styles.viewChild2}>
-
-                                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ width: '40%', height: '100%', }} >
-                                            <Image source={image4} style={styles.imageDiv} />
-
-                                        </View>
-                                        <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                                            <Text style={styles.titleScroll2}>Service1</Text>
+                                            <Text type='bold' style={styles.titleScroll2}>Service1</Text>
                                             <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
 
                                         </View>
@@ -170,7 +158,31 @@ export default class servicesScreen extends Component {
                                         </View>
                                         <View style={{ width: '60%', height: '100%', padding: 5 }} >
 
-                                            <Text style={styles.titleScroll2}>Service1</Text>
+                                            <Text type='bold' style={styles.titleScroll2}>Service1</Text>
+                                            <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
+
+                                        </View>
+
+                                    </TouchableOpacity>
+
+                                </View>
+
+
+                            </View>
+
+
+                            <View style={styles.view2}>
+
+                                <View style={styles.viewChild2}>
+
+                                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
+                                        <View style={{ width: '40%', height: '100%', }} >
+                                            <Image source={image4} style={styles.imageDiv} />
+
+                                        </View>
+                                        <View style={{ width: '60%', height: '100%', padding: 5 }} >
+
+                                            <Text type='bold' style={styles.titleScroll2}>Service1</Text>
                                             <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
 
                                         </View>
@@ -193,7 +205,7 @@ export default class servicesScreen extends Component {
                                         </View>
                                         <View style={{ width: '60%', height: '100%', padding: 5 }} >
 
-                                            <Text style={styles.titleScroll2}>Service1</Text>
+                                            <Text type='bold' style={styles.titleScroll2}>Service1</Text>
                                             <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
 
                                         </View>
@@ -255,9 +267,7 @@ const styles = StyleSheet.create({
 
     titleScroll2: {
         fontSize: 18,
-        fontWeight: 'bold',
         color: '#30336b',
-
     },
     descScroll2: {
         fontSize: 13,
@@ -272,7 +282,6 @@ const styles = StyleSheet.create({
     },
     titleFirst: {
         fontSize: 22,
-        fontWeight: 'bold',
         color: '#fff',
         paddingLeft: 10,
         marginBottom: 16

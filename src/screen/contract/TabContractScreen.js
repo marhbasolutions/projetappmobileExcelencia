@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
+import { StyleSheet,  View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import Header from '../HeaderScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { Container, Content, List, ListItem, Thumbnail, Left, Body, Right, Button } from 'native-base';
@@ -12,6 +12,9 @@ import styles from "./style";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import FooterCompement from './../FooterScreen';
 
+import { List as LST,ReactNativePaper } from 'react-native-paper';
+
+import Text from '../../components/CustomText';
 
 const appId = "1047121222092614"
 
@@ -48,101 +51,83 @@ export default function TabContractScreen({ navigation }) {
                 <Header name="Home" openDrawer={navigation} />
 
                 <Content>
-                    <List>
-                    <ListItem thumbnail>
-                            <Left>
-                                <FontAwesome5 style={{ alignSelf: 'center', marginTop: 18 }} color={'#f9ca24'} name="file-contract" size={44} />
-                            </Left>
-                            <Body>
-                                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Assurance de vie</Text>
-                                <Text note numberOfLines={1}>12/12/2020</Text>
-                            </Body>
-                            <Right>
-                                <Button transparent>
-                                    <Text>Afficher</Text>
-                                </Button>
-                            </Right>
-                        </ListItem>
 
-                        <ListItem thumbnail>
-                            <Left>
-                                <FontAwesome5 style={{ alignSelf: 'center', marginTop: 18 }} color={'#f9ca24'} name="file-contract" size={44} />
-                            </Left>
-                            <Body>
-                                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Assurance moto</Text>
-                                <Text note numberOfLines={1}>12/12/2020</Text>
-                            </Body>
-                            <Right>
-                                <Button transparent>
-                                    <Text>Afficher</Text>
-                                </Button>
-                            </Right>
-                        </ListItem>
+                <LST.Section title="Les contracts">
+                <LST.Accordion
+                    theme={{ colors: { primary: '#30336b' }}}
+                    titleStyle={{fontFamily:'Poppins-Bold'}}
+                    title="Assurance Vie"
+                    left={props => <LST.Icon {...props}  icon="folder" />}>
+                    <LST.Item
+                    style={{fontFamily:'Poppins-Medium'}}
+                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                        title="NSIA RETRAITE (Particulier)"
+                        description="12/12/2020"
+                        left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
+                        right={props => <Text style={{alignSelf:'center'}} >Afficher</Text>}
+                    />
+                    <LST.Item
+                    style={{fontFamily:'Poppins-Medium'}}
+                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                        title="NSIA PREVOYANCES (Particulier)"
+                        description="12/12/2020"
+                        left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
+                        right={props => <Text style={{alignSelf:'center'}} >Afficher</Text>}
+                    />
+                    <LST.Item
+                    style={{fontFamily:'Poppins-Medium'}}
+                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                        title="NSIA ETUDES (Particulier)"
+                        description="12/12/2020"
+                        left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
+                        right={props => <Text style={{alignSelf:'center'}} >Afficher</Text>}
+                    />
+                </LST.Accordion>
 
-                        <ListItem thumbnail>
-                            <Left>
-                                <FontAwesome5 style={{ alignSelf: 'center', marginTop: 18 }} color={'#f9ca24'} name="file-contract" size={44} />
-                            </Left>
-                            <Body>
-                                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Assurance maiosn</Text>
-                                <Text note numberOfLines={1}>12/12/2020</Text>
-                            </Body>
-                            <Right>
-                                <Button transparent>
-                                    <Text>Afficher</Text>
-                                </Button>
-                            </Right>
-                        </ListItem>
+                <LST.Accordion
+                    theme={{ colors: { primary: '#30336b' }}}
+                    titleStyle={{fontFamily:'Poppins-Bold'}}
+                    title="Assurances Auto & Moto"
+                    left={props => <LST.Icon {...props}  icon="folder" />}>
+                    <LST.Item
+                    style={{fontFamily:'Poppins-Medium'}}
+                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                        title="NSIA Auto (Particulier)"
+                        description="12/12/2020"
+                        left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
+                        right={props => <Text style={{alignSelf:'center'}} >Afficher</Text>}
+                    />
+                </LST.Accordion>
 
-                        <ListItem thumbnail>
-                            <Left>
-                                <FontAwesome5 style={{ alignSelf: 'center', marginTop: 18 }} color={'#f9ca24'} name="file-contract" size={44} />
-                            </Left>
-                            <Body>
-                                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Assurance de vie</Text>
-                                <Text note numberOfLines={1}>12/12/2020</Text>
-                            </Body>
-                            <Right>
-                                <Button transparent>
-                                    <Text>Afficher</Text>
-                                </Button>
-                            </Right>
-                        </ListItem>
+                <LST.Accordion
+                    theme={{ colors: { primary: '#30336b' }}}
+                    titleStyle={{fontFamily:'Poppins-Bold'}}
+                    title="Assurances Santé"
+                    left={props => <LST.Icon {...props}  icon="folder" />}>
+                    <LST.Item
+                    style={{fontFamily:'Poppins-Medium'}}
+                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                        title="NSIA FORFAIT HOSPITALIER"
+                        description="12/12/2020"
+                        left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
+                        right={props => <Text style={{alignSelf:'center'}} >Afficher</Text>}
+                    />
+                    <LST.Item
+                    style={{fontFamily:'Poppins-Medium'}}
+                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                        title="NSIA SANTÉ SMO"
+                        description="12/12/2020"
+                        left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
+                        right={props => <Text style={{alignSelf:'center'}} >Afficher</Text>}
+                    />
+                </LST.Accordion>
 
-                        <ListItem thumbnail>
-                            <Left>
-                                <FontAwesome5 style={{ alignSelf: 'center', marginTop: 18 }} color={'#f9ca24'} name="file-contract" size={44} />
-                            </Left>
-                            <Body>
-                                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Assurance de vie</Text>
-                                <Text note numberOfLines={1}>12/12/2020</Text>
-                            </Body>
-                            <Right>
-                                <Button transparent>
-                                    <Text>Afficher</Text>
-                                </Button>
-                            </Right>
-                        </ListItem>
+                
 
-                        <ListItem thumbnail>
-                            <Left>
-                                <FontAwesome5 style={{ alignSelf: 'center', marginTop: 18 }} color={'#f9ca24'} name="file-contract" size={44} />
-                            </Left>
-                            <Body>
-                                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Assurance de vie</Text>
-                                <Text note numberOfLines={1}>12/12/2020</Text>
-                            </Body>
-                            <Right>
-                                <Button transparent>
-                                    <Text>Afficher</Text>
-                                </Button>
-                            </Right>
-                        </ListItem>
+                
+                </LST.Section>
 
-
-
-                    </List>
-                </Content>
+                    </Content>
                 <FooterCompement name="TabContract" openDrawer={navigation} />
 
             </Container>
