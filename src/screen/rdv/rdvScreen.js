@@ -50,18 +50,18 @@ export default function rdvScreen({ navigation }) {
                     <Text style={styles.titleFirst}>Prendre RDV</Text>
 
                 </View>
-                <View style={{ width: '100%', height: '60%', padding: 15, }} >
+                <View style={{ width: '100%', height: '60%', padding: 10, }} >
 
                     <View style={styles.divForm}  >
-                        <FontAwesome5 style={{ alignSelf: 'center', marginTop: 18 }} color={'#30336b'} name="calendar-alt" size={44} />
+                        <FontAwesome5 style={{ alignSelf: 'center', marginTop: 8 }} color={'#30336b'} name="calendar-alt" size={44} />
 
                         <Content style={{ marginTop: 22 }}>
 
                             <Item rounded style={styles.loginFormTextInput} >
-                                <Input placeholder='FirstName' />
+                                <Input placeholder='Prenom' />
                             </Item>
                             <Item rounded style={styles.loginFormTextInput} >
-                                <Input placeholder='LastName' />
+                                <Input placeholder='Nom' />
                             </Item>
                             <Item rounded style={styles.loginFormTextInput} >
                                 <Input placeholder='Email' />

@@ -30,13 +30,13 @@ loginFormTextInput: {
   fontSize: 14,
 //   borderRadius: 5,
   borderWidth: 1,
-  borderColor: '#eaeaea',
-  backgroundColor: '#fafafa',
+  // borderColor: '#eaeaea',
+  // backgroundColor: '#fafafa',
   paddingLeft: 10,
-  marginLeft: 15,
-  marginRight: 15,
+  marginLeft: 5,
+  marginRight: 5,
   marginTop: 5,
-  marginBottom: 15,
+  marginBottom: 5,
 
 },
 loginButton: {

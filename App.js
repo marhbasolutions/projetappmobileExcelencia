@@ -151,7 +151,7 @@ const Drawer = createDrawerNavigator(
 
   },
   {
-    initialRouteName: "LoginScreen",
+    initialRouteName: "Home",
     unmountInactiveRoutes: true,
     headerMode: "none",
     contentComponent: props => <Sidebar {...props} />
