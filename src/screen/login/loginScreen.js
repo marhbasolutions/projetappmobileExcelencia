@@ -14,46 +14,45 @@ const appId = "1047121222092614"
 
   // render() {
     return (
-      <KeyboardAvoidingView style={styles.containerView} behavior="padding">
+      <KeyboardAvoidingView style={styles.containerView} behavior="height">
 
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <TouchableWithoutFeedback  onPress={Keyboard.dismiss}>
           <View style={styles.loginScreenContainer}>
             <View style={styles.loginFormView}>
 
               <Image source={require('../../assets/logo.png')}
-                style={{ width: 260, height: 140, alignSelf: 'center', resizeMode: 'cover', marginTop: '20%' }}>
+                style={{  alignSelf: 'center', resizeMode: 'cover', marginTop: '20%' }}>
 
               </Image>
 
-              <Text type="bold" style={{ fontSize: 29,  color: '#fff', alignContent: 'center', textAlign: 'center', marginBottom: '15%' }}>LOG IN</Text>
+              <Text type="bold" style={{ fontSize: 20,  color: '#fff', alignContent: 'center', textAlign: 'center', marginBottom: '4%',marginTop:'4%' }}>S'AUTHENTIFIER</Text>
               {/* <TextInput placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} /> */}
 
               <Item rounded style={styles.loginFormTextInput} >
-                <Input placeholder='Username' style={{fontFamily:"Poppins-Light"}} />
+                <Input placeholder='Adresse email' style={{fontFamily:"Raleway-Light"}} />
               </Item>
 
               <Item rounded style={styles.loginFormTextInput} >
-                <Input placeholder='Password' secureTextEntry={true} style={{fontFamily:"Poppins-Light"}}  />
+                <Input placeholder='Mot de passe' secureTextEntry={true} style={{fontFamily:"Raleway-Light"}}  />
               </Item>
 
               {/* <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} secureTextEntry={true} /> */}
               <Button
                 buttonStyle={styles.loginButton}
                 onPress={() => navigation.navigate('Home')}
-                title="Login" 
-                titleStyle={{fontFamily:'Poppins-Medium'}}
+                title="Se connecter" 
+                titleStyle={{fontFamily:'Raleway-Medium'}}
               />
               <TouchableOpacity>
-                <Text type="light" style={{ fontSize: 14, color: '#ddd', alignContent: 'center', textAlign: 'center',marginTop:15 }}>Forget Password ?</Text>
+                <Text type="light" style={{ fontSize: 14, color: '#ddd', alignContent: 'center', textAlign: 'center',marginTop:15 }}>Mot de passe oublié ?</Text>
               </TouchableOpacity>
 
               <TouchableOpacity>
-                <Text type="bold" style={{ fontSize: 20, color: '#fff', alignContent: 'center', textAlign: 'center',marginTop:35 }}>Register here</Text>
+                <Text type="bold" style={{ fontSize: 20, color: '#fff', alignContent: 'center', textAlign: 'center',marginTop:35 }}>Inscrivez-vous ici </Text>
               </TouchableOpacity>
 
-
-
-
+              <Text style={{fontSize:11,color:'white',alignSelf:'center',position:'absolute',bottom:12}}>Excelencia Assurances © 2020 Tous les droits réservés</Text>
+              
             </View>
           </View>
         </TouchableWithoutFeedback>

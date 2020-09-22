@@ -15,10 +15,18 @@ import Text from '../components/CustomText';
 
 
 const { width } = Dimensions.get('window');
-const image1 = { uri: "https://www.alwihdainfo.com/photo/art/grande/29285521-28425818.jpg" };
-const image2 = { uri: "https://www.idiotiki-syntaxi.gr/wp-content/uploads/2018/04/shutterstock_628366121_Saving-1024x610.jpg" };
-const image3 = { uri: "https://www.top-faq.com/wp-content/uploads/2020/07/assurance-vie.jpg" };
+const height = width*100 /60;
+const image1 = { uri: "http://excel-assurance.com/wp-content/uploads/2019/08/Slide_1920x860CampagneFil3.jpg" };
+const image2 = { uri: "http://excel-assurance.com/wp-content/uploads/2019/08/Black-female-boss-leading-corporate-meeting-talking-to-diverse-businesspeople-923039680_2125x1416-1168x779.jpeg" };
+const image3 = { uri: "http://excel-assurance.com/wp-content/uploads/2019/10/slide2.jpg" };
 const image4 = { uri: "https://www.bj-assurances.be/wp-content/uploads/2019/04/BJ_Assurance_familiale_header.jpg" };
+
+
+const images = [
+  'http://excel-assurance.com/wp-content/uploads/2019/10/NSIA-Auto-HD-inc-350x195.jpg',
+  'http://excel-assurance.com/wp-content/uploads/2019/08/Retraite-retouche-V2-350x195.jpg',
+  'http://excel-assurance.com/wp-content/uploads/2019/08/NSIA-Pr%C3%A9voyanceHD-inc-2-350x195.png'
+];
 
 export default class Home extends Component {
   constructor(props) {
@@ -26,7 +34,7 @@ export default class Home extends Component {
     this.index = 0;
   }
   componentDidMount() {
-    setTimeout(() => { this.scrollView.scrollTo({ x: -30 }) }, 1) // scroll view position fix
+    //setTimeout(() => { this.scrollView.scrollTo({ x: -30 }) }, 1) // scroll view position fix
   }
 
 
@@ -43,9 +51,7 @@ export default class Home extends Component {
         <View style={{ flex: 1, flexDirection: 'column' }}>
           <View style={{ width: '100%', height: '50%', backgroundColor: '#30336b', paddingLeft: 10 }} >
 
-            <Text style={styles.titleFirst}>Our recommended products for you</Text>
-
-            <ScrollView
+          <ScrollView
               ref={(scrollView) => { this.scrollView = scrollView; }}
               style={styles.container}
               //pagingEnabled={true}
@@ -63,8 +69,7 @@ export default class Home extends Component {
               }}>
               <View style={styles.view}>
 
-                <ImageBackground source={image4} style={styles.image} imageStyle={{ borderRadius: 6 }}
-                >
+                <ImageBackground source={image1} style={styles.image} imageStyle={{ borderRadius: 6 }}>
                   <View style={styles.viewChild}>
 
                     <Text style={styles.title1}>50%</Text>
@@ -77,27 +82,9 @@ export default class Home extends Component {
                 </ImageBackground>
 
               </View>
-
-
               <View style={styles.view}>
 
                 <ImageBackground source={image2} style={styles.image} imageStyle={{ borderRadius: 6 }}
-                >
-                  <View style={styles.viewChild}>
-
-                    <Text style={styles.title1}>50%</Text>
-                    <Text style={styles.title2}>Assurance home for you and your family</Text>
-                    <Button style={{ color: '#fff', marginTop: 5, paddingLeft: 6, paddingRight: 6, alignSelf: 'flex-end' }} warning><Text style={{ color: '#fff' }} > Take a lock </Text></Button>
-
-
-                  </View>
-
-                </ImageBackground>
-
-              </View>
-              <View style={styles.view}>
-
-                <ImageBackground source={image1} style={styles.image} imageStyle={{ borderRadius: 6 }}
                 >
                   <View style={styles.viewChild}>
 
@@ -127,11 +114,15 @@ export default class Home extends Component {
                 </ImageBackground>
 
               </View>
-
-
+              
             </ScrollView>
+            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center', position:'relative',top:-90}}>
+            <Button onPress={()=>this.scrollView.scrollToEnd({animated: true})} style={{position:'relative',margin:5,backgroundColor:'transparent',height:15,borderRadius:100}}><Text style={{width:15,height:15,backgroundColor:'white',borderRadius:100}}></Text></Button>
+            <Button onPress={()=>this.scrollView.scrollTo({x:400,animated: true})} style={{position:'relative',margin:5,height:15,borderRadius:100}}><Text style={{width:15,height:15,backgroundColor:'white',borderRadius:100}}></Text></Button>
+            <Button onPress={()=>this.scrollView.scrollTo({x:0,animated: true})} style={{position:'relative',margin:5,height:15,borderRadius:100}}><Text style={{width:15,height:15,backgroundColor:'white',borderRadius:100,}}></Text></Button>
+            </View>
 
-
+                
           </View>
 
 
@@ -144,8 +135,10 @@ export default class Home extends Component {
                   <TouchableOpacity style={styles.divToutch}
                     onPress={() => this.props.navigation.navigate('Contract')}
                   >
-                    <Text style={styles.titleDiv}>Prepare Create contrat</Text>
-                    <FontAwesome5 color={'#fff'} name="file-signature" size={24} />
+                    <Text type='bold' style={styles.titleDiv}>Espace sinistre</Text>
+                    <View style={{backgroundColor:'black',borderRadius:100,padding:10,justifyContent:'center'}}>
+                    <FontAwesome5 color={'#fff'} style={{alignSelf:'center'}}  name="file-signature" size={24} />
+                    </View>
                     
 
                   </TouchableOpacity>
@@ -155,7 +148,7 @@ export default class Home extends Component {
                     onPress={() => this.props.navigation.navigate('Rdv')}
                     style={styles.divToutch} >
 
-                    <Text style={styles.titleDiv}>Prendre RDV</Text>
+                    <Text type='bold' style={styles.titleDiv}>Pré-declarer son sinistre</Text>
 
                     <FontAwesome5  color={'#fff'} name="calendar-alt" size={24} />
 
@@ -172,7 +165,7 @@ export default class Home extends Component {
 
                     style={styles.divToutch} >
 
-                    <Text style={styles.titleDiv}>Simuler devis</Text>
+                    <Text type='bold' style={styles.titleDiv}>Simuler un devis</Text>
                     <FontAwesome5  color={'#fff'} name="calculator" size={24} />
                     
 
@@ -184,7 +177,7 @@ export default class Home extends Component {
                     onPress={() => this.props.navigation.navigate('Guide')}
                   >
 
-                    <Text style={styles.titleDiv}>Guider rensigner</Text>
+                    <Text type='bold' style={styles.titleDiv}>Contacter son conseiller</Text>
                     <FontAwesome  color={'#fff'} size={24} name="handshake-o" />
                     
 
@@ -196,94 +189,80 @@ export default class Home extends Component {
 
             </View>
 
-            <ScrollView
-              ref={(scrollView) => { this.scrollView = scrollView; }}
-              style={[styles.container,styles.containerBottom]}
-              //pagingEnabled={true}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
+                <Text type='bold' style={{position:'absolute',top:70,marginLeft:10,fontSize:20}}>NOS PRODUITS ET SERVICES </Text>
+                    <ScrollView
+                      ref={(scrollView2) => { this.scrollView2 = scrollView2; }}
+                      style={[styles.container,styles.containerBottom]}
+                      //pagingEnabled={true}
+                      horizontal={true}
+                      showsHorizontalScrollIndicator={false}
 
-              decelerationRate={0}
-              snapToInterval={width - 60}
-              snapToAlignment={"center"}
-              contentInset={{
-                top: 200,
-                // left: 30,
-                bottom: 0,
-                // right: 30,
-              }}>
-              <View style={styles.view2}>
+                      decelerationRate={0}
+                      snapToInterval={width - 60}
+                      snapToAlignment={"center"}
+                      contentInset={{
+                        top: 200,
+                        // left: 30,
+                        bottom: 0,
+                        // right: 30,
+                      }}>
+                      <View style={styles.view2}>
 
-                <View style={styles.viewChild2}>
+                        <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
 
-                  <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                    <View style={{ width: '40%', height: '100%', }} >
-                      <Image source={image4} style={styles.imageDiv} />
-
-                    </View>
-                    <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                      <Text style={styles.titleScroll2}>Sinistres</Text>
-                      <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                    </View>
-
-                  </TouchableOpacity>
-
-                </View>
+                        <ImageBackground source={{uri:images[0]}} style={{height:'100%',width:'100%',resizeMode:'cover'}} imageStyle={{ borderRadius: 6 }}>
+                              <View style={{width:'auto',alignSelf: 'flex-start',position:'absolute',bottom:4,right:4 }}>
+                                <Text type='bold' style={{color:'white',width:'100%',fontSize:23}}>NISA AUTO</Text>
+                              </View>
+                        </ImageBackground>
+                        </TouchableOpacity>
 
 
-              </View>
-
-              <View style={styles.view2}>
-
-                <View style={styles.viewChild2}>
-
-                  <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                    <View style={{ width: '40%', height: '100%', }} >
-                      <Image source={image1} style={styles.imageDiv} />
-
-                    </View>
-                    <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                      <Text style={styles.titleScroll2}>Assurance vie</Text>
-                      <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                    </View>
-
-                  </TouchableOpacity>
-
-                </View>
+                      </View>
 
 
-              </View>
+
+                          <View style={styles.view2}>
+
+                              <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
+
+                              <ImageBackground source={{uri:images[1]}} style={{height:'100%',width:'100%',resizeMode:'cover'}} imageStyle={{ borderRadius: 6 }}>
+                                    <View style={{width:'auto',alignSelf: 'flex-start',position:'absolute',bottom:4,right:4 }}>
+                                      <Text type='bold' style={{color:'white',width:'100%',fontSize:23}}>NISA RETRAITE</Text>
+                                    </View>
+                              </ImageBackground>
+                              </TouchableOpacity>
 
 
-              <View style={styles.view2}>
-
-                <View style={styles.viewChild2}>
-
-                  <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                    <View style={{ width: '40%', height: '100%', }} >
-                      <Image source={image3} style={styles.imageDiv} />
-
-                    </View>
-                    <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                      <Text style={styles.titleScroll2}>Assutrance Auto & Moto</Text>
-                      <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                    </View>
-
-                  </TouchableOpacity>
-
-                </View>
+                            </View>
 
 
-              </View>
+
+                  
 
 
-            </ScrollView>
+
+                      <View style={styles.view2}>
+
+                          <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
+
+                          <ImageBackground source={{uri:images[2]}} style={{height:'100%',width:'100%',resizeMode:'cover'}} imageStyle={{ borderRadius: 6 }}>
+                                <View style={{width:'auto',alignSelf: 'flex-start',position:'absolute',bottom:4,right:4 }}>
+                                  <Text type='bold' style={{color:'white',width:'100%',fontSize:23}}>NSIA PREVOYANCES</Text>
+                                </View>
+                          </ImageBackground>
+                          </TouchableOpacity>
+
+
+                          </View>
+
+                    </ScrollView>
+
+            <View style={{flexDirection:'row',alignSelf:'center', alignItems:'center',justifyContent:'center', position:'absolute',top:'43%'}}>
+            <Button onPress={()=>this.scrollView2.scrollToEnd({animated: true})} style={{position:'relative',margin:5,backgroundColor:'orange',height:15,width:40}}><Text style={{width:'100%',height:'100%',}}></Text></Button>
+            <Button onPress={()=>this.scrollView2.scrollTo({x:400,animated: true})} style={{position:'relative',margin:5,backgroundColor:'orange',height:15,width:40}}><Text style={{width:'100%',height:'100%',backgroundColor:'orange',}}></Text></Button>
+            <Button onPress={()=>this.scrollView2.scrollTo({x:0,animated: true})} style={{position:'relative',margin:5,backgroundColor:'orange',height:15,width:40}}><Text style={{width:'100%',height:'100%',backgroundColor:'orange',borderRadius:100,}}></Text></Button>
+            </View>
 
 
 
@@ -312,6 +291,7 @@ const styles = StyleSheet.create({
 
     // flex:1,
     // height:'100%'
+
   },
   div: {
     width: '50%', height: '100%', padding: 8,
@@ -329,7 +309,7 @@ const styles = StyleSheet.create({
   },
   divToutch: {
     width: '100%', height: 60, backgroundColor: '#f6b93b', padding: 8, borderRadius: 6,
-    padding: 6,
+    padding: 7,
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
@@ -340,9 +320,9 @@ const styles = StyleSheet.create({
     justifyContent:'space-between'
   },
   titleDiv: {
-    fontSize: 14,
+    fontSize: 17,
     color: '#fff',
-    width:'80%'
+    width:'75%',
   },
   titleFirst: {
     fontSize: 18,
@@ -381,17 +361,18 @@ const styles = StyleSheet.create({
   },
   view: {
     backgroundColor: '#666',
-    width: width - 80,
+    width: width - 40,
     margin: 10,
     height: 150,
     borderRadius: 10,
+
     //paddingHorizontal : 30
   }, view2: {
     backgroundColor: '#666',
     width: width - 80,
     margin: 10,
     top: 60,
-    height: 120,
+    height: 130,
     borderRadius: 10,
     //paddingHorizontal : 30
   },
@@ -424,8 +405,10 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
     borderRadius: 10,
-
-  }, imageDiv: {
+    alignSelf:'center',
+    width:'100%'
+  }, 
+  imageDiv: {
     flex: 1,
     opacity: 0.8,
     resizeMode: "cover",
@@ -438,10 +421,10 @@ const styles = StyleSheet.create({
      flexDirection: 'column', 
      padding: 10 ,
      position:'absolute',
-     top:-70
+     top:-90
   },
   containerBottom:{
     position:'relative',
-     top:60,
+     top:40,
   }
 });

@@ -5,15 +5,15 @@ class CustomText extends Component {
   setFontType = type => {
     switch (type) {
       case 'black':
-        return 'Poppins-Black';
+        return 'Raleway-Black';
       case 'bold':
-        return 'Poppins-Bold';
-      case 'light':
-        return 'Poppins-Light';
+        return 'Raleway-Bold';
+      case 'regular':
+        return 'Raleway-Regular';
       case 'medium':
-        return 'Poppins-Medium';
+        return 'Raleway-Medium';
       default:
-        return 'Poppins-Regular';
+        return 'Raleway-Light';
     }
   };
 

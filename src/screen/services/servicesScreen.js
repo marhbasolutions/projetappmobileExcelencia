@@ -4,12 +4,15 @@ import React, { Component } from "react";
 import { StyleSheet,  View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import Header from './../HeaderScreen';
 import { Ionicons } from '@expo/vector-icons';
-import { Container, Content, Footer, FooterTab, Icon, Button } from 'native-base';
+import { Container, Content, Footer, FooterTab,  Button } from 'native-base';
 import Carousel from "@rhysforyou/react-native-carousel";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import FooterCompement from './../FooterScreen';
+import { LinearGradient } from 'expo-linear-gradient';
+
+import {Button as ButtonNative, Icon} from 'react-native-elements';
 
 import Text from '../../components/CustomText';
 
@@ -50,175 +53,130 @@ export default class servicesScreen extends Component {
 
                 <Header name="Home" openDrawer={this.props.navigation} />
 
-                <View style={{ flex: 1, flexDirection: 'column',  backgroundColor: '#30336b' }}>
-                         <Text type='bold' style={styles.titleFirst}>Nos services</Text>
-                   <Content style={{ flex:1, padding: 15 }} >
+                <View style={{ flex: 1, flexDirection: 'column',  backgroundColor: '#30336b',padding:8 }}>
+                         <Text type='bold' style={styles.titleFirst}>NOS PRODUITS ET SERVICES </Text>
+                                    <Content style={{ flex:1, padding: 15,backgroundColor:'white',borderRadius:10}} >
 
-                            <View style={styles.view2}>
+                                    <ScrollView style={{marginBottom:20}}>
 
-                                <View style={styles.viewChild2}>
+                                    <TouchableOpacity>
+                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
 
-                                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ width: '40%', height: '100%', }} >
-                                            <Image source={image4} style={styles.imageDiv} />
+                                    <LinearGradient
 
-                                        </View>
-                                        <View style={{ width: '60%', height: '100%', padding: 5 }} >
+                                        // Button Linear Gradient
+                                        colors={['#30336b10', '#726a95']}
+                                        start={{ x: 0.9, y: 0 }}
+                                        style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
 
-                                            <Text type='bold' style={styles.titleScroll2}>Sinistres</Text>
-                                            <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                                        </View>
-
+                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                        <FontAwesome5 color={'#fff'}   name="user" size={34} />
+                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Assurance Vie</Text></View>
+                
+                                            </LinearGradient>
+                                    </ImageBackground>
                                     </TouchableOpacity>
 
-                                </View>
+                                    <TouchableOpacity>
+                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
 
+                                    <LinearGradient
 
-                            </View>
+                                // Button Linear Gradient
+                                colors={['#30336b10', '#709fb0']}
+                                start={{ x: 0.9, y: 0 }}
+                                style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
+                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                        <Icon
+                                            type='material-community'
+                                            name={'security'}
+                                            size={34}
+                                            style={{alignSelf:'flex-start'}}
+                                            color="white"
+                                            />
+                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Assurances Santé</Text></View>
+                                            </LinearGradient>
 
-
-
-                            <View style={styles.view2}>
-
-                                <View style={styles.viewChild2}>
-
-                                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ width: '40%', height: '100%', }} >
-                                            <Image source={image2} style={styles.imageDiv} />
-
-                                        </View>
-                                        <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                                            <Text type='bold' style={styles.titleScroll2}>Assurance vie</Text>
-                                            <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                                        </View>
-
+                                    </ImageBackground>
                                     </TouchableOpacity>
 
-                                </View>
+                                    <TouchableOpacity>
+                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
 
+                                    <LinearGradient
 
-                            </View>
-                            <View style={styles.view2}>
+                                        // Button Linear Gradient
+                                        colors={['#30336b10', '#ad9d9d']}
+                                        start={{ x: 0.9, y: 0 }}
+                                        style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
+                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                        <Icon
+                                            type='material-community'
+                                            name={'car'}
+                                            size={34}
+                                            style={{alignSelf:'flex-start'}}
+                                            color="white"
+                                            />
+                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Gestion des Sinsitres</Text></View>
+                                            </LinearGradient>
 
-                                <View style={styles.viewChild2}>
-
-                                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ width: '40%', height: '100%', }} >
-                                            <Image source={image3} style={styles.imageDiv} />
-
-                                        </View>
-                                        <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                                            <Text type='bold' style={styles.titleScroll2}>Assutrance Auto & Moto</Text>
-                                            <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                                        </View>
-
+                                    </ImageBackground>
                                     </TouchableOpacity>
 
-                                </View>
+                                    <TouchableOpacity>
+                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
 
+                                    <LinearGradient
 
-                            </View>
-                            <View style={styles.view2}>
+                                        // Button Linear Gradient
+                                        colors={['#30336b10', '#9d65c9']}
+                                        start={{ x: 0.9, y: 0 }}
+                                        style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
+                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                        <Icon
+                                            type='material-community'
+                                            name={'home'}
+                                            size={34}
+                                            style={{alignSelf:'flex-start'}}
+                                            color="white"
+                                            />
+                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Assurances Non Vie</Text></View>
+                                            </LinearGradient>
 
-                                <View style={styles.viewChild2}>
-
-                                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ width: '40%', height: '100%', }} >
-                                            <Image source={image4} style={styles.imageDiv} />
-
-                                        </View>
-                                        <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                                            <Text type='bold' style={styles.titleScroll2}>Service1</Text>
-                                            <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                                        </View>
-
+                                    </ImageBackground>
                                     </TouchableOpacity>
 
-                                </View>
 
+                                    <TouchableOpacity>
+                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
 
-                            </View>
-
-
-                            <View style={styles.view2}>
-
-                                <View style={styles.viewChild2}>
-
-                                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ width: '40%', height: '100%', }} >
-                                            <Image source={image4} style={styles.imageDiv} />
-
-                                        </View>
-                                        <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                                            <Text type='bold' style={styles.titleScroll2}>Service1</Text>
-                                            <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                                        </View>
-
+                                    <LinearGradient
+                                        // Button Linear Gradient
+                                        colors={['#30336b10', '#7e8a97']}
+                                        start={{ x: 0.9, y: 0 }}
+                                        style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
+                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                        <Icon
+                                            type='material-community'
+                                            name={'briefcase-check'}
+                                            size={34}
+                                            style={{alignSelf:'flex-start'}}
+                                            color="white"
+                                            />
+                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Assurance Vie</Text></View>
+                
+                                            </LinearGradient>
+                                    </ImageBackground>
                                     </TouchableOpacity>
+                                    
 
-                                </View>
+                                    </ScrollView>
 
+                                        
 
-                            </View>
-
-
-                            <View style={styles.view2}>
-
-                                <View style={styles.viewChild2}>
-
-                                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ width: '40%', height: '100%', }} >
-                                            <Image source={image4} style={styles.imageDiv} />
-
-                                        </View>
-                                        <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                                            <Text type='bold' style={styles.titleScroll2}>Service1</Text>
-                                            <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                                        </View>
-
-                                    </TouchableOpacity>
-
-                                </View>
-
-
-                            </View>
-
-                            <View style={styles.view2}>
-
-                                <View style={styles.viewChild2}>
-
-                                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ width: '40%', height: '100%', }} >
-                                            <Image source={image4} style={styles.imageDiv} />
-
-                                        </View>
-                                        <View style={{ width: '60%', height: '100%', padding: 5 }} >
-
-                                            <Text type='bold' style={styles.titleScroll2}>Service1</Text>
-                                            <Text style={styles.descScroll2}>Commentez pour lancer une discussion, ajouter une le plan de travail.</Text>
-
-                                        </View>
-
-                                    </TouchableOpacity>
-
-                                </View>
-
-
-                            </View>
-
-                        {/* </Content> */}
-                    </Content>
+                                               
+                                            {/* </Content> */}
+                                        </Content>
 
 
                 
