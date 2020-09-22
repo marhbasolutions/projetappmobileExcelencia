@@ -16,7 +16,7 @@ topSearchBar: {
     borderRadius:10,
     alignSelf:'center',
     margin:2,
-    padding:10,
+    padding:6,
     position:'relative',
     top:-20
 },
@@ -54,6 +54,6 @@ buttonConfirm:{
     alignSelf:'center',
     backgroundColor:'lightgray',
     marginTop:8,
-    fontFamily:'Poppins-Regular'
+    fontFamily:'Raleway-Regular'
 }
 })

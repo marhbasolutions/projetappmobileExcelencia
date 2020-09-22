@@ -27,7 +27,7 @@ export default function SinistreScreen({ navigation }) {
             <Container>
                 <Header name="Sinistre"  title="Nouvelle Pre Declaration" Isreturn={true} openDrawer={navigation} />
                 <Content>
-                    <View style={{backgroundColor:'#30336b',width:'100%',height:20}}></View>
+                    <View style={{backgroundColor:'#30336b',width:'100%',height:30}}></View>
                     <TouchableOpacity activeOpacity={0.9} onPress={()=>alert('Clicked')} >
                     <View style={styles.topSearchBar}>
                     <Icon

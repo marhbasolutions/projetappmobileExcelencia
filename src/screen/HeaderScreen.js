@@ -18,10 +18,10 @@ const Header = ({ Isreturn, name, openDrawer, navigation,title }) => {
 
     <View style={{
       width: "100%",
-      height: 45,
+      height: 55,
       flexDirection: "row",
       justifyContent: "space-between",
-      // alignItems: "center",
+       alignItems: "center",
       backgroundColor: '#30336b',
       paddingHorizontal: 20
     }} >

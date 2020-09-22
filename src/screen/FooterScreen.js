@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground, StatusBar, BackHandle } from 'react-native';
+import { StyleSheet, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground, StatusBar, BackHandle } from 'react-native';
 import {Button as ButtonNative, Icon} from 'react-native-elements';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -9,6 +9,9 @@ import { Feather } from '@expo/vector-icons';
 import { Container, Content, Footer, FooterTab,  Button } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+import Text from '../components/CustomText';
+
 const Header = ({ isSelected, name, openDrawer, navigation }) => {
 
 

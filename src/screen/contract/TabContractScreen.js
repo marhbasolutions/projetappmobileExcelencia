@@ -55,28 +55,28 @@ export default function TabContractScreen({ navigation }) {
                 <LST.Section title="Les contracts">
                 <LST.Accordion
                     theme={{ colors: { primary: '#30336b' }}}
-                    titleStyle={{fontFamily:'Poppins-Bold'}}
+                    titleStyle={{fontFamily:'Raleway-Bold'}}
                     title="Assurance Vie"
                     left={props => <LST.Icon {...props}  icon="folder" />}>
                     <LST.Item
-                    style={{fontFamily:'Poppins-Medium'}}
-                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                    style={{fontFamily:'Raleway-Medium'}}
+                        titleStyle={{fontFamily:'Raleway-Medium',fontSize:13}}
                         title="NSIA RETRAITE (Particulier)"
                         description="12/12/2020"
                         left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
                         right={props => <Text style={{alignSelf:'center'}} >Afficher</Text>}
                     />
                     <LST.Item
-                    style={{fontFamily:'Poppins-Medium'}}
-                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                    style={{fontFamily:'Raleway-Medium'}}
+                        titleStyle={{fontFamily:'Raleway-Medium',fontSize:13}}
                         title="NSIA PREVOYANCES (Particulier)"
                         description="12/12/2020"
                         left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
                         right={props => <Text style={{alignSelf:'center'}} >Afficher</Text>}
                     />
                     <LST.Item
-                    style={{fontFamily:'Poppins-Medium'}}
-                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                    style={{fontFamily:'Raleway-Medium'}}
+                        titleStyle={{fontFamily:'Raleway-Medium',fontSize:13}}
                         title="NSIA ETUDES (Particulier)"
                         description="12/12/2020"
                         left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
@@ -86,12 +86,12 @@ export default function TabContractScreen({ navigation }) {
 
                 <LST.Accordion
                     theme={{ colors: { primary: '#30336b' }}}
-                    titleStyle={{fontFamily:'Poppins-Bold'}}
+                    titleStyle={{fontFamily:'Raleway-Bold'}}
                     title="Assurances Auto & Moto"
                     left={props => <LST.Icon {...props}  icon="folder" />}>
                     <LST.Item
-                    style={{fontFamily:'Poppins-Medium'}}
-                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                    style={{fontFamily:'Raleway-Medium'}}
+                        titleStyle={{fontFamily:'Raleway-Medium',fontSize:13}}
                         title="NSIA Auto (Particulier)"
                         description="12/12/2020"
                         left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
@@ -101,20 +101,20 @@ export default function TabContractScreen({ navigation }) {
 
                 <LST.Accordion
                     theme={{ colors: { primary: '#30336b' }}}
-                    titleStyle={{fontFamily:'Poppins-Bold'}}
+                    titleStyle={{fontFamily:'Raleway-Bold'}}
                     title="Assurances Santé"
                     left={props => <LST.Icon {...props}  icon="folder" />}>
                     <LST.Item
-                    style={{fontFamily:'Poppins-Medium'}}
-                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                    style={{fontFamily:'Raleway-Medium'}}
+                        titleStyle={{fontFamily:'Raleway-Medium',fontSize:13}}
                         title="NSIA FORFAIT HOSPITALIER"
                         description="12/12/2020"
                         left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}
                         right={props => <Text style={{alignSelf:'center'}} >Afficher</Text>}
                     />
                     <LST.Item
-                    style={{fontFamily:'Poppins-Medium'}}
-                        titleStyle={{fontFamily:'Poppins-Medium',fontSize:13}}
+                    style={{fontFamily:'Raleway-Medium'}}
+                        titleStyle={{fontFamily:'Raleway-Medium',fontSize:13}}
                         title="NSIA SANTÉ SMO"
                         description="12/12/2020"
                         left={props => <LST.Icon  {...props} icon="file" color='#f6b932' />}

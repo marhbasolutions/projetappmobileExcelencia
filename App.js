@@ -11,6 +11,7 @@ import Guide from './src/screen/guide/guideScreen';
 import TabContract from './src/screen/contract/TabContractScreen';
 import Account from './src/screen/account/accountScreen';
 import Sinistre from './src/screen/sinistre/SinistreScreen';
+import detailsService from './src/screen/services/detailsService';
 
 import Services from './src/screen/services/servicesScreen';
 import Home from './src/screen/homeScreen';
@@ -19,6 +20,7 @@ import LoginScreen from './src/screen/login/loginScreen';
 import Text from './src/components/CustomText';
 
 import * as Font  from 'expo-font';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 // const Header =({name, openDrawer})=> (
@@ -68,29 +70,70 @@ class Sidebar extends React.Component {
   state = {
     routes: [
       {
-        name: "Home",
-        icon: "ios-home"
+        name: "Acceuil",
+        icon: "ios-home",
+        route:"home"
       },
       {
-        name: "Account",
-        icon: "ios-contact"
+        name: "Qui Sommes nous",
+        icon: "ios-help-circle"
       },
       {
-        name: "Rdv",
-        icon: "ios-settings"
+        name: "Nos produits",
+        icon: "ios-apps"
       },
       // {
       //   name: "Rdv",
       //   icon: "ios-calendar"
       // },
       {
-        name: "Devis",
-        icon: "ios-calculator"
+        name: "Simuler un devis",
+        icon: "ios-create"
       },
       // {
       //   name: "Guide",
       //   icon: "md-information-circle-outline"
       // },
+    ],
+    routes2: [
+      {
+        name: "Payer mes cotisations",
+        icon: "md-eye"
+      },
+      {
+        name: "Mes contrats",
+        icon: "ios-document"
+      },
+      {
+        name: "pre-declarer un sinistre",
+        icon: "md-create"
+      },
+    ],
+    routes3: [
+      {
+        name: "Agences",
+        icon: "ios-pin"
+      }
+    ],
+    routes4: [
+      {
+        name: "Consulter la meteo",
+        icon: "ios-partly-sunny"
+      },
+      {
+        name: "Pharmacie de garde",
+        icon: "ios-medkit"
+      }
+    ],
+    routes5: [
+      {
+        name: "Numeros utiles",
+        icon: "md-call"
+      },
+      {
+        name: "deconexion",
+        icon: "md-power"
+      }
     ]
   }
 
@@ -98,27 +141,84 @@ class Sidebar extends React.Component {
     return (
       <View style={styles.containerDrawer}>
         <Image source={require('./src/assets/logo.png')}
-          style={{ width: 260, height: 80, alignSelf: 'center', resizeMode: 'cover', marginTop: 22, marginBottom: 22 }}>
+          style={{  alignSelf: 'center', resizeMode: 'cover', marginTop: 10, marginBottom: 6 }}>
 
         </Image>
+        <ScrollView showsVerticalScrollIndicator={false} style={{width:'100%'}}>
 
-        <Text style={styles.titleFirst}>A propos</Text>
-        <View style={styles.sidebarDivider}></View>
-        <FlatList
-          style={{ width: "100%", marginLeft: 30 }}
-          data={this.state.routes}
-          renderItem={({ item }) => <Item item={item} navigate={this.props.navigation.navigate} />}
-          keyExtractor={item => item.name}
-        />
+        <Text type='regular' style={styles.titleFirst}>A propos</Text>
+        
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes[0].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes[0].name}</Text>
+        </TouchableOpacity>
 
-        <Text style={styles.titleFirst}>Espace Societere</Text>
-        <View style={styles.sidebarDivider}></View>
-        <FlatList
-          style={{ width: "100%", marginLeft: 30 }}
-          data={this.state.routes}
-          renderItem={({ item }) => <Item item={item} navigate={this.props.navigation.navigate} />}
-          keyExtractor={item => item.name}
-        />
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes[1].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes[1].name}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes[2].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes[2].name}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes[3].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes[3].name}</Text>
+        </TouchableOpacity>
+
+        <Text type='regular' style={styles.titleFirst}>Espace Assuré</Text>
+
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes2[0].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes2[0].name}</Text>
+          <Text style={{borderRadius:12,color:'white',backgroundColor:'#fe7171',paddingBottom:2,paddingLeft:2,paddingRight:2,textAlign:'center',width:40,position:'absolute',right:20}}>New</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes2[1].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes2[1].name}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes2[2].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes2[2].name}</Text>
+        </TouchableOpacity>
+
+
+<Text type='regular' style={styles.titleFirst}>Localisation</Text>
+<TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes3[0].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes3[0].name}</Text>
+        </TouchableOpacity>
+
+
+<Text type='regular' style={styles.titleFirst}>Infos pratiques</Text>
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes4[0].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes4[0].name}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes4[1].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes4[1].name}</Text>
+        </TouchableOpacity>
+
+<Text type='regular' style={styles.titleFirst}>Autres</Text>
+<TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes5[0].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes5[0].name}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes5[1].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes5[1].name}</Text>
+        </TouchableOpacity>
+
+        </ScrollView>
 
 
       </View>
@@ -147,8 +247,7 @@ const Drawer = createDrawerNavigator(
     TabContract: { screen: TabContract },
     Account: { screen: Account },
     Sinistre: { screen: Sinistre },
-
-
+    detailsService: { screen : detailsService },
   },
   {
     initialRouteName: "Home",
@@ -191,11 +290,11 @@ export default class App extends React.Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'Poppins-Black': require('./assets/fonts/Poppins-Black.ttf'),
-      'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
-      'Poppins-Light': require('./assets/fonts/Poppins-Light.ttf'),
-      'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
-      'Poppins-Medium': require('./assets/fonts/Poppins-Medium.ttf')
+      'Raleway-Black': require('./assets/fonts/Raleway-Black.ttf'),
+      'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf'),
+      'Raleway-Light': require('./assets/fonts/Raleway-Light.ttf'),
+      'Raleway-Regular': require('./assets/fonts/Raleway-Regular.ttf'),
+      'Raleway-Medium': require('./assets/fonts/Raleway-Medium.ttf')
     });
 
     this.setState({ fontLoaded: true });
@@ -225,21 +324,26 @@ const styles = StyleSheet.create({
   },
   containerDrawer: {
     backgroundColor: "#30336b",
-    padding: 10,
     paddingTop: 40,
     alignItems: "center",
     flex: 1
 
   },
   listItem: {
-    height: 50,
+    height:50,
     alignItems: "center",
     flexDirection: "row",
+    width:'100%',
+    marginBottom:3,
+    marginLeft:8
   },
   title: {
     fontSize: 16,
     marginLeft: 20,
-    color: '#fff'
+    color: '#fff',
+    alignSelf:'center',
+    alignItems:'center',
+    flex:1
   },
   header: {
     width: "100%",
@@ -264,9 +368,11 @@ const styles = StyleSheet.create({
   titleFirst: {
     fontSize: 18,
     marginTop: 20,
-    fontWeight: 'bold',
-    color: '#f6b932',
-    alignSelf: 'flex-start'
+    width:'100%',
+    color:'white',
+    backgroundColor: '#f6b932',
+    alignSelf: 'flex-start',
+    padding:10
 
   },
 });
