@@ -74,7 +74,7 @@ export default class Home extends Component {
 
                     <Text style={styles.title1}>50%</Text>
                     <Text style={styles.title2}>Assurance home for you and your family</Text>
-                    <Button style={{ color: '#fff', marginTop: 5, paddingLeft: 6, paddingRight: 6, alignSelf: 'flex-end' }} info><Text style={{ color: '#fff' }} > Take a lock </Text></Button>
+                    
 
 
                   </View>
@@ -90,9 +90,7 @@ export default class Home extends Component {
 
                     <Text style={styles.title1}>50%</Text>
                     <Text style={styles.title2}>Assurance home for you and your family</Text>
-                    <Button style={{ color: '#fff', marginTop: 5, paddingLeft: 6, paddingRight: 6, alignSelf: 'flex-end' }} warning><Text style={{ color: '#fff' }} > Take a lock </Text></Button>
-
-
+                    
                   </View>
 
                 </ImageBackground>
@@ -106,8 +104,7 @@ export default class Home extends Component {
 
                     <Text style={styles.title1}>50%</Text>
                     <Text style={styles.title2}>Assurance home for you and your family</Text>
-                    <Button style={{ color: '#fff', marginTop: 5, paddingLeft: 6, paddingRight: 6, alignSelf: 'flex-end' }} warning><Text style={{ color: '#fff' }} > Take a lock </Text></Button>
-
+                    
 
                   </View>
 
@@ -133,7 +130,7 @@ export default class Home extends Component {
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.div} >
                   <TouchableOpacity style={styles.divToutch}
-                    onPress={() => this.props.navigation.navigate('Contract')}
+                    onPress={() => this.props.navigation.navigate('Sinistre')}
                   >
                     <Text type='bold' style={styles.titleDiv}>Espace sinistre</Text>
                     <View style={{backgroundColor:'black',borderRadius:100,padding:10,justifyContent:'center'}}>
@@ -320,7 +317,7 @@ const styles = StyleSheet.create({
     justifyContent:'space-between'
   },
   titleDiv: {
-    fontSize: 17,
+    fontSize: 16,
     color: '#fff',
     width:'75%',
   },

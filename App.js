@@ -11,6 +11,7 @@ import Guide from './src/screen/guide/guideScreen';
 import TabContract from './src/screen/contract/TabContractScreen';
 import Account from './src/screen/account/accountScreen';
 import Sinistre from './src/screen/sinistre/SinistreScreen';
+import detailsService from './src/screen/services/detailsService';
 
 import Services from './src/screen/services/servicesScreen';
 import Home from './src/screen/homeScreen';
@@ -173,7 +174,7 @@ class Sidebar extends React.Component {
         <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
           <Ionicons color='#fff' name={this.state.routes2[0].icon} size={28} />
           <Text style={styles.title}>{this.state.routes2[0].name}</Text>
-          <Text style={{borderRadius:12,color:'white',backgroundColor:'#fe7171',padding:2,textAlign:'center',width:40,position:'absolute',right:20}}>New</Text>
+          <Text style={{borderRadius:12,color:'white',backgroundColor:'#fe7171',paddingBottom:2,paddingLeft:2,paddingRight:2,textAlign:'center',width:40,position:'absolute',right:20}}>New</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
@@ -246,8 +247,7 @@ const Drawer = createDrawerNavigator(
     TabContract: { screen: TabContract },
     Account: { screen: Account },
     Sinistre: { screen: Sinistre },
-
-
+    detailsService: { screen : detailsService },
   },
   {
     initialRouteName: "LoginScreen",

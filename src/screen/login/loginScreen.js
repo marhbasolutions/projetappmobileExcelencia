@@ -21,11 +21,11 @@ const appId = "1047121222092614"
             <View style={styles.loginFormView}>
 
               <Image source={require('../../assets/logo.png')}
-                style={{  alignSelf: 'center', resizeMode: 'cover', marginTop: '20%' }}>
+                style={{ height:50, width:400, alignSelf: 'center', resizeMode: 'cover', marginTop: '20%' }}>
 
               </Image>
 
-              <Text type="bold" style={{ fontSize: 20,  color: '#fff', alignContent: 'center', textAlign: 'center', marginBottom: '4%',marginTop:'4%' }}>S'AUTHENTIFIER</Text>
+              <Text type="bold" style={{ fontSize: 20,  color: '#fff', alignContent: 'center', textAlign: 'center', marginBottom: '4%',marginTop:'10%' }}>S'AUTHENTIFIER</Text>
               {/* <TextInput placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} /> */}
 
               <Item rounded style={styles.loginFormTextInput} >

@@ -9,8 +9,8 @@ import Carousel from "@rhysforyou/react-native-carousel";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import FooterCompement from './../FooterScreen';
 import { LinearGradient } from 'expo-linear-gradient';
+import FooterCompement from '../../screen/FooterScreen';
 
 import {Button as ButtonNative, Icon} from 'react-native-elements';
 
@@ -22,10 +22,12 @@ import Text from '../../components/CustomText';
 
 
 const { width } = Dimensions.get('window');
-const image1 = { uri: "https://www.alwihdainfo.com/photo/art/grande/29285521-28425818.jpg" };
-const image2 = { uri: "https://www.idiotiki-syntaxi.gr/wp-content/uploads/2018/04/shutterstock_628366121_Saving-1024x610.jpg" };
-const image3 = { uri: "https://www.top-faq.com/wp-content/uploads/2020/07/assurance-vie.jpg" };
+const image1 = { uri: "http://excel-assurance.com/wp-content/uploads/2019/08/Assurances1.jpg" };
+const image2 = { uri: "http://excel-assurance.com/wp-content/uploads/2020/09/image-poduct-nsiasmo.png" };
+const image3 = { uri: "http://excel-assurance.com/wp-content/uploads/2019/09/AdobeStock_209417593-854x570-854x550.jpeg" };
 const image4 = { uri: "https://www.bj-assurances.be/wp-content/uploads/2019/04/BJ_Assurance_familiale_header.jpg" };
+const image5 = { uri: "http://excel-assurance.com/wp-content/uploads/2019/08/blackdoctor_baby.jpg"};
+const image6 = { uri: "http://excel-assurance.com/wp-content/uploads/2019/08/1-tnzUx8ScCvGLA2dU2HNAYA.jpeg"};
 
 export default class servicesScreen extends Component {
 
@@ -51,7 +53,7 @@ export default class servicesScreen extends Component {
 
 
 
-                <Header name="Home" openDrawer={this.props.navigation} />
+                <Header name="Home"  openDrawer={this.props.navigation} />
 
                 <View style={{ flex: 1, flexDirection: 'column',  backgroundColor: '#30336b',padding:8 }}>
                          <Text type='bold' style={styles.titleFirst}>NOS PRODUITS ET SERVICES </Text>
@@ -59,120 +61,118 @@ export default class servicesScreen extends Component {
 
                                     <ScrollView style={{marginBottom:20}}>
 
-                                    <TouchableOpacity>
-                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
+                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('detailsService')}>
+                                            <ImageBackground source={image1} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
 
-                                    <LinearGradient
+                                            <LinearGradient
 
-                                        // Button Linear Gradient
-                                        colors={['#30336b10', '#726a95']}
-                                        start={{ x: 0.9, y: 0 }}
-                                        style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
+                                                // Button Linear Gradient
+                                                colors={['#30336b10', '#726a95']}
+                                                start={{ x: 0.9, y: 0 }}
+                                                style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
 
-                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
-                                        <FontAwesome5 color={'#fff'}   name="user" size={34} />
-                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Assurance Vie</Text></View>
-                
-                                            </LinearGradient>
-                                    </ImageBackground>
-                                    </TouchableOpacity>
+                                                <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                                <FontAwesome5 color={'#fff'}   name="user" size={34} />
+                                                    <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3,textTransform: 'uppercase'}}>Assurance Vie</Text></View>
+                        
+                                                    </LinearGradient>
+                                            </ImageBackground>
+                                            </TouchableOpacity>
 
-                                    <TouchableOpacity>
-                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
+                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('detailsService')}>
+                                            <ImageBackground source={image2} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
 
-                                    <LinearGradient
-
-                                // Button Linear Gradient
-                                colors={['#30336b10', '#709fb0']}
-                                start={{ x: 0.9, y: 0 }}
-                                style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
-                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
-                                        <Icon
-                                            type='material-community'
-                                            name={'security'}
-                                            size={34}
-                                            style={{alignSelf:'flex-start'}}
-                                            color="white"
-                                            />
-                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Assurances Santé</Text></View>
-                                            </LinearGradient>
-
-                                    </ImageBackground>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity>
-                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
-
-                                    <LinearGradient
+                                            <LinearGradient
 
                                         // Button Linear Gradient
-                                        colors={['#30336b10', '#ad9d9d']}
+                                        colors={['#30336b10', '#709fb0']}
                                         start={{ x: 0.9, y: 0 }}
                                         style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
-                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
-                                        <Icon
-                                            type='material-community'
-                                            name={'car'}
-                                            size={34}
-                                            style={{alignSelf:'flex-start'}}
-                                            color="white"
-                                            />
-                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Gestion des Sinsitres</Text></View>
-                                            </LinearGradient>
+                                                <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                                <Icon
+                                                    type='material-community'
+                                                    name={'security'}
+                                                    size={34}
+                                                    style={{alignSelf:'flex-start'}}
+                                                    color="white"
+                                                    />
+                                                    <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3,textTransform: 'uppercase'}}>Assurances Santé</Text></View>
+                                                    </LinearGradient>
 
-                                    </ImageBackground>
-                                    </TouchableOpacity>
+                                            </ImageBackground>
+                                            </TouchableOpacity>
 
-                                    <TouchableOpacity>
-                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
+                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('detailsService')}>
+                                            <ImageBackground source={image3} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
 
-                                    <LinearGradient
+                                            <LinearGradient
 
-                                        // Button Linear Gradient
-                                        colors={['#30336b10', '#9d65c9']}
-                                        start={{ x: 0.9, y: 0 }}
-                                        style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
-                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
-                                        <Icon
-                                            type='material-community'
-                                            name={'home'}
-                                            size={34}
-                                            style={{alignSelf:'flex-start'}}
-                                            color="white"
-                                            />
-                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Assurances Non Vie</Text></View>
-                                            </LinearGradient>
+                                                // Button Linear Gradient
+                                                colors={['#30336b10', '#ad9d9d']}
+                                                start={{ x: 0.9, y: 0 }}
+                                                style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
+                                                <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                                <Icon
+                                                    type='material-community'
+                                                    name={'car'}
+                                                    size={34}
+                                                    style={{alignSelf:'flex-start'}}
+                                                    color="white"
+                                                    />
+                                                    <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3,textTransform: 'uppercase'}}>Gestion des Sinsitres</Text></View>
+                                                    </LinearGradient>
 
-                                    </ImageBackground>
-                                    </TouchableOpacity>
+                                            </ImageBackground>
+                                            </TouchableOpacity>
+
+                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('detailsService')}>
+                                            <ImageBackground source={image5} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
+
+                                            <LinearGradient
+
+                                                // Button Linear Gradient
+                                                colors={['#30336b10', '#9d65c9']}
+                                                start={{ x: 0.9, y: 0 }}
+                                                style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
+                                                <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                                <Icon
+                                                    type='material-community'
+                                                    name={'home'}
+                                                    size={34}
+                                                    style={{alignSelf:'flex-start'}}
+                                                    color="white"
+                                                    />
+                                                    <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3,textTransform: 'uppercase'}}>Assurances Non Vie</Text></View>
+                                                    </LinearGradient>
+
+                                            </ImageBackground>
+                                            </TouchableOpacity>
 
 
-                                    <TouchableOpacity>
-                                    <ImageBackground source={image4} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
+                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('detailsService')}>
+                                            <ImageBackground source={image6} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
 
-                                    <LinearGradient
-                                        // Button Linear Gradient
-                                        colors={['#30336b10', '#7e8a97']}
-                                        start={{ x: 0.9, y: 0 }}
-                                        style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
-                                        <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
-                                        <Icon
-                                            type='material-community'
-                                            name={'briefcase-check'}
-                                            size={34}
-                                            style={{alignSelf:'flex-start'}}
-                                            color="white"
-                                            />
-                                            <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3}}>Assurance Vie</Text></View>
-                
-                                            </LinearGradient>
-                                    </ImageBackground>
-                                    </TouchableOpacity>
-                                    
+                                            <LinearGradient
+                                                // Button Linear Gradient
+                                                colors={['#30336b10', '#7e8a97']}
+                                                start={{ x: 0.9, y: 0 }}
+                                                style={{ padding: 15, alignItems: 'center', borderRadius: 5,height:'100%' }}>
+                                                <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
+                                                <Icon
+                                                    type='material-community'
+                                                    name={'briefcase-check'}
+                                                    size={34}
+                                                    style={{alignSelf:'flex-start'}}
+                                                    color="white"
+                                                    />
+                                                    <Text type='bold' style={{backgroundColor:'#30336b',fontSize:17,padding:7,paddingLeft:14,color:'white',marginTop:3,textTransform: 'uppercase'}}>Assurance Entreprise</Text></View>
+                        
+                                                    </LinearGradient>
+                                            </ImageBackground>
+                                            </TouchableOpacity>
+                                            
 
                                     </ScrollView>
-
-                                        
 
                                                
                                             {/* </Content> */}
