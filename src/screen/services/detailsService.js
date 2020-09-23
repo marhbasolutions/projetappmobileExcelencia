@@ -68,7 +68,7 @@ export default class detailsService extends Component {
 
                                     <ScrollView style={{marginBottom:20,padding:4}}>
 
-                                    <ImageBackground source={{uri:'http://excel-assurance.com/wp-content/uploads/2020/09/image-poduct-nsiahospitalier.png'}} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
+                                    <ImageBackground source={{uri:'http://excel-assurance.com/wp-content/uploads/2020/09/image-poduct-nsiahospitalier.png'}} style={{width:'100%',height:200,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
                                    
                                             <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
                                             
@@ -77,7 +77,7 @@ export default class detailsService extends Component {
                                                 </ImageBackground>
 
 
-                                                <ImageBackground source={{uri:'http://excel-assurance.com/wp-content/uploads/2020/09/image-poduct-nsiasmo.png'}} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
+                                                <ImageBackground source={{uri:'http://excel-assurance.com/wp-content/uploads/2020/09/image-poduct-nsiasmo.png'}} style={{width:'100%',height:200,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
                                                         
                                                     <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
                                                     
@@ -86,7 +86,7 @@ export default class detailsService extends Component {
                                                 </ImageBackground>
 
 
-                                                <ImageBackground source={{uri:'http://excel-assurance.com/wp-content/uploads/2020/09/image-poduct-nsiamopao-1.png'}} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
+                                                <ImageBackground source={{uri:'http://excel-assurance.com/wp-content/uploads/2020/09/image-poduct-nsiamopao-1.png'}} style={{width:'100%',height:200,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
                                                         
                                                     <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
                                                     
@@ -96,7 +96,7 @@ export default class detailsService extends Component {
 
 
 
-                                                <ImageBackground source={{uri:'http://excel-assurance.com/wp-content/uploads/2019/08/blackdoctor_baby.jpg'}} style={{width:'100%',height:120,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
+                                                <ImageBackground source={{uri:'http://excel-assurance.com/wp-content/uploads/2019/08/blackdoctor_baby.jpg'}} style={{width:'100%',height:200,marginTop:10}} imageStyle={{ borderRadius: 6 }}>
                                                         
                                                         <View  style={{ position:'absolute',bottom:10,left:10,width:'80%',justifyContent:'center'}}>
                                                         

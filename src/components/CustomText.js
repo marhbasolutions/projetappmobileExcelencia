@@ -10,10 +10,10 @@ class CustomText extends Component {
         return 'Raleway-Bold';
       case 'regular':
         return 'Raleway-Regular';
-      case 'medium':
-        return 'Raleway-Medium';
-      default:
+      case 'light':
         return 'Raleway-Light';
+      default:
+        return 'Raleway-Medium';
     }
   };
 

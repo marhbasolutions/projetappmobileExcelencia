@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
+import { StyleSheet,  View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import Header from './../HeaderScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { Container, Content, Footer, FooterTab, Icon, Input, Item, Button } from 'native-base';
@@ -10,6 +10,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from "./style";
 import DateTimePicker from '@react-native-community/datetimepicker';
+
+import Text from '../../components/CustomText';
 
 
 const appId = "1047121222092614"

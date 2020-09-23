@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
+import { StyleSheet,  View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import Header from '../HeaderScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { Container, Content, List, ListItem, Thumbnail, Left, Body, Icon, Right, Button } from 'native-base';
@@ -11,6 +11,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from "./style";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import FooterCompement from '../FooterScreen';
+
+import Text from '../../components/CustomText';
 
 
 const appId = "1047121222092614"
@@ -105,6 +107,42 @@ export default function accountScreen({ navigation }) {
                             </Left>
                             <Body>
                                 <Text>********</Text>
+                            </Body>
+                        </ListItem>
+                    </List>
+
+         
+
+                    <List>
+                        <ListItem selected>
+                            <Left>
+                                <Text>Profession</Text>
+                            </Left>
+                            <Body>
+                                <Text>Medecin</Text>
+                            </Body>
+                        </ListItem>
+                    </List>
+
+
+                    <List>
+                        <ListItem selected>
+                            <Left>
+                                <Text>N° de client</Text>
+                            </Left>
+                            <Body>
+                                <Text>12343</Text>
+                            </Body>
+                        </ListItem>
+                    </List>
+
+                    <List>
+                        <ListItem selected>
+                            <Left>
+                                <Text>Entreprise</Text>
+                            </Left>
+                            <Body>
+                                <Text>Exlencia</Text>
                             </Body>
                         </ListItem>
                     </List>

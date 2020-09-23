@@ -39,13 +39,13 @@ const Header = ({ isSelected, name, openDrawer, navigation }) => {
  
 
       <ButtonNative
-      onPress={() => openDrawer.navigate(name!='Sinistre' ? 'Sinistre':'Home')}
+      onPress={() => openDrawer.navigate(name!='PreSinistre' ? 'PreSinistre':'Home')}
       buttonStyle={{marginLeft:4,marginRight:4,backgroundColor:'black',padding:15,borderRadius:100}}
       icon={
         <Icon
           type='material-community'
-          name={name!='Sinistre' ? "plus":"close"}
-          size={name=='Sinistre'  ? 28:23 }
+          name={name!='Sinistre' && name!='PreSinistre'  ? "plus":"close"}
+          size={name=='Sinistre' || name=='PreSinistre'  ? 28:23 }
           color="white"
         />
       }
@@ -53,7 +53,7 @@ const Header = ({ isSelected, name, openDrawer, navigation }) => {
 
       <Button  active={name=='TabContract' ? true : false}  vertical onPress={() => openDrawer.navigate('TabContract')}>
         <FontAwesome5 color={'#fff'} name="file-alt" size={18} />
-        <Text style={{ color: "#fff" }}>Contrats</Text>
+        <Text  style={{ color: "#fff" }}>Contrats</Text>
       </Button>
       <Button  active={name=='Account' ? true : false}  vertical onPress={() => openDrawer.navigate('Account')}
       >

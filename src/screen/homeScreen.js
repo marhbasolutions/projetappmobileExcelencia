@@ -72,8 +72,8 @@ export default class Home extends Component {
                 <ImageBackground source={image1} style={styles.image} imageStyle={{ borderRadius: 6 }}>
                   <View style={styles.viewChild}>
 
-                    <Text style={styles.title1}>50%</Text>
-                    <Text style={styles.title2}>Assurance home for you and your family</Text>
+                    
+                    <Text type='bold' style={styles.title2}>Nous prenons soins,  de vous & votre famille</Text>
                     
 
 
@@ -88,8 +88,8 @@ export default class Home extends Component {
                 >
                   <View style={styles.viewChild}>
 
-                    <Text style={styles.title1}>50%</Text>
-                    <Text style={styles.title2}>Assurance home for you and your family</Text>
+                   
+                  <Text type='bold' style={styles.title2}>Nous prenons soins,  de vous & votre famille</Text>
                     
                   </View>
 
@@ -102,8 +102,8 @@ export default class Home extends Component {
                 >
                   <View style={styles.viewChild}>
 
-                    <Text style={styles.title1}>50%</Text>
-                    <Text style={styles.title2}>Assurance home for you and your family</Text>
+                    
+                  <Text type='bold' style={styles.title2}>Nous prenons soins,  de vous & votre famille</Text>
                     
 
                   </View>
@@ -130,11 +130,11 @@ export default class Home extends Component {
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.div} >
                   <TouchableOpacity style={styles.divToutch}
-                    onPress={() => this.props.navigation.navigate('Sinistre')}
+                    onPress={() => this.props.navigation.navigate('PreSinistre')}
                   >
                     <Text type='bold' style={styles.titleDiv}>Espace sinistre</Text>
                     <View style={{backgroundColor:'black',borderRadius:100,padding:10,justifyContent:'center'}}>
-                    <FontAwesome5 color={'#fff'} style={{alignSelf:'center'}}  name="file-signature" size={24} />
+                    <FontAwesome5 color={'#fff'} style={{alignSelf:'center'}}  name="file-signature" size={20} />
                     </View>
                     
 
@@ -142,7 +142,7 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.div} >
                   <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('Rdv')}
+                    onPress={() => this.props.navigation.navigate('Sinistre')}
                     style={styles.divToutch} >
 
                     <Text type='bold' style={styles.titleDiv}>Pré-declarer son sinistre</Text>
@@ -317,9 +317,9 @@ const styles = StyleSheet.create({
     justifyContent:'space-between'
   },
   titleDiv: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#fff',
-    width:'75%',
+    width:'73%',
   },
   titleFirst: {
     fontSize: 18,
@@ -340,15 +340,14 @@ const styles = StyleSheet.create({
     textShadowColor: 'black'
   },
   title2: {
-
     fontSize: 16,
-    // fontWeight: 'bold',
     color: '#fff',
-    // opacity: 1,
-    marginTop: 8,
     textShadowOffset: { width: 1, height: 2 },
     textShadowRadius: 10,
-    textShadowColor: 'black'
+    textShadowColor: 'black',
+    position:'absolute',
+    bottom:20,
+    left:10
   },
   loginButton: {
     height: 53,

@@ -11,6 +11,7 @@ import Guide from './src/screen/guide/guideScreen';
 import TabContract from './src/screen/contract/TabContractScreen';
 import Account from './src/screen/account/accountScreen';
 import Sinistre from './src/screen/sinistre/SinistreScreen';
+import PreSinistre from './src/screen/sinistre/PreSinistreScreen';
 import detailsService from './src/screen/services/detailsService';
 
 import Services from './src/screen/services/servicesScreen';
@@ -90,6 +91,14 @@ class Sidebar extends React.Component {
         name: "Simuler un devis",
         icon: "ios-create"
       },
+      {
+        name: "Prendre Rendez-vous",
+        icon: "md-calendar"
+      },
+      {
+        name: "Assistance",
+        icon: "md-information-circle"
+      },
       // {
       //   name: "Guide",
       //   icon: "md-information-circle-outline"
@@ -105,7 +114,7 @@ class Sidebar extends React.Component {
         icon: "ios-document"
       },
       {
-        name: "pre-declarer un sinistre",
+        name: "Pré-declarer un sinistre",
         icon: "md-create"
       },
     ],
@@ -117,7 +126,7 @@ class Sidebar extends React.Component {
     ],
     routes4: [
       {
-        name: "Consulter la meteo",
+        name: "Meteo actuel",
         icon: "ios-partly-sunny"
       },
       {
@@ -148,7 +157,7 @@ class Sidebar extends React.Component {
 
         <Text type='regular' style={styles.titleFirst}>A propos</Text>
         
-        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate('Home1')}>
           <Ionicons color='#fff' name={this.state.routes[0].icon} size={28} />
           <Text style={styles.title}>{this.state.routes[0].name}</Text>
         </TouchableOpacity>
@@ -163,12 +172,34 @@ class Sidebar extends React.Component {
           <Text style={styles.title}>{this.state.routes[2].name}</Text>
         </TouchableOpacity>
 
+
+   
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes[4].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes[4].name}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes[5].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes[5].name}</Text>
+        </TouchableOpacity>
+
+        
+
+        <Text type='regular' style={styles.titleFirst}>Espace Assuré</Text>
+
+
+        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
+          <Ionicons color='#fff' name={this.state.routes2[2].icon} size={28} />
+          <Text style={styles.title}>{this.state.routes2[2].name}</Text>
+        </TouchableOpacity>
+
+
         <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
           <Ionicons color='#fff' name={this.state.routes[3].icon} size={28} />
           <Text style={styles.title}>{this.state.routes[3].name}</Text>
         </TouchableOpacity>
-
-        <Text type='regular' style={styles.titleFirst}>Espace Assuré</Text>
 
 
         <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
@@ -182,10 +213,7 @@ class Sidebar extends React.Component {
           <Text style={styles.title}>{this.state.routes2[1].name}</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.listItem} onPress={() => this.props.navigation.navigate(this.state.routes[0].route)}>
-          <Ionicons color='#fff' name={this.state.routes2[2].icon} size={28} />
-          <Text style={styles.title}>{this.state.routes2[2].name}</Text>
-        </TouchableOpacity>
+       
 
 
 <Text type='regular' style={styles.titleFirst}>Localisation</Text>
@@ -248,9 +276,10 @@ const Drawer = createDrawerNavigator(
     Account: { screen: Account },
     Sinistre: { screen: Sinistre },
     detailsService: { screen : detailsService },
+    PreSinistre : { screen: PreSinistre }
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "LoginScreen",
     unmountInactiveRoutes: true,
     headerMode: "none",
     contentComponent: props => <Sidebar {...props} />
@@ -307,7 +336,7 @@ export default class App extends React.Component {
        {this.state.fontLoaded ? (
         <AppContainer />
         ) : (
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color='#f6b932' style={{flex:1,alignSelf:'center',justifyContent:'center',alignContent:'center'}} />
         )}
       </>
     );
@@ -335,7 +364,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width:'100%',
     marginBottom:3,
-    marginLeft:8
+    marginLeft:16
   },
   title: {
     fontSize: 16,
