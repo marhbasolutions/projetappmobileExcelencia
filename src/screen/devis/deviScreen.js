@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import Header from '../HeaderScreen';
 import { Ionicons } from '@expo/vector-icons';
-import { Form, Grid, Col, Container, Content, Footer, FooterTab, Icon, Input, Item, Button, Segment, Body, Radio, Picker } from 'native-base';
+import {
+    Form, Grid, Col, Container, Content, Footer, FooterTab, Icon, Input, Item, Switch,
+    Button, Segment, Body, Radio, Picker, ListItem, Left, Right
+} from 'native-base';
 
 import Carousel from "@rhysforyou/react-native-carousel";
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -13,6 +16,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import SegmentedControl from '@react-native-community/segmented-control';
 import StepIndicator from 'react-native-step-indicator';
 import { CheckBox } from 'react-native-elements'
+import AutoScreen from './autoScreen'
+import HabiatationScreen from './habiatationScreen'
 
 
 const appId = "1047121222092614"
@@ -25,6 +30,7 @@ export default function deviScreen({ navigation }) {
     const [showForm, setShowForm] = useState(false);
     const [selectedIndex, setselectedIndex] = useState(0);
     const [currentPosition, setcurrentPosition] = useState(0);
+    const [ColorBack, setColorBack] = useState('#30336b');
 
     const labels = ["Informations personneles", "Informations de vehicule", "Choix des garanties"];
 
@@ -51,245 +57,63 @@ export default function deviScreen({ navigation }) {
         showMode('time');
     };
 
+    const listGaranties = [
+        'RESPONSABILITE CIVILE', 'DEFENSE ET RECOURS', 'VOL', 'INCEDIE', 'BRIS DE GLACE', 'DOMMAGE COLLESION',
+        'TIERCE', 'PERSONNES TRANSPORTEES', 'EVCAT RC AUTO', 'EVCAT DOMMAGE AUTO'
+    ]
+
+    const handleInputValue = (val) => {
+       setcurrentPosition(val)
+    }
+
     const customStyles = {
         stepIndicatorSize: 35,
         currentStepIndicatorSize: 43,
         separatorStrokeWidth: 2,
         currentStepStrokeWidth: 3,
-        stepStrokeCurrentColor: '#27ae60',
+        stepStrokeCurrentColor: '#ffa502',
         stepStrokeWidth: 3,
-        stepStrokeFinishedColor: '#27ae60',
+        stepStrokeFinishedColor: '#ffa502',
         stepStrokeUnFinishedColor: '#aaaaaa',
-        separatorFinishedColor: '#27ae60',
+        separatorFinishedColor: '#ffa502',
         separatorUnFinishedColor: '#aaaaaa',
-        stepIndicatorFinishedColor: '#27ae60',
+        stepIndicatorFinishedColor: '#ffa502',
         stepIndicatorUnFinishedColor: '#ffffff',
         stepIndicatorCurrentColor: '#ffffff',
         stepIndicatorLabelFontSize: 13,
         currentStepIndicatorLabelFontSize: 13,
-        stepIndicatorLabelCurrentColor: '#27ae60',
+        stepIndicatorLabelCurrentColor: '#ffa502',
         stepIndicatorLabelFinishedColor: '#ffffff',
         stepIndicatorLabelUnFinishedColor: '#aaaaaa',
         labelColor: '#999999',
         labelSize: 15,
-        currentStepLabelColor: '#27ae60',
+        currentStepLabelColor: '#ffa502',
     }
-
-
-    const renderFormComponent1 = () => (
-
-
-        <View  >
-            {/* <FontAwesome5 style={{ alignSelf: 'center', marginTop: 18 }} color={'#30336b'} name="calculator" size={44} /> */}
-
-
-
-            <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15
-            }}>
-
-                <View style={{ width: '40%', }} >
-                    <Text style={{ fontSize: 18 }}>Civilite</Text>
-                </View>
-
-                <View style={{
-                    width: '30%', flexDirection: 'row',
-                }} >
-                    <Radio selected={true} />
-                    <Text style={{ marginLeft: 5 }}>Monsieur</Text>
-                </View>
-
-                <View style={{
-                    width: '30%', flexDirection: 'row',
-
-                }} >
-                    <Radio selected={false} />
-                    <Text style={{ marginLeft: 5 }}>Madame</Text>
-                </View>
-
-
-            </View>
-
-            <Item style={styles.loginFormTextInput} >
-                <Picker
-                    note
-                    mode="dropdown"
-                    style={{ width: 120 }}
-                    selectedValue={0}
-                // onValueChange={this.onValueChange.bind(this)}
-                >
-                    <Picker.Item label="Profession" value="key0" />
-                    <Picker.Item label="Ingenieur" value="key1" />
-                    <Picker.Item label="Medecin" value="key2" />
-                    <Picker.Item label="Professeur" value="key3" />
-                </Picker>
-            </Item>
-
-            <Item style={styles.loginFormTextInput} >
-                <Input placeholder='Nom' />
-            </Item>
-            <Item style={styles.loginFormTextInput} >
-                <Input placeholder='Prénom' />
-            </Item>
-            <Item style={styles.loginFormTextInput} >
-                <Input placeholder='GSM' />
-            </Item>
-
-            <Item style={styles.loginFormTextInput} >
-                <Input placeholder='Email' />
-            </Item>
-
-
-            <View style={{
-                width: '100%', flexDirection: 'row', alignItems: 'center'
-            }} >
-                <CheckBox selected={true} />
-                <Text >J'ai lut et accepter les conditions generales d'utilisateur </Text>
-            </View>
-
-
-
-            <Button onPress={() => { GoToNextStep(1) }} full style={{ color: '#fff', margin: 16, backgroundColor: '#30336b', borderRadius: 6 }}>
-                <Text style={{ color: '#fff' }} > SUIVANT </Text>
-            </Button>
-
-
-        </View>
-
-    )
-
-
-    const renderFormComponent2 = () => (
-
-
-        <View  >
-            {/* <FontAwesome5 style={{ alignSelf: 'center', marginTop: 18 }} color={'#30336b'} name="calculator" size={44} /> */}
-
-
-
-            <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15
-            }}>
-
-                <View style={{ width: '40%', }} >
-                    <Text style={{ fontSize: 18 }}>vehicule WW</Text>
-                </View>
-
-                <View style={{
-                    width: '30%', flexDirection: 'row',
-                }} >
-                    <Radio selected={true} />
-                    <Text style={{ marginLeft: 5 }}>Oui</Text>
-                </View>
-
-                <View style={{
-                    width: '30%', flexDirection: 'row',
-
-                }} >
-                    <Radio selected={false} />
-                    <Text style={{ marginLeft: 5 }}>Nom</Text>
-                </View>
-
-
-            </View>
-
-            <Item style={styles.loginFormTextInput} >
-                <Picker
-                    note
-                    mode="dropdown"
-                    style={{ width: 120 }}
-                    selectedValue={0}
-                // onValueChange={this.onValueChange.bind(this)}
-                >
-                    <Picker.Item label="Usage" value="key0" />
-                    <Picker.Item label="A" value="key1" />
-                    <Picker.Item label="C1" value="key2" />
-                </Picker>
-            </Item>
-
-
-            <Item style={styles.loginFormTextInput} >
-                <Picker
-                    note
-                    mode="dropdown"
-                    style={{ width: 120 }}
-                    selectedValue={0}
-                // onValueChange={this.onValueChange.bind(this)}
-                >
-                    <Picker.Item label="Marque" value="key0" />
-                    <Picker.Item label="Audi" value="key1" />
-                    <Picker.Item label="Alfa romeo" value="key2" />
-                    <Picker.Item label="BMW" value="key1" />
-                    <Picker.Item label="CHANA" value="key1" />
-                    <Picker.Item label="CITROEN" value="key1" />
-
-
-                </Picker>
-            </Item>
-
-
-
-            <Item style={styles.loginFormTextInput} >
-                <Input placeholder='Puissance' />
-            </Item>
-            <Item style={styles.loginFormTextInput} >
-                <Input placeholder='Valeur a neuf' />
-            </Item>
-            <Item style={styles.loginFormTextInput} >
-                <Input placeholder='Valeur venal' />
-            </Item>
-
-            <Item style={styles.loginFormTextInput} >
-                <Input placeholder='Valeur des glaces' />
-            </Item>
-
-
-            <Button onPress={() => { GoToNextStep(2) }} full style={{ color: '#fff', margin: 16, backgroundColor: '#30336b', borderRadius: 6 }}>
-                <Text style={{ color: '#fff' }} > SUIVANT </Text>
-            </Button>
-
-
-        </View>
-
-    )
-
-
-    const renderFormComponents = () => {
-
-        switch (currentPosition) {
-            case 0:
-                return renderFormComponent1()
-                break;
-            case 1:
-                return renderFormComponent2()
-                break;
-
-            default:
-                break;
-        }
-
-    }
-
 
 
     // render() {
     return (
         <>
-            <Header Isreturn='true' name="Home" openDrawer={navigation} title='Simuler un devis' />
+            <Header Isreturn='true' name="Home" openDrawer={navigation} title='Simuler un devis' color={ColorBack} />
 
             <View style={{ flex: 1, flexDirection: 'column' }}>
 
-                <View style={{ width: '100%', height: 170, backgroundColor: '#30336b' }} >
+                <View style={{ width: '100%', height: 170, backgroundColor: ColorBack }} >
                     <View style={{ paddingLeft: 20, paddingRight: 20, marginBottom: 10, marginTop: 10 }} >
 
                         <SegmentedControl
                             values={['Auto', 'Habitation']}
                             selectedIndex={selectedIndex}
-                            backgroundColor={'green'}
+                            backgroundColor={'#ffa502'}
                             // tintColor={'red'}
                             fontSize={22}
                             onChange={(event) => {
                                 setselectedIndex(event.nativeEvent.selectedSegmentIndex);
+                                if (selectedIndex == 0) {
+                                    setColorBack('#6D214F')
+                                } else (
+                                    setColorBack('#30336b')
+                                )
 
                             }}
                         />
@@ -308,8 +132,11 @@ export default function deviScreen({ navigation }) {
                 </View>
                 <Content style={{ width: '100%', padding: 15, }} >
 
+                    {selectedIndex == 0
+                        ? <AutoScreen handleInput={handleInputValue} ColorBack={ColorBack} />
+                        : <HabiatationScreen handleInput={handleInputValue} ColorBack={ColorBack} />
 
-                    {renderFormComponents()}
+                    }
                 </Content>
             </View>
 

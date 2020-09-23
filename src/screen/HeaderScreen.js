@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet,  View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground, StatusBar, BackHandler, } from 'react-native';
+import { StyleSheet, View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground, StatusBar, BackHandler, } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,8 +9,11 @@ import Text from '../components/CustomText';
 
 import styles from "./globalStyle/style";
 
-const Header = ({ Isreturn, name, openDrawer, navigation,title }) => {
+const Header = ({ Isreturn, name, openDrawer, navigation, title, color }) => {
 
+  var mycolor = "#30336b"
+  if (color)
+    mycolor = color
 
 
   return (
@@ -21,11 +24,11 @@ const Header = ({ Isreturn, name, openDrawer, navigation,title }) => {
       height: 55,
       flexDirection: "row",
       justifyContent: "space-between",
-       alignItems: "center",
-      backgroundColor: '#30336b',
+      alignItems: "center",
+      backgroundColor: mycolor,
       paddingHorizontal: 20
     }} >
-      <StatusBar barStyle="light-content" backgroundColor="#30336b" />
+      <StatusBar barStyle="light-content" backgroundColor={color} />
 
 
       {!Isreturn ? (
@@ -43,7 +46,7 @@ const Header = ({ Isreturn, name, openDrawer, navigation,title }) => {
 
       }
 
-{title ? (
+      {title ? (
         <View style={styles.headerTextContainer}><Text style={styles.headerText} type="bold">{title}</Text></View>
       ) :
         null
