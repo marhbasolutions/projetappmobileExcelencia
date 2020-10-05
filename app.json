@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "excel-assurance",
-    "slug": "excel-assurance",
+    "name": "assurance2",
+    "slug": "assurance2",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,11 +21,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "android": {
-      "package": "com.excel.app",
-      "versionCode": 1
-    },
-    "description": ""
+    }
   }
 }
