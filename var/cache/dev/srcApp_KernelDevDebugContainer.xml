@@ -4417,6 +4417,7 @@
         <argument key="password">null</argument>
         <argument key="driver">pdo_mysql</argument>
         <argument key="driverOptions" type="collection"/>
+        <argument key="serverVersion" type="string">5.7</argument>
         <argument key="defaultTableOptions" type="collection"/>
       </argument>
       <argument type="service" id="doctrine.dbal.default_connection.configuration"/>

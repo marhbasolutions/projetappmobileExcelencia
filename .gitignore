@@ -8,6 +8,8 @@
 /var/
 /vendor/
 /var/**/*
+/var/cache/**/*
+/composer/**/*
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
