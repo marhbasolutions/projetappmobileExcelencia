@@ -510,6 +510,13 @@
         <argument type="service" id=".service_locator.1gVbUCb.App\Controller\Admin\UserCrudController"/>
       </call>
     </service>
+    <service id="App\Controller\Api\ApiController" class="App\Controller\Api\ApiController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\Api\ApiController"/>
+      </call>
+    </service>
     <service id="App\Listeners\AddedCommentListener" class="App\Listeners\AddedCommentListener" autowire="true" autoconfigure="true">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="service_container"/>
@@ -518,11 +525,20 @@
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="service_container"/>
     </service>
+    <service id="App\Listeners\AuthenticationSuccessHandler" class="App\Listeners\AuthenticationSuccessHandler" autowire="true" autoconfigure="true"/>
+    <service id="App\Repository\AgencyRepository" class="App\Repository\AgencyRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\AppointmentRepository" class="App\Repository\AppointmentRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CityRepository" class="App\Repository\CityRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -549,6 +565,11 @@
     <service id="App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Services\JsonSerialiser" class="App\Services\JsonSerialiser" autowire="true" autoconfigure="true"/>
+    <service id="App\Services\UserService" class="App\Services\UserService" autowire="true" autoconfigure="true">
+      <argument type="service" id="fos_user.user_manager.default"/>
+      <argument type="service" id="security.encoder_factory.generic"/>
     </service>
     <service id=".legacy_controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
@@ -4403,7 +4424,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.p9zvgkb"/>
+      <argument type="service" id=".service_locator.tkFQ4wq"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4985,6 +5006,13 @@
         <argument>null</argument>
       </call>
       <call method="add">
+        <argument type="service" id=".security.request_matcher.bYPnW53"/>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
         <argument type="service" id=".security.request_matcher.PhQgZ9B"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
@@ -5498,6 +5526,9 @@
     </service>
     <service id=".security.request_matcher.0uhYzab" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/resetting</argument>
+    </service>
+    <service id=".security.request_matcher.bYPnW53" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/mobile</argument>
     </service>
     <service id=".security.request_matcher.PhQgZ9B" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/</argument>
@@ -6653,14 +6684,21 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Api\ApiController" class="App\Controller\Api\ApiController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Api\ApiController" class="App\Controller\Api\ApiController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Api\ApiController" class="App\Controller\Api\ApiController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\Listeners\AddedCommentListener" class="App\Listeners\AddedCommentListener" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Listeners\AddedCommentListener" class="App\Listeners\AddedCommentListener" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\Listeners\AddedNewsListener" class="App\Listeners\AddedNewsListener" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Listeners\AddedNewsListener" class="App\Listeners\AddedNewsListener" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AgencyRepository" class="App\Repository\AgencyRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\AgencyRepository" class="App\Repository\AgencyRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AppointmentRepository" class="App\Repository\AppointmentRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\AppointmentRepository" class="App\Repository\AppointmentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CityRepository" class="App\Repository\CityRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CityRepository" class="App\Repository\CityRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ContractRepository" class="App\Repository\ContractRepository" autowire="true" abstract="true"/>
@@ -7025,7 +7063,13 @@
         <argument key="user" type="service" id=".errored..service_locator.RLVVpop.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.YsAWVrr" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.HsZ1vXQ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userService" type="service" id="App\Services\UserService"/>
+      </argument>
+    </service>
+    <service id=".service_locator.tsUhfMq" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\AppointmentCrudController::autocomplete" type="service" id=".service_locator.h2tplhS"/>
@@ -7209,6 +7253,7 @@
         <argument key="App\Controller\Admin\UserCrudController::persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Api\ApiController::index" type="service" id=".service_locator.HsZ1vXQ"/>
         <argument key="App\Controller\Admin\AppointmentCrudController:autocomplete" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\AppointmentCrudController:configureActions" type="service" id=".service_locator.eGAETcz"/>
         <argument key="App\Controller\Admin\AppointmentCrudController:configureAssets" type="service" id=".service_locator.hVQViHK"/>
@@ -7390,6 +7435,7 @@
         <argument key="App\Controller\Admin\UserCrudController:persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Api\ApiController:index" type="service" id=".service_locator.HsZ1vXQ"/>
       </argument>
     </service>
     <service id=".service_locator.Y7gDuDN" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -7485,11 +7531,13 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.p9zvgkb" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.tkFQ4wq" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\AgencyRepository" type="service" id="App\Repository\AgencyRepository"/>
         <argument key="App\Repository\AppointmentRepository" type="service" id="App\Repository\AppointmentRepository"/>
         <argument key="App\Repository\CategoryRepository" type="service" id="App\Repository\CategoryRepository"/>
+        <argument key="App\Repository\CityRepository" type="service" id="App\Repository\CityRepository"/>
         <argument key="App\Repository\CommentRepository" type="service" id="App\Repository\CommentRepository"/>
         <argument key="App\Repository\ContractRepository" type="service" id="App\Repository\ContractRepository"/>
         <argument key="App\Repository\NewsCategoryRepository" type="service" id="App\Repository\NewsCategoryRepository"/>
@@ -7803,6 +7851,30 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.1gVbUCb" method="withContext"/>
     </service>
+    <service id=".service_locator.vdmMuyE" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="doctrine" type="service" id="doctrine" on-invalid="ignore"/>
+        <argument key="form.factory" type="service" id="form.factory" on-invalid="ignore"/>
+        <argument key="http_kernel" type="service" id="http_kernel" on-invalid="ignore"/>
+        <argument key="parameter_bag" type="service" id="parameter_bag" on-invalid="ignore"/>
+        <argument key="request_stack" type="service" id="request_stack" on-invalid="ignore"/>
+        <argument key="router" type="service" id="router.default" on-invalid="ignore"/>
+        <argument key="security.authorization_checker" type="service" id="security.authorization_checker" on-invalid="ignore"/>
+        <argument key="security.csrf.token_manager" type="service" id="security.csrf.token_manager" on-invalid="ignore"/>
+        <argument key="security.token_storage" type="service" id="security.token_storage" on-invalid="ignore"/>
+        <argument key="serializer" type="service" id="serializer" on-invalid="ignore"/>
+        <argument key="session" type="service" id="session" on-invalid="ignore"/>
+        <argument key="templating" type="service" id="templating.engine.delegating" on-invalid="ignore"/>
+        <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
+      </argument>
+    </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\Api\ApiController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Api\ApiController"/>
+      <argument>App\Controller\Api\ApiController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
+    </service>
     <service id=".service_locator.XSes1R5" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7957,12 +8029,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.YsAWVrr"/>
+      <argument type="service" id=".service_locator.tsUhfMq"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.YsAWVrr"/>
+      <argument type="service" id=".service_locator.tsUhfMq"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -8444,7 +8516,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichFileType" alias="vich_uploader.form.type.file" public="false"/>
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.YsAWVrr"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.tsUhfMq"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.delegating" public="false"/>
     <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.delegating" public="false"/>
     <service id="twig.loader" alias="twig.loader.filesystem"/>

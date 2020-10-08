@@ -20,7 +20,6 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-
             logout:       true
             anonymous:    true
 
@@ -30,4 +29,5 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/mobile, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: ROLE_ADMIN }

@@ -10,7 +10,7 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg'], true)) {
 }
 
 require dirname(__DIR__, 3).'/vendor/autoload.php';
-require __DIR__.'/Container64pKe6I/srcApp_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerLJgvnAY/srcApp_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -45,16 +45,20 @@ $classes[] = 'App\Controller\Admin\NewsCrudController';
 $classes[] = 'App\Controller\Admin\QuoteCrudController';
 $classes[] = 'App\Controller\Admin\ServiceCrudController';
 $classes[] = 'App\Controller\Admin\UserCrudController';
+$classes[] = 'App\Controller\Api\ApiController';
 $classes[] = 'App\Listeners\AddedCommentListener';
 $classes[] = 'App\Listeners\AddedNewsListener';
+$classes[] = 'App\Repository\AgencyRepository';
 $classes[] = 'App\Repository\AppointmentRepository';
 $classes[] = 'App\Repository\CategoryRepository';
+$classes[] = 'App\Repository\CityRepository';
 $classes[] = 'App\Repository\CommentRepository';
 $classes[] = 'App\Repository\ContractRepository';
 $classes[] = 'App\Repository\NewsCategoryRepository';
 $classes[] = 'App\Repository\NewsRepository';
 $classes[] = 'App\Repository\QuoteRepository';
 $classes[] = 'App\Repository\ServiceRepository';
+$classes[] = 'App\Services\UserService';
 $classes[] = 'EasyCorp\Bundle\EasyAdminBundle\Cache\CacheWarmer';
 $classes[] = 'EasyCorp\Bundle\EasyAdminBundle\Command\MakeAdminDashboardCommand';
 $classes[] = 'EasyCorp\Bundle\EasyAdminBundle\Command\MakeAdminMigrationCommand';
