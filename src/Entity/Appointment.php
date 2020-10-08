@@ -32,6 +32,16 @@ class Appointment
      */
     private $state;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $period;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $help_description;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class Appointment
     public function setState(?string $state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getPeriod(): ?int
+    {
+        return $this->period;
+    }
+
+    public function setPeriod(?int $period): self
+    {
+        $this->period = $period;
+
+        return $this;
+    }
+
+    public function getHelpDescription(): ?string
+    {
+        return $this->help_description;
+    }
+
+    public function setHelpDescription(?string $help_description): self
+    {
+        $this->help_description = $help_description;
 
         return $this;
     }
