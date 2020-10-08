@@ -2,9 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Agency;
 use App\Entity\Appointment;
 use App\Entity\Category;
+use App\Entity\City;
 use App\Entity\Comment;
+use App\Entity\Contract;
 use App\Entity\News;
 use App\Entity\NewsCategory;
 use App\Entity\Quote;
@@ -66,5 +69,10 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToCrud('Rendez-vous', 'fa fa-calendar', Appointment::class);
         yield MenuItem::linkToCrud('Devis', 'fa fa-file', Quote::class);
+
+        yield MenuItem::linkToCrud('Agences', 'fa fa-university', Agency::class);
+        yield MenuItem::linkToCrud('Villes', 'fa fa-map-marker', City::class);
+
+        yield MenuItem::linkToCrud('Contrats', 'fa fa-folder-open-o', Contract::class);
     }
 }

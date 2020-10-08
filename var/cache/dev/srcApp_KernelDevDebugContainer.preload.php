@@ -10,7 +10,7 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg'], true)) {
 }
 
 require dirname(__DIR__, 3).'/vendor/autoload.php';
-require __DIR__.'/ContainerLJgvnAY/srcApp_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerOaxBheX/srcApp_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -35,8 +35,10 @@ $classes[] = 'Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser';
 $classes[] = 'Symfony\Bundle\FrameworkBundle\EventListener\ResolveControllerNameSubscriber';
 $classes[] = 'Symfony\Component\HttpFoundation\RequestMatcher';
 $classes[] = 'Symfony\Component\DependencyInjection\ServiceLocator';
+$classes[] = 'App\Controller\Admin\AgencyCrudController';
 $classes[] = 'App\Controller\Admin\AppointmentCrudController';
 $classes[] = 'App\Controller\Admin\CategoryCrudController';
+$classes[] = 'App\Controller\Admin\CityCrudController';
 $classes[] = 'App\Controller\Admin\CommentCrudController';
 $classes[] = 'App\Controller\Admin\ContractCrudController';
 $classes[] = 'App\Controller\Admin\DashboardController';
@@ -46,6 +48,7 @@ $classes[] = 'App\Controller\Admin\QuoteCrudController';
 $classes[] = 'App\Controller\Admin\ServiceCrudController';
 $classes[] = 'App\Controller\Admin\UserCrudController';
 $classes[] = 'App\Controller\Api\ApiController';
+$classes[] = 'App\Form\AgencyType';
 $classes[] = 'App\Listeners\AddedCommentListener';
 $classes[] = 'App\Listeners\AddedNewsListener';
 $classes[] = 'App\Repository\AgencyRepository';

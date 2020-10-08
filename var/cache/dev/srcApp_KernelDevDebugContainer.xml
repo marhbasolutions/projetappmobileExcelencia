@@ -430,6 +430,14 @@
     <service id="kernel" class="App\Kernel" public="true" synthetic="true">
       <tag name="routing.route_loader"/>
     </service>
+    <service id="App\Controller\Admin\AgencyCrudController" class="App\Controller\Admin\AgencyCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="ea.crud_controller"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.1gVbUCb.App\Controller\Admin\AgencyCrudController"/>
+      </call>
+    </service>
     <service id="App\Controller\Admin\AppointmentCrudController" class="App\Controller\Admin\AppointmentCrudController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="ea.crud_controller"/>
@@ -444,6 +452,14 @@
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.1gVbUCb.App\Controller\Admin\CategoryCrudController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Admin\CityCrudController" class="App\Controller\Admin\CityCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="ea.crud_controller"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.1gVbUCb.App\Controller\Admin\CityCrudController"/>
       </call>
     </service>
     <service id="App\Controller\Admin\CommentCrudController" class="App\Controller\Admin\CommentCrudController" public="true" autowire="true" autoconfigure="true">
@@ -516,6 +532,9 @@
       <call method="setContainer">
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\Api\ApiController"/>
       </call>
+    </service>
+    <service id="App\Form\AgencyType" class="App\Form\AgencyType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
     </service>
     <service id="App\Listeners\AddedCommentListener" class="App\Listeners\AddedCommentListener" autowire="true" autoconfigure="true">
       <tag name="kernel.event_subscriber"/>
@@ -978,12 +997,14 @@
       <argument type="service" id="form.registry"/>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type</argument>
+        <argument>App\Form</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type</argument>
         <argument>FOS\UserBundle\Form\Type</argument>
         <argument>Vich\UploaderBundle\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\AgencyType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -1329,7 +1350,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.dHCAZ5O"/>
+      <argument type="service" id=".service_locator.VR4AAq_"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -6644,6 +6665,10 @@
       <argument type="service" id="vich_uploader.metadata_reader"/>
       <argument type="service" id="vich_uploader.upload_handler"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AgencyCrudController" class="App\Controller\Admin\AgencyCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AgencyCrudController" class="App\Controller\Admin\AgencyCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\AgencyCrudController" class="App\Controller\Admin\AgencyCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\AgencyCrudController" class="App\Controller\Admin\AgencyCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AppointmentCrudController" class="App\Controller\Admin\AppointmentCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AppointmentCrudController" class="App\Controller\Admin\AppointmentCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\AppointmentCrudController" class="App\Controller\Admin\AppointmentCrudController" autowire="true" abstract="true"/>
@@ -6652,6 +6677,10 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\CityCrudController" class="App\Controller\Admin\CityCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\CityCrudController" class="App\Controller\Admin\CityCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\CityCrudController" class="App\Controller\Admin\CityCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\CityCrudController" class="App\Controller\Admin\CityCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\CommentCrudController" class="App\Controller\Admin\CommentCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\CommentCrudController" class="App\Controller\Admin\CommentCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\CommentCrudController" class="App\Controller\Admin\CommentCrudController" autowire="true" abstract="true"/>
@@ -6687,6 +6716,8 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Api\ApiController" class="App\Controller\Api\ApiController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Api\ApiController" class="App\Controller\Api\ApiController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Api\ApiController" class="App\Controller\Api\ApiController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AgencyType" class="App\Form\AgencyType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\AgencyType" class="App\Form\AgencyType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\Listeners\AddedCommentListener" class="App\Listeners\AddedCommentListener" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Listeners\AddedCommentListener" class="App\Listeners\AddedCommentListener" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\Listeners\AddedNewsListener" class="App\Listeners\AddedNewsListener" autowire="true" abstract="true"/>
@@ -7069,9 +7100,29 @@
         <argument key="userService" type="service" id="App\Services\UserService"/>
       </argument>
     </service>
-    <service id=".service_locator.tsUhfMq" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.EkxY2w4" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\Admin\AgencyCrudController::autocomplete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::configureActions" type="service" id=".service_locator.eGAETcz"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::configureAssets" type="service" id=".service_locator.hVQViHK"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::configureCrud" type="service" id=".service_locator.7I.FzBw"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::configureFilters" type="service" id=".service_locator.82KoR2v"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::configureResponseParameters" type="service" id=".service_locator._L8Y8bZ"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::createEditForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::createEditFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::createIndexQueryBuilder" type="service" id=".service_locator.jrmEAfi"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::createNewForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::createNewFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::delete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::deleteEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::detail" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::edit" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::index" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::new" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::renderFilters" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController::updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\AppointmentCrudController::autocomplete" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\AppointmentCrudController::configureActions" type="service" id=".service_locator.eGAETcz"/>
         <argument key="App\Controller\Admin\AppointmentCrudController::configureAssets" type="service" id=".service_locator.hVQViHK"/>
@@ -7112,6 +7163,26 @@
         <argument key="App\Controller\Admin\CategoryCrudController::persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\CategoryCrudController::renderFilters" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\CategoryCrudController::updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\CityCrudController::autocomplete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController::configureActions" type="service" id=".service_locator.eGAETcz"/>
+        <argument key="App\Controller\Admin\CityCrudController::configureAssets" type="service" id=".service_locator.hVQViHK"/>
+        <argument key="App\Controller\Admin\CityCrudController::configureCrud" type="service" id=".service_locator.7I.FzBw"/>
+        <argument key="App\Controller\Admin\CityCrudController::configureFilters" type="service" id=".service_locator.82KoR2v"/>
+        <argument key="App\Controller\Admin\CityCrudController::configureResponseParameters" type="service" id=".service_locator._L8Y8bZ"/>
+        <argument key="App\Controller\Admin\CityCrudController::createEditForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\CityCrudController::createEditFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\CityCrudController::createIndexQueryBuilder" type="service" id=".service_locator.jrmEAfi"/>
+        <argument key="App\Controller\Admin\CityCrudController::createNewForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\CityCrudController::createNewFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\CityCrudController::delete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController::deleteEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\CityCrudController::detail" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController::edit" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController::index" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController::new" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController::persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\CityCrudController::renderFilters" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController::updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\CommentCrudController::autocomplete" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\CommentCrudController::configureActions" type="service" id=".service_locator.eGAETcz"/>
         <argument key="App\Controller\Admin\CommentCrudController::configureAssets" type="service" id=".service_locator.hVQViHK"/>
@@ -7254,6 +7325,26 @@
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Api\ApiController::index" type="service" id=".service_locator.HsZ1vXQ"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:autocomplete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:configureActions" type="service" id=".service_locator.eGAETcz"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:configureAssets" type="service" id=".service_locator.hVQViHK"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:configureCrud" type="service" id=".service_locator.7I.FzBw"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:configureFilters" type="service" id=".service_locator.82KoR2v"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:configureResponseParameters" type="service" id=".service_locator._L8Y8bZ"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:createEditForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:createEditFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:createIndexQueryBuilder" type="service" id=".service_locator.jrmEAfi"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:createNewForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:createNewFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:delete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:deleteEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:detail" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:edit" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:index" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:new" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:renderFilters" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\AgencyCrudController:updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\AppointmentCrudController:autocomplete" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\AppointmentCrudController:configureActions" type="service" id=".service_locator.eGAETcz"/>
         <argument key="App\Controller\Admin\AppointmentCrudController:configureAssets" type="service" id=".service_locator.hVQViHK"/>
@@ -7294,6 +7385,26 @@
         <argument key="App\Controller\Admin\CategoryCrudController:persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\CategoryCrudController:renderFilters" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\CategoryCrudController:updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\CityCrudController:autocomplete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController:configureActions" type="service" id=".service_locator.eGAETcz"/>
+        <argument key="App\Controller\Admin\CityCrudController:configureAssets" type="service" id=".service_locator.hVQViHK"/>
+        <argument key="App\Controller\Admin\CityCrudController:configureCrud" type="service" id=".service_locator.7I.FzBw"/>
+        <argument key="App\Controller\Admin\CityCrudController:configureFilters" type="service" id=".service_locator.82KoR2v"/>
+        <argument key="App\Controller\Admin\CityCrudController:configureResponseParameters" type="service" id=".service_locator._L8Y8bZ"/>
+        <argument key="App\Controller\Admin\CityCrudController:createEditForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\CityCrudController:createEditFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\CityCrudController:createIndexQueryBuilder" type="service" id=".service_locator.jrmEAfi"/>
+        <argument key="App\Controller\Admin\CityCrudController:createNewForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\CityCrudController:createNewFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\CityCrudController:delete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController:deleteEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\CityCrudController:detail" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController:edit" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController:index" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController:new" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController:persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\CityCrudController:renderFilters" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\CityCrudController:updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\CommentCrudController:autocomplete" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\CommentCrudController:configureActions" type="service" id=".service_locator.eGAETcz"/>
         <argument key="App\Controller\Admin\CommentCrudController:configureAssets" type="service" id=".service_locator.hVQViHK"/>
@@ -7502,9 +7613,10 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.dHCAZ5O" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.VR4AAq_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\AgencyType" type="service" id="App\Form\AgencyType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType" type="service" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FiltersFormType" type="service" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FiltersFormType"/>
         <argument key="FOS\UserBundle\Form\Type\ChangePasswordFormType" type="service" id="fos_user.change_password.form.type"/>
@@ -7772,6 +7884,12 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.1gVbUCb.App\Controller\Admin\AgencyCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\AgencyCrudController"/>
+      <argument>App\Controller\Admin\AgencyCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.1gVbUCb" method="withContext"/>
+    </service>
     <service id=".service_locator.1gVbUCb.App\Controller\Admin\AppointmentCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Admin\AppointmentCrudController"/>
       <argument>App\Controller\Admin\AppointmentCrudController</argument>
@@ -7781,6 +7899,12 @@
     <service id=".service_locator.1gVbUCb.App\Controller\Admin\CategoryCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Admin\CategoryCrudController"/>
       <argument>App\Controller\Admin\CategoryCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.1gVbUCb" method="withContext"/>
+    </service>
+    <service id=".service_locator.1gVbUCb.App\Controller\Admin\CityCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\CityCrudController"/>
+      <argument>App\Controller\Admin\CityCrudController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.1gVbUCb" method="withContext"/>
     </service>
@@ -8029,12 +8153,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.tsUhfMq"/>
+      <argument type="service" id=".service_locator.EkxY2w4"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.tsUhfMq"/>
+      <argument type="service" id=".service_locator.EkxY2w4"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -8342,8 +8466,10 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry" public="false">
       <argument>%env(APP_SECRET)%</argument>
       <argument type="collection">
+        <argument>App\Controller\Admin\AgencyCrudController</argument>
         <argument>App\Controller\Admin\AppointmentCrudController</argument>
         <argument>App\Controller\Admin\CategoryCrudController</argument>
+        <argument>App\Controller\Admin\CityCrudController</argument>
         <argument>App\Controller\Admin\CommentCrudController</argument>
         <argument>App\Controller\Admin\ContractCrudController</argument>
         <argument>App\Controller\Admin\NewsCategoryCrudController</argument>
@@ -8516,7 +8642,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichFileType" alias="vich_uploader.form.type.file" public="false"/>
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.tsUhfMq"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.EkxY2w4"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.delegating" public="false"/>
     <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.delegating" public="false"/>
     <service id="twig.loader" alias="twig.loader.filesystem"/>
