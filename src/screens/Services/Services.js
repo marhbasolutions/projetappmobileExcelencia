@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useEffect } from 'react';
 import {  StyleSheet,  View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground  } from 'react-native';
 import { Button } from 'react-native-elements';
 import global from '../../styles/index';
@@ -10,6 +10,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 import CustomFooter from '../../components/Footer/CustomFooter';
+import axios from 'axios';
+import { API_GET_CATEGORIES } from '../../api/config';
 
 
 const { width } = Dimensions.get('window');
@@ -24,6 +26,25 @@ const services = [
 ]
 
 export default function Services({navigation}) {
+
+
+    useEffect(() => {
+
+        fetch(API_GET_CATEGORIES,{
+            'method': 'get',
+            'credentials': 'include',
+            'headers': {
+                'Content-Type': 'application/json',
+            }})
+            .then((response) => response.json())
+            .then((json) => {
+                console.log('1233',json.data[0]);
+            })
+            .catch((error) => {
+            console.error(error);
+            });
+
+     }, []);
 
     return (
         <Container>
