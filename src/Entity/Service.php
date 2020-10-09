@@ -6,9 +6,11 @@ use App\Repository\ServiceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ServiceRepository::class)
+ * @Vich\Uploadable()
  */
 class Service
 {
@@ -31,13 +33,52 @@ class Service
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="services")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $category;
 
     /**
      * @ORM\OneToMany(targetEntity=Quote::class, mappedBy="service")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $quotes;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private  $thumbnail;
+
+    /**
+     * @Vich\UploadableField(mapping="services", fileNameProperty="thumbnail")
+     */
+    private  $thumbnailFile;
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param mixed $updated_at
+     */
+    public function setUpdatedAt($updated_at): void
+    {
+        $this->updated_at = $updated_at;
+    }
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_professional;
+
 
     public function __construct()
     {
@@ -47,6 +88,43 @@ class Service
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param mixed $thumbnail
+     */
+    public function setThumbnail($thumbnail): void
+    {
+        $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     */
+    public function setThumbnailFile($thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        if($thumbnailFile)
+        {
+            $this->updated_at = new \DateTime();
+        }
     }
 
     public function getName(): ?string
@@ -120,6 +198,19 @@ class Service
     {
         return $this->getName();
     }
+
+    public function getIsProfessional(): ?bool
+    {
+        return $this->is_professional;
+    }
+
+    public function setIsProfessional(?bool $is_professional): self
+    {
+        $this->is_professional = $is_professional;
+
+        return $this;
+    }
+
 
 
 }

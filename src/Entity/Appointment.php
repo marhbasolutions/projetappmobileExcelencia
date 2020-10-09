@@ -19,6 +19,7 @@ class Appointment
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="appointments")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $user;
 

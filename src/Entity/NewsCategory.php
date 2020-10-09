@@ -26,6 +26,7 @@ class NewsCategory
 
     /**
      * @ORM\OneToMany(targetEntity=News::class, mappedBy="category")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $news;
 

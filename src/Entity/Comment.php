@@ -26,6 +26,7 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $publisher;
 
@@ -36,6 +37,7 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity=Comment::class, inversedBy="comment_replies")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $comment;
 

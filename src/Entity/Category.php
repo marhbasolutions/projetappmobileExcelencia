@@ -6,9 +6,11 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @Vich\Uploadable()
  */
 class Category
 {
@@ -26,8 +28,82 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Service::class, mappedBy="category")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $services;
+
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private  $thumbnail;
+
+    /**
+     * @Vich\UploadableField(mapping="category_services", fileNameProperty="thumbnail")
+     */
+    private  $thumbnailFile;
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param mixed $updated_at
+     */
+    public function setUpdatedAt($updated_at): void
+    {
+        $this->updated_at = $updated_at;
+    }
+
+    /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+     */
+    private $color;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param mixed $thumbnail
+     */
+    public function setThumbnail($thumbnail): void
+    {
+        $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     */
+    public function setThumbnailFile($thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        if($thumbnailFile)
+        {
+            $this->updated_at = new \DateTime();
+        }
+    }
 
     public function __construct()
     {
@@ -86,5 +162,17 @@ class Category
     {
         // TODO: Implement __toString() method.
         return $this->getName();
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
     }
 }

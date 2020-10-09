@@ -11,6 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=NewsRepository::class)
  * @Vich\Uploadable()
+ * 
  */
 class News
 {
@@ -33,11 +34,13 @@ class News
 
     /**
      * @ORM\ManyToOne(targetEntity=NewsCategory::class, inversedBy="news")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="news")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $publisher;
 

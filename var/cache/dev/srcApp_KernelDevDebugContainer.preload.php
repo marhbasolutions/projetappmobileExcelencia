@@ -10,7 +10,7 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg'], true)) {
 }
 
 require dirname(__DIR__, 3).'/vendor/autoload.php';
-require __DIR__.'/ContainerVmGqLQJ/srcApp_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerIOh6cG1/srcApp_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -46,6 +46,7 @@ $classes[] = 'App\Controller\Admin\NewsCategoryCrudController';
 $classes[] = 'App\Controller\Admin\NewsCrudController';
 $classes[] = 'App\Controller\Admin\QuoteCrudController';
 $classes[] = 'App\Controller\Admin\ServiceCrudController';
+$classes[] = 'App\Controller\Admin\SlidesCrudController';
 $classes[] = 'App\Controller\Admin\UserCrudController';
 $classes[] = 'App\Controller\Api\ApiController';
 $classes[] = 'App\Form\AgencyType';
@@ -61,6 +62,7 @@ $classes[] = 'App\Repository\NewsCategoryRepository';
 $classes[] = 'App\Repository\NewsRepository';
 $classes[] = 'App\Repository\QuoteRepository';
 $classes[] = 'App\Repository\ServiceRepository';
+$classes[] = 'App\Repository\SlidesRepository';
 $classes[] = 'App\Services\UserService';
 $classes[] = 'EasyCorp\Bundle\EasyAdminBundle\Cache\CacheWarmer';
 $classes[] = 'EasyCorp\Bundle\EasyAdminBundle\Command\MakeAdminDashboardCommand';

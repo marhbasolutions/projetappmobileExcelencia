@@ -19,8 +19,15 @@ class Quote
 
     /**
      * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="quotes")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $service;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="quotes")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -35,6 +42,18 @@ class Quote
     public function setService(?Service $service): self
     {
         $this->service = $service;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

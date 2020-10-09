@@ -39,6 +39,7 @@ class Agency
 
     /**
      * @ORM\ManyToOne(targetEntity=City::class, inversedBy="agencies")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $city;
 

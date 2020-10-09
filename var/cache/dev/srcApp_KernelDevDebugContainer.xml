@@ -335,6 +335,54 @@
         <parameter key="inject_on_load">false</parameter>
         <parameter key="db_driver">orm</parameter>
       </parameter>
+      <parameter key="category_services" type="collection">
+        <parameter key="uri_prefix">/images/services/category</parameter>
+        <parameter key="upload_destination">/Applications/MAMP/htdocs/projetappmobileExcelencia/public/images/services/category</parameter>
+        <parameter key="namer" type="collection">
+          <parameter key="service">null</parameter>
+          <parameter key="options">null</parameter>
+        </parameter>
+        <parameter key="directory_namer" type="collection">
+          <parameter key="service">null</parameter>
+          <parameter key="options">null</parameter>
+        </parameter>
+        <parameter key="delete_on_remove">true</parameter>
+        <parameter key="delete_on_update">true</parameter>
+        <parameter key="inject_on_load">false</parameter>
+        <parameter key="db_driver">orm</parameter>
+      </parameter>
+      <parameter key="services" type="collection">
+        <parameter key="uri_prefix">/images/services</parameter>
+        <parameter key="upload_destination">/Applications/MAMP/htdocs/projetappmobileExcelencia/public/images/services</parameter>
+        <parameter key="namer" type="collection">
+          <parameter key="service">null</parameter>
+          <parameter key="options">null</parameter>
+        </parameter>
+        <parameter key="directory_namer" type="collection">
+          <parameter key="service">null</parameter>
+          <parameter key="options">null</parameter>
+        </parameter>
+        <parameter key="delete_on_remove">true</parameter>
+        <parameter key="delete_on_update">true</parameter>
+        <parameter key="inject_on_load">false</parameter>
+        <parameter key="db_driver">orm</parameter>
+      </parameter>
+      <parameter key="slides" type="collection">
+        <parameter key="uri_prefix">/images/slides</parameter>
+        <parameter key="upload_destination">/Applications/MAMP/htdocs/projetappmobileExcelencia/public/images/slides</parameter>
+        <parameter key="namer" type="collection">
+          <parameter key="service">null</parameter>
+          <parameter key="options">null</parameter>
+        </parameter>
+        <parameter key="directory_namer" type="collection">
+          <parameter key="service">null</parameter>
+          <parameter key="options">null</parameter>
+        </parameter>
+        <parameter key="delete_on_remove">true</parameter>
+        <parameter key="delete_on_update">true</parameter>
+        <parameter key="inject_on_load">false</parameter>
+        <parameter key="db_driver">orm</parameter>
+      </parameter>
     </parameter>
     <parameter key="vich_uploader.file_injector.class">Vich\UploaderBundle\Injector\FileInjector</parameter>
     <parameter key="data_collector.templates" type="collection">
@@ -518,6 +566,14 @@
         <argument type="service" id=".service_locator.1gVbUCb.App\Controller\Admin\ServiceCrudController"/>
       </call>
     </service>
+    <service id="App\Controller\Admin\SlidesCrudController" class="App\Controller\Admin\SlidesCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="ea.crud_controller"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.1gVbUCb.App\Controller\Admin\SlidesCrudController"/>
+      </call>
+    </service>
     <service id="App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="ea.crud_controller"/>
@@ -582,6 +638,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\SlidesRepository" class="App\Repository\SlidesRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -4393,6 +4453,15 @@
         <argument type="service" id="vich_uploader.listener.clean.thumbnails"/>
       </call>
       <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.clean.category_services"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.clean.services"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.clean.slides"/>
+      </call>
+      <call method="addEventSubscriber">
         <argument type="service" id="fos_user.user_listener"/>
       </call>
       <call method="addEventSubscriber">
@@ -4400,6 +4469,24 @@
       </call>
       <call method="addEventSubscriber">
         <argument type="service" id="vich_uploader.listener.upload.thumbnails"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.remove.category_services"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.upload.category_services"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.remove.services"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.upload.services"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.remove.slides"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.upload.slides"/>
       </call>
       <call method="addEventListener">
         <argument type="collection">
@@ -4446,7 +4533,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.tkFQ4wq"/>
+      <argument type="service" id=".service_locator.Uqei5WK"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6666,6 +6753,69 @@
       <argument type="service" id="vich_uploader.metadata_reader"/>
       <argument type="service" id="vich_uploader.upload_handler"/>
     </service>
+    <service id="vich_uploader.listener.clean.category_services" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="50"/>
+      <argument>category_services</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.category_services" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="0"/>
+      <argument>category_services</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.category_services" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="0"/>
+      <argument>category_services</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.services" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="50"/>
+      <argument>services</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.services" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="0"/>
+      <argument>services</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.services" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="0"/>
+      <argument>services</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.slides" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="50"/>
+      <argument>slides</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.slides" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="0"/>
+      <argument>slides</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.slides" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="0"/>
+      <argument>slides</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AgencyCrudController" class="App\Controller\Admin\AgencyCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AgencyCrudController" class="App\Controller\Admin\AgencyCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\AgencyCrudController" class="App\Controller\Admin\AgencyCrudController" autowire="true" abstract="true"/>
@@ -6710,6 +6860,10 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\ServiceCrudController" class="App\Controller\Admin\ServiceCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\ServiceCrudController" class="App\Controller\Admin\ServiceCrudController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\ServiceCrudController" class="App\Controller\Admin\ServiceCrudController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\SlidesCrudController" class="App\Controller\Admin\SlidesCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\SlidesCrudController" class="App\Controller\Admin\SlidesCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\SlidesCrudController" class="App\Controller\Admin\SlidesCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\SlidesCrudController" class="App\Controller\Admin\SlidesCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
@@ -6743,6 +6897,8 @@
     <service id=".abstract.instanceof.App\Repository\QuoteRepository" class="App\Repository\QuoteRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\SlidesRepository" class="App\Repository\SlidesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\SlidesRepository" class="App\Repository\SlidesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Filter\FilterConfiguratorInterface.0.EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\ChoiceConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\ChoiceConfigurator" public="false" abstract="true"/>
     <service id=".abstract.instanceof.EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\ChoiceConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\ChoiceConfigurator" public="false" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Filter\FilterConfiguratorInterface.0.EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\CommonConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\CommonConfigurator" public="false" abstract="true"/>
@@ -7101,7 +7257,7 @@
         <argument key="userService" type="service" id="App\Services\UserService"/>
       </argument>
     </service>
-    <service id=".service_locator.EkxY2w4" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.uirhvTb" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\AgencyCrudController::autocomplete" type="service" id=".service_locator.h2tplhS"/>
@@ -7305,6 +7461,26 @@
         <argument key="App\Controller\Admin\ServiceCrudController::persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\ServiceCrudController::renderFilters" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\ServiceCrudController::updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::autocomplete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::configureActions" type="service" id=".service_locator.eGAETcz"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::configureAssets" type="service" id=".service_locator.hVQViHK"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::configureCrud" type="service" id=".service_locator.7I.FzBw"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::configureFilters" type="service" id=".service_locator.82KoR2v"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::configureResponseParameters" type="service" id=".service_locator._L8Y8bZ"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::createEditForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::createEditFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::createIndexQueryBuilder" type="service" id=".service_locator.jrmEAfi"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::createNewForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::createNewFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::delete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::deleteEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::detail" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::edit" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::index" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::new" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::renderFilters" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController::updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\UserCrudController::autocomplete" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\UserCrudController::configureActions" type="service" id=".service_locator.eGAETcz"/>
         <argument key="App\Controller\Admin\UserCrudController::configureAssets" type="service" id=".service_locator.hVQViHK"/>
@@ -7527,6 +7703,26 @@
         <argument key="App\Controller\Admin\ServiceCrudController:persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\ServiceCrudController:renderFilters" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\ServiceCrudController:updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:autocomplete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:configureActions" type="service" id=".service_locator.eGAETcz"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:configureAssets" type="service" id=".service_locator.hVQViHK"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:configureCrud" type="service" id=".service_locator.7I.FzBw"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:configureFilters" type="service" id=".service_locator.82KoR2v"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:configureResponseParameters" type="service" id=".service_locator._L8Y8bZ"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:createEditForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:createEditFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:createIndexQueryBuilder" type="service" id=".service_locator.jrmEAfi"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:createNewForm" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:createNewFormBuilder" type="service" id=".service_locator.1ZmGw6X"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:delete" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:deleteEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:detail" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:edit" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:index" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:new" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:persistEntity" type="service" id=".service_locator.x8FmIZ0"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:renderFilters" type="service" id=".service_locator.h2tplhS"/>
+        <argument key="App\Controller\Admin\SlidesCrudController:updateEntity" type="service" id=".service_locator.x8FmIZ0"/>
         <argument key="App\Controller\Admin\UserCrudController:autocomplete" type="service" id=".service_locator.h2tplhS"/>
         <argument key="App\Controller\Admin\UserCrudController:configureActions" type="service" id=".service_locator.eGAETcz"/>
         <argument key="App\Controller\Admin\UserCrudController:configureAssets" type="service" id=".service_locator.hVQViHK"/>
@@ -7644,7 +7840,7 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.tkFQ4wq" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Uqei5WK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AgencyRepository" type="service" id="App\Repository\AgencyRepository"/>
@@ -7657,6 +7853,7 @@
         <argument key="App\Repository\NewsRepository" type="service" id="App\Repository\NewsRepository"/>
         <argument key="App\Repository\QuoteRepository" type="service" id="App\Repository\QuoteRepository"/>
         <argument key="App\Repository\ServiceRepository" type="service" id="App\Repository\ServiceRepository"/>
+        <argument key="App\Repository\SlidesRepository" type="service" id="App\Repository\SlidesRepository"/>
       </argument>
     </service>
     <service id="debug.security.voter.security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
@@ -7970,6 +8167,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.1gVbUCb" method="withContext"/>
     </service>
+    <service id=".service_locator.1gVbUCb.App\Controller\Admin\SlidesCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\SlidesCrudController"/>
+      <argument>App\Controller\Admin\SlidesCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.1gVbUCb" method="withContext"/>
+    </service>
     <service id=".service_locator.1gVbUCb.App\Controller\Admin\UserCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Admin\UserCrudController"/>
       <argument>App\Controller\Admin\UserCrudController</argument>
@@ -8154,12 +8357,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.EkxY2w4"/>
+      <argument type="service" id=".service_locator.uirhvTb"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.EkxY2w4"/>
+      <argument type="service" id=".service_locator.uirhvTb"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -8477,6 +8680,7 @@
         <argument>App\Controller\Admin\NewsCrudController</argument>
         <argument>App\Controller\Admin\QuoteCrudController</argument>
         <argument>App\Controller\Admin\ServiceCrudController</argument>
+        <argument>App\Controller\Admin\SlidesCrudController</argument>
         <argument>App\Controller\Admin\UserCrudController</argument>
       </argument>
     </service>
@@ -8643,7 +8847,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichFileType" alias="vich_uploader.form.type.file" public="false"/>
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.EkxY2w4"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.uirhvTb"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.delegating" public="false"/>
     <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.delegating" public="false"/>
     <service id="twig.loader" alias="twig.loader.filesystem"/>

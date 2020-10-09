@@ -23,21 +23,25 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToMany(targetEntity=Appointment::class, mappedBy="user")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $appointments;
 
     /**
      * @ORM\OneToMany(targetEntity=Contract::class, mappedBy="user")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $contracts;
 
     /**
      * @ORM\OneToMany(targetEntity=News::class, mappedBy="publisher")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $news;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="publisher")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $comments;
 
@@ -56,6 +60,11 @@ class User extends BaseUser
      */
     private $birth_date;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Quote::class, mappedBy="user")
+     */
+    private $quotes;
+
     public function __construct()
     {
         parent::__construct();
@@ -64,6 +73,7 @@ class User extends BaseUser
         $this->contracts = new ArrayCollection();
         $this->news = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->quotes = new ArrayCollection();
     }
 
     /**
@@ -227,6 +237,37 @@ class User extends BaseUser
     public function setBirthDate(?\DateTimeInterface $birth_date): self
     {
         $this->birth_date = $birth_date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Quote[]
+     */
+    public function getQuotes(): Collection
+    {
+        return $this->quotes;
+    }
+
+    public function addQuote(Quote $quote): self
+    {
+        if (!$this->quotes->contains($quote)) {
+            $this->quotes[] = $quote;
+            $quote->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuote(Quote $quote): self
+    {
+        if ($this->quotes->contains($quote)) {
+            $this->quotes->removeElement($quote);
+            // set the owning side to null (unless already changed)
+            if ($quote->getUser() === $this) {
+                $quote->setUser(null);
+            }
+        }
 
         return $this;
     }

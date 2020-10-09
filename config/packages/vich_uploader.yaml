@@ -5,3 +5,12 @@ vich_uploader:
         thumbnails:
             uri_prefix: /images/news
             upload_destination: '%kernel.project_dir%/public/images/news'
+        category_services:
+            uri_prefix: /images/services/category
+            upload_destination: '%kernel.project_dir%/public/images/services/category'
+        services:
+            uri_prefix: /images/services
+            upload_destination: '%kernel.project_dir%/public/images/services'
+        slides:
+            uri_prefix: /images/slides
+            upload_destination: '%kernel.project_dir%/public/images/slides'

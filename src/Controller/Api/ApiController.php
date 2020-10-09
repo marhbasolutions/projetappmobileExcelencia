@@ -42,8 +42,9 @@ class ApiController extends  AbstractController
         $serialiser = new JsonSerialiser();
           $categories =  $this->getDoctrine()->getRepository(Category::class)
                ->findAll();
-          $data = $serialiser->jsonSerialiser($categories);
-        return new JsonResponse(['success'=>true,'data'=>$data]);
+          $data = $serialiser->jsonSerialiser(['success'=>true,'data'=>$categories]);
+          
+        return new Response($data);
     }
 
     /**

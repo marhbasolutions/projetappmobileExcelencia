@@ -26,6 +26,7 @@ class City
 
     /**
      * @ORM\OneToMany(targetEntity=Agency::class, mappedBy="city")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $agencies;
 

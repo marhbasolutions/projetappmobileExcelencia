@@ -12,6 +12,7 @@ use App\Entity\News;
 use App\Entity\NewsCategory;
 use App\Entity\Quote;
 use App\Entity\Service;
+use App\Entity\Slides;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -74,5 +75,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Villes', 'fa fa-map-marker', City::class);
 
         yield MenuItem::linkToCrud('Contrats', 'fa fa-folder-open-o', Contract::class);
+
     }
 }
