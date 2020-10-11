@@ -1,14 +1,16 @@
 import React, { useState,useEffect } from 'react';
 import {  StyleSheet,  View, Image, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground,ActivityIndicator, StatusBar  } from 'react-native';
-import { Button } from 'react-native-elements';
+import {   Icon } from 'react-native-elements';
 import global from '../../styles/index';
 import styles from './styles';
 import Text from '../../components/CustomText/CustomText';
-import { Container,Content,Header,Body } from 'native-base';
+import { Container,Content,Header,Body,Button } from 'native-base';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 import CustomFooter from '../../components/Footer/CustomFooter';
+
+import { API_SERVICES_BY_CATEGORY ,HOST , CORS_ANYWHERE } from '../../api/config';
 
 
 
@@ -21,22 +23,36 @@ const subservicesLoaded = [
 
 export default function ServiceDetails({navigation}) {
 
-    const [service,setService] = useState(null);
+    const [service,setService] = useState(navigation.getParam('service'));
     const [serviceLoaded,setServiceLoaded] = useState(false);
 
     const [subServices,setSubServices] = useState([]);
 
     useEffect(() => {
-        setTimeout(()=>{
-            setService(navigation.getParam('service'));
-            setSubServices(subservicesLoaded);
-            setServiceLoaded(true);
-        },500);
+
+        fetch(API_SERVICES_BY_CATEGORY+'?category='+service.id, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+              },
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                //console.log(json);
+                setSubServices(json.data);
+                setServiceLoaded(true);
+            })
+            .catch((error) => {
+            console.error(error);
+            });
     }, []);
 
 
+
+
     const renderItem = (item) =>{
-        return  <ImageBackground source={item.image} style={[styles.subServiceBackground]} imageStyle={{ borderRadius: 6 }}>
+        return  <ImageBackground source={{uri:HOST+'/images/services/'+item.thumbnail}} style={[styles.subServiceBackground]} imageStyle={{ borderRadius: 6 }}>
                         
             <View  style={[styles.subServiceNameContainer]}>
             <LinearGradient
@@ -47,6 +63,11 @@ export default function ServiceDetails({navigation}) {
 
             </View>
 
+
+            {/* <Button iconLeft transparent style={[styles.optionsButton]} onPress={()=>alert('Pressed')}>
+            <FontAwesome5 color={service.color}   name="ellipsis-h" size={30} />
+    </Button> */ }
+
     </ImageBackground>
     }
 
@@ -56,7 +77,7 @@ export default function ServiceDetails({navigation}) {
                             start={{ x: 0.9, y: 0 }}
                             style={[styles.detailsHeaderBackground]}>
                             <View  style={[styles.detailsHeaderInner]}>
-                                { service.icon }
+                            <Icon type='material-community' name={service.icon} size={34} style={{alignSelf:'flex-start'}} color="white" />
                             <Text type='bold' style={[styles.detailsHeaderName]}>{service.name}</Text>
                             </View>
                         </LinearGradient>
@@ -69,7 +90,7 @@ export default function ServiceDetails({navigation}) {
                  <StatusBar backgroundColor='#242c62'  />
                 {renderHeader()}
             </Header>
-            <Content style={[global.container,global.paddingContainer]}>
+            <Content style={[global.container,global.paddingContainer,{paddingBottom:20}]}>
             
                 <View style={{ flex: 1, flexDirection: 'column', }}>  
                     <FlatList
@@ -85,7 +106,6 @@ export default function ServiceDetails({navigation}) {
         ):(
             <ActivityIndicator size="large" color='#f6b932' style={[global.indicator]} />
         )
-       
     );
 }
 

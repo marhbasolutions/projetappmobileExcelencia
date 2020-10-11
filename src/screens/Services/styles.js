@@ -12,6 +12,7 @@ export default  StyleSheet.create({
     subServiceName:{fontSize:17,padding:7,paddingLeft:14,color:'#30336b',marginTop:3,textTransform: 'uppercase'},
     detailsHeaderBackground:{ padding: 10,  alignItems: 'flex-start',justifyContent:'flex-start',width:'100%'},
     detailsHeaderInner:{ alignSelf:'flex-start', alignItems:'center',flexDirection:'row', justifyContent:'center'},
-    detailsHeaderName:{fontSize:23,padding:7,paddingLeft:14,color:'#242c62',marginTop:3,textTransform: 'uppercase'}
+    detailsHeaderName:{fontSize:17,padding:7,paddingLeft:14,color:'#242c62',marginTop:3,textTransform: 'uppercase'},
+    optionsButton:{position:'absolute',right:10,bottom:10}
 
 })

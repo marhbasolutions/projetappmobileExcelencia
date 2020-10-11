@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
-import {  View ,Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard,TouchableOpacity  } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {  View ,Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard,TouchableOpacity ,Picker } from 'react-native';
 import { Container, Header, Content, List, ListItem,  Input, Item,Button } from 'native-base';
-import {Calendar, CalendarList, Agenda,LocaleConfig} from 'react-native-calendars';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { Ionicons } from '@expo/vector-icons';
+
+
 
 import global from '../../styles/index';
 import styles from './styles';
@@ -14,62 +16,128 @@ import CustomFooter from '../../components/Footer/CustomFooter';
 
 export default function LoginScreen({ navigation }) {
 
+
+    const [date, setDate] = useState(new Date(1598051730000));
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+    const [period, setPeriod] = useState(null);
+
+
     useEffect(() => {
-        LocaleConfig.locales['fr'] = {
-            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-            monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-            dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-            dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
-            today: 'Aujourd\'hui'
-          };
-          LocaleConfig.defaultLocale = 'fr';
+   
     }, []);
+
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+      };
+    
+      const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode);
+      };
+    
+      const showDatepicker = () => {
+        showMode('date');
+      };
+
+
+      const sendRdv = () => {
+
+        var dataToSend = { daterdv: '7888',period: 12};
+
+        var formBody = [];
+        for (var key in dataToSend) {
+            var encodedKey = encodeURIComponent(key);
+            var encodedValue = encodeURIComponent(dataToSend[key]);
+            formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+
+        fetch('http://quickcar.irun-code.com/mobile/getcontratsbyuser', {
+            method: 'POST',
+            headers: {
+                'Cache-Control': 'no-cache',
+                Pragma: 'no-cache',
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            },
+            body: formBody
+          })
+          .then((response) => response.json())
+                .then((json) => {
+                console.log(json);
+            })
+            .catch((error) => {
+            console.error(error);
+            });
+      }
+    
+   
 
     return (
         <Container>
         <Content style={[global.container,global.paddingContainer]}>
-        <Text style={[global.h2]}>Veuillez choisir une date </Text>
-                    <View style={[global.marginTop]}>
-                        <Calendar
-                            style={[{
-                                borderWidth: 1,
-                                borderColor: '#242c62',
-                            }]}
-                            markingType={'period'}
-                            theme={{
-                                arrowColor: '#f6d147',
-                                monthTextColor:  '#f6d147',
-                                indicatorColor:  '#f6d147',
-                                textDayFontFamily: 'Raleway-Regular',
-                                textMonthFontFamily: 'Raleway-Regular',
-                                textDayHeaderFontFamily: 'Raleway-Regular',
-                                textDayFontWeight: '300',
-                                textMonthFontWeight: 'bold',
-                                textDayHeaderFontWeight: '300',
-                                textDayFontSize: 16,
-                                textMonthFontSize: 16,
-                                textDayHeaderFontSize: 16,
-                                selectedDayBackgroundColor: '#f6d147',
-                                dotColor: '#00adf5',
-                                selectedDotColor: '#ffffff',
-                                todayTextColor: '#f6d147',
-                                dayTextColor: '#2d4150',
-                            }}
-                            />
-                            <Text style={[global.h2,global.marginTop]}>Rencontrer notre personnel</Text>
-                    
-                            <View style={[styles.personnelContainer,global.marginTop]}>
-                                    <Ionicons color='#242c62' style={{margin:5}} name='ios-person' size={40} />
-                                    <View style={{padding:4}}>
-                                        <Text type='bold'>Astrea POATY</Text>
-                                        <Text>Régleur Sinistres</Text>
-                                    </View>
-                            </View>
-                            <Button onPress={() => alert('Valider')  } full style={[global.marginTop,styles.validateRdvButton]}>
-                                <Text style={{ color: '#fff' }} > Valider </Text>
-                            </Button>
+            <View style={{alignItems:'center',flex:1}}>
+
+                    <View style={[global.marginTop,{width:'100%'}]}>
+
+                        <Text>Remplissez la date de rendez-vous </Text>
+
+                        <TouchableOpacity onPress={showDatepicker} style={[styles.datePickerCom,global.marginTop]}>
+                            <Text type='bold' >{ date.getFullYear()+'-'+date.getMonth()+1+'-'+date.getDate() }</Text>
+                        </TouchableOpacity>
+
+                        <View style={[styles.hourPeriodContainer,global.marginTop]}>
+                            <Picker
+                                note
+                                style={{ width: '100%' }}
+                                selectedValue={period}
+                                onValueChange={(itemValue, itemIndex) => {
+                                    setPeriod(itemValue);
+                                  }}
+                                itemStyle={{width:'100%'}}
+                            >
+                                <Picker.Item label="8 h 00 min – 9 h 00 min" value="1" />
+                                <Picker.Item label="9 h 00 min – 10 h 00 min" value="2" />
+                                <Picker.Item label="10 h 00 min – 11 h 00 min" value="3" />
+                                <Picker.Item label="11 h 00 min – 12 h 00 min" value="4" />
+                                <Picker.Item label="12 h 00 min – 13 h 00 min" value="5" />
+                                <Picker.Item label="13 h 00 min – 14 h 00 min" value="6" />
+                                <Picker.Item label="14 h 00 min – 15 h 00 min" value="7" />
+                                <Picker.Item label="15 h 00 min – 16 h 00 min" value="8" />
+                                <Picker.Item label="16 h 00 min – 17 h 00 min" value="9" />
+                                <Picker.Item label="17 h 00 min – 18 h 00 min" value="10" />
+                            </Picker>
                         </View>
-        </Content>
+
+                        <Button transparent onPress={()=>sendRdv()} style={[styles.validateRdvButton,global.marginTop]}>
+                            <Text style={{color:'#fff'}}>Valider le rendez-vous </Text>
+                        </Button>
+                       
+                        {show && (
+                            <DateTimePicker
+                            style={{
+                                shadowColor: '#fff',
+                                shadowRadius: 0,
+                                shadowOpacity: 1,
+                                shadowOffset: { height: 0, width: 0 },
+                              }}
+                            testID="dateTimePicker"
+                            value={date}
+                            mode={mode}
+                            is24Hour={true}
+                            display="default"
+                            onChange={onChange}
+                            locale="es-ES"
+                            minimumDate={new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate())}
+                            />
+                        )}
+
+                    </View>
+        
+            </View>
+               </Content>
         <CustomFooter  name="RDV" navigation={navigation} />
         </Container>
     );

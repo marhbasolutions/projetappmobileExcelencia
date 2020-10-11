@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default  StyleSheet.create({
     backGroundHalf:{
         position:'absolute',
-        height:'50%',
+        height:'45%',
         backgroundColor:'#242c62',
         flex:1,
         alignItems:'center',
@@ -11,7 +11,7 @@ export default  StyleSheet.create({
         zIndex:0
     },
     servicesHome:{
-        marginTop:25,
+        marginTop:6,
         paddingLeft:8,
         paddingRight:8,
     },
