@@ -8,7 +8,7 @@ const switchNavigator = createSwitchNavigator(
         Login: LoginStack,
         Home: TabBottom
     },
-    { headerMode: "none", initialRouteName: "Home" });
+    { headerMode: "none", initialRouteName: "Login" });
 
 const AppContainer = createAppContainer(switchNavigator);
 

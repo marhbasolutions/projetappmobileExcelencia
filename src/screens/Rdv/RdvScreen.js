@@ -57,7 +57,7 @@ export default function LoginScreen({ navigation }) {
         setVisibleModal(false)
         setsaving(true);
 
-        var dataToSend = { period: period,date:selectedDate.toLocaleDateString('en'),user:currentuser,description:description};
+        var dataToSend = { period: period,date:selectedDate.toLocaleDateString('en'),user:1,description:description};
 
         var formBody = [];
         for (var key in dataToSend) {
@@ -152,15 +152,7 @@ export default function LoginScreen({ navigation }) {
                                 <Picker.Item label="17 h 00 min – 18 h 00 min" value="17 h 00 min – 18 h 00 min" />
                             </Picker>
                         </View>
-                        <Text style={[global.marginTop,global.labelForm]}> En quoi pouvons-nous vous aider ?  </Text>
-                        <View style={[global.marginTop]}>
-                        <TextInput
-                        style={[styles.descriptionText]}
-                        multiline={true}
-                        numberOfLines={5}
-                        onChangeText={(text) => setDescriptiond({text})}
-                        value={description}/>
-                        </View>
+                        
 
                         <Button transparent onPress={()=>recapRdv()} style={[styles.validateRdvButton,global.marginTop]}>
                             <Text style={{color:'#fff'}}>Valider le rendez-vous </Text>
