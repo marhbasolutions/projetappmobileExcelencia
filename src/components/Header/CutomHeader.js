@@ -10,10 +10,20 @@ import { StackActions, NavigationActions } from 'react-navigation';
 
 
 
+
 export default function CutomHeader ({navigation,title,isReturn,color}) {
 
     const opneMenu = () =>{
-        navigation.openDrawer();
+      try
+      {
+        if(navigation)
+        navigation.openDrawer()
+      }
+      catch(e)
+      {
+          
+      }
+        
     }
     
     const goBack = () =>{

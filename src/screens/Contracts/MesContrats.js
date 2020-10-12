@@ -87,7 +87,7 @@ export default function MesContractsScreen({navigation}) {
                 </LST.Section>
                 </View>
             </Content>
-            <CustomFooter  name="Contrats" navigation={navigation} />
+           
         </Container>
         
     );

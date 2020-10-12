@@ -21,34 +21,30 @@ export default function MeteoScreen({navigation}) {
     const [icon, setIcon] = useState('');
     const [dataloaded, setDataloaded] = useState(false);
     const [pharmacies, setPharmacies] = useState([]);
+    const [data, setData] = useState(null);
 
     useEffect(() => {
 
-        getLocation();  
-        setTimeout(function() {  
-
-        let data = new getData()
-        console.log(data);
+        
         
 
-        /*fetch(API_PHARMACY,{
-            'method': 'get',
+        fetch('http://api.weatherstack.com/current?access_key=3c5395dd08dfd41b2bdaf851f696bd12&query=Congo',{
+            'method': 'GET',
             'credentials': 'include',
             'headers': {
                 'Content-Type': 'application/json',
             }})
             .then((response) => response.json())
             .then((json) => {
-                    setPharmacies(json.data);
-                    setDataloaded(true);
+                    setData(json)
             })
             .catch((error) => {
             console.error(error);
-            });*/
+            });
 
        
         
-        },1000);
+      
 
     }, []);
     
@@ -58,33 +54,29 @@ export default function MeteoScreen({navigation}) {
         <Container>
             <Content style={[global.container,global.paddingContainer]}>
 
-                  <View style={{flexDirection:'row',alignItems:'center',marginBottom:15,width:'100%'}}>
-                        <MaterialIcons name='local-hospital' size={45} color='#009346'  />
-                      <View style={{marginLeft:24}}>
-                          <Text type='bold' style={{fontSize:17}}>Pharmacie centrale </Text>
-                          <Text>Adresse 12 , rue de la meme </Text>
-                      </View>
-                      <MaterialIcons name='phone'  style={{marginLeft:12,position:'absolute',right:0}} size={36} color={'#f6d147'}  />
-                  </View>
+                { pharmacies.length >0 && (
+                        <View style={{flexDirection:'row', alignItems:'center',marginBottom:15,width:'100%'}}>
+                        <MaterialIcons name='local-hospital' size={36} color='#009346'  />
+                        <View style={{marginLeft:24}}>
+                        <Text type='bold' style={{fontSize:17}}>Pharmacie centrale </Text>
+                        <Text>Adresse 12 , rue de la meme </Text>
+                        </View>
+                        <MaterialIcons name='phone'  style={{marginLeft:12,position:'absolute',right:0}} size={36} color={'#f6d147'}  />
+                        </View>
+                )}
 
-                  
-
-                  <View style={{flexDirection:'row',alignItems:'center',marginBottom:15,width:'100%'}}>
-                        <Image source={{uri:icon}}  width={100} height={100} />
-                      <View style={{marginLeft:24}}>
-                          <Text type='bold' style={{fontSize:17}}>{cityName} </Text>
-                      </View>
-                      <Text type='bold' style={{color:'#f6d147',marginLeft:12,position:'absolute',right:0,fontSize:26}}>{temperature}</Text>
-                  </View>
-
-                  
-
-
-                 
-
+                { data != null && (
+                    <View style={{flexDirection:'row',alignItems:'center',marginBottom:15,width:'100%'}}>
+                                        <Image source={{uri:data.current.weather_icons[0]}} style={{width:30,height:30,backgroundColor:'red'}}   width={30} height={30} />
+                                    <View style={{marginLeft:24}}>
+                                        <Text type='bold' style={{fontSize:17}}>{data.location.country+' - '+data.location.name} </Text>
+                                    </View>
+                                    <Text type='bold' style={{color:'#f6d147',marginLeft:12,position:'absolute',right:0,fontSize:26}}>{data.current.temperature } °</Text>
+                                </View>
+                )}
 
             </Content>
-            <CustomFooter  name="Meteo" navigation={navigation} />
+      
         </Container>
         
     );

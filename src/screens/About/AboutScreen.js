@@ -17,7 +17,7 @@ export default function AboutScreen({navigation}) {
                     Excelencia Assurances est un Agent Général de la Compagnie NSIA Assurances au Congo Brazzaville.{"\n"}{"\n"}
 Le cabinet EXECELENCIA ASSURANCES trouve naissance par la volonté de son promoteur avec l’appui de la compagnie NSIA ASSURANCES de continuer de servir  des prestations de qualité supérieure en matière de conseils et de gestion des polices d’assurance des assurés.</Text>
             </Content>
-            <CustomFooter  name="About" navigation={navigation} />
+            
         </Container>
         
     );

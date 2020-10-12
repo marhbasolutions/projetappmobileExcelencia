@@ -10,6 +10,7 @@ import DetailsAgenceScreen from '../screens/Agences/DetailsAgence';
 
 
 
+
 const AgenceStack = createStackNavigator({
     Agences: {
             screen: AgencesScreen,
@@ -25,7 +26,7 @@ const AgenceStack = createStackNavigator({
                 return {
                     title:'Les agences de '+navigation.getParam('ville'),
                     headerRight: () => (
-                        <TouchableOpacity onPress={()=>navigation.openDrawer()}  >
+                        <TouchableOpacity onPress={()=> navigation.openDrawer()}  >
                             <MaterialIcons name='notifications' size={28} color='white'  />
                         </TouchableOpacity>
                       ),

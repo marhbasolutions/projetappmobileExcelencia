@@ -61,7 +61,7 @@ export default function EspaceSinistre({navigation}) {
                 <Content style={[global.container,global.paddingContainer,styles.containerAbout,]}>
 
                 </Content>
-                <CustomFooter  name="Sinistre" navigation={navigation} />
+              
         </Container>
         
     );

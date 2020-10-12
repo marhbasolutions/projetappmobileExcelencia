@@ -17,7 +17,7 @@ export default function DetailsAgenceScreen({navigation}) {
     const onChangeSearch = query => setSearchQuery(query);
 
     const agences = [
-        ['Excelencia centre ville','Excelencia le bon coin','Agence de Menara'],
+        ['Excelencia centre ville'],
     ]
 
     const renderItem = (item) =>{
@@ -58,7 +58,7 @@ export default function DetailsAgenceScreen({navigation}) {
                 keyExtractor={(item, index) => index}
                 />
             </Content>
-            <CustomFooter  name="Agences" navigation={navigation} />
+          
         </Container>
         
     );

@@ -1,51 +1,63 @@
 import React, { useEffect, useState } from 'react';
-import {  View ,Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard,TouchableOpacity ,Picker } from 'react-native';
+import {  View ,Image, KeyboardAvoidingView, TouchableWithoutFeedback, ToastAndroid,TouchableOpacity ,Picker, TextInput , ActivityIndicator, AsyncStorage, ScrollView, Alert} from 'react-native';
 import { Container, Header, Content, List, ListItem,  Input, Item,Button } from 'native-base';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Ionicons } from '@expo/vector-icons';
-
-
+import CalendarPicker from 'react-native-calendar-picker';
+import Dialog, { DialogFooter, DialogButton, DialogContent,DialogTitle } from 'react-native-popup-dialog';
 
 import global from '../../styles/index';
 import styles from './styles';
 import Text from '../../components/CustomText/CustomText';
 
 import CustomFooter from '../../components/Footer/CustomFooter';
+import { API_CREATE_RDV } from '../../api/config';
 
 
 
 export default function LoginScreen({ navigation }) {
 
 
-    const [date, setDate] = useState(new Date(1598051730000));
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
-    const [period, setPeriod] = useState(null);
+    const [period, setPeriod] = useState('8 h 00 min – 9 h 00 min');
+    const [description, setDescriptiond] = useState('');
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [saving, setsaving] = useState(false);
+    const [visibleModal, setVisibleModal] = useState(false);
+    let currentuser = null;
+
+    const onDateChange = (date)  => {
+        setSelectedDate(new Date(date));
+      }
+
+
 
 
     useEffect(() => {
+
+            AsyncStorage.getItem('currentuser').then((user)=>{
+                currentuser=user;
+            });
    
     }, []);
 
-    const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
-        setShow(Platform.OS === 'ios');
-        setDate(currentDate);
-      };
+
     
       const showMode = (currentMode) => {
         setShow(true);
         setMode(currentMode);
       };
-    
-      const showDatepicker = () => {
-        showMode('date');
-      };
+
+      const recapRdv = () =>{
+            setVisibleModal(true);
+      }
+
 
 
       const sendRdv = () => {
+        setVisibleModal(false)
+        setsaving(true);
 
-        var dataToSend = { daterdv: '7888',period: 12};
+        var dataToSend = { period: period,date:selectedDate.toLocaleDateString('en'),user:currentuser,description:description};
 
         var formBody = [];
         for (var key in dataToSend) {
@@ -55,7 +67,7 @@ export default function LoginScreen({ navigation }) {
         }
         formBody = formBody.join("&");
 
-        fetch('http://quickcar.irun-code.com/mobile/getcontratsbyuser', {
+        fetch(API_CREATE_RDV, {
             method: 'POST',
             headers: {
                 'Cache-Control': 'no-cache',
@@ -66,8 +78,17 @@ export default function LoginScreen({ navigation }) {
           })
           .then((response) => response.json())
                 .then((json) => {
-                console.log(json);
+                    setsaving(false);
+                if(json.message)
+                {
+                    Alert.alert('Rendez-vous',json.message,[{
+                        text:'Ok',
+                        style:'cancel'
+                    }])
+                }
+                
             })
+
             .catch((error) => {
             console.error(error);
             });
@@ -78,15 +99,36 @@ export default function LoginScreen({ navigation }) {
     return (
         <Container>
         <Content style={[global.container,global.paddingContainer]}>
-            <View style={{alignItems:'center',flex:1}}>
+            <ScrollView style={{flex:1,paddingBottom:30}} >
 
-                    <View style={[global.marginTop,{width:'100%'}]}>
+                    { saving ? (
+                      <ActivityIndicator size="large" color='#f6b932' style={[global.indicator]} />
+                    ):(
+                        <View style={[{width:'100%'}]}>
 
-                        <Text>Remplissez la date de rendez-vous </Text>
+                        <Text style={[global.labelForm]} >Choisissez la date de rendez-vous </Text>
 
-                        <TouchableOpacity onPress={showDatepicker} style={[styles.datePickerCom,global.marginTop]}>
-                            <Text type='bold' >{ date.getFullYear()+'-'+date.getMonth()+1+'-'+date.getDate() }</Text>
-                        </TouchableOpacity>
+                        <View style={[global.marginTop]}>
+                            <CalendarPicker
+                                initialDate={selectedDate}
+                                startFromMonday={true}
+                                todayBackgroundColor="#fff"
+                                todayTextStyle={{
+                                    color:'black'
+                                }}
+                                minDate={new Date()}
+                                selectedDayColor="#f6d147"
+                                selectedDayTextColor="#fff"
+                                onDateChange={onDateChange}
+                                weekdays={['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']}
+                                months={['Janvier', 'Février', 'Mars', 'Avril', 'Juin', 'Juillet', 'Août', 'Septembre', 'Novembre', 'Octobre', 'Novembre', 'Décembre']}
+                                previousTitle="Précédent"
+                                nextTitle="Suivant"
+                                />
+                            </View>
+                        
+
+                        <Text style={[global.marginTop,global.labelForm]}>Remplissez la periode du rendez-vous  </Text>
 
                         <View style={[styles.hourPeriodContainer,global.marginTop]}>
                             <Picker
@@ -98,47 +140,64 @@ export default function LoginScreen({ navigation }) {
                                   }}
                                 itemStyle={{width:'100%'}}
                             >
-                                <Picker.Item label="8 h 00 min – 9 h 00 min" value="1" />
-                                <Picker.Item label="9 h 00 min – 10 h 00 min" value="2" />
-                                <Picker.Item label="10 h 00 min – 11 h 00 min" value="3" />
-                                <Picker.Item label="11 h 00 min – 12 h 00 min" value="4" />
-                                <Picker.Item label="12 h 00 min – 13 h 00 min" value="5" />
-                                <Picker.Item label="13 h 00 min – 14 h 00 min" value="6" />
-                                <Picker.Item label="14 h 00 min – 15 h 00 min" value="7" />
-                                <Picker.Item label="15 h 00 min – 16 h 00 min" value="8" />
-                                <Picker.Item label="16 h 00 min – 17 h 00 min" value="9" />
-                                <Picker.Item label="17 h 00 min – 18 h 00 min" value="10" />
+                                <Picker.Item label="8 h 00 min – 9 h 00 min" value="8 h 00 min – 9 h 00 min" />
+                                <Picker.Item label="9 h 00 min – 10 h 00 min" value="9 h 00 min – 10 h 00 min" />
+                                <Picker.Item label="10 h 00 min – 11 h 00 min" value="10 h 00 min – 11 h 00 min" />
+                                <Picker.Item label="11 h 00 min – 12 h 00 min" value="11 h 00 min – 12 h 00 min" />
+                                <Picker.Item label="12 h 00 min – 13 h 00 min" value="12 h 00 min – 13 h 00 min" />
+                                <Picker.Item label="13 h 00 min – 14 h 00 min" value="13 h 00 min – 14 h 00 min" />
+                                <Picker.Item label="14 h 00 min – 15 h 00 min" value="14 h 00 min – 15 h 00 min" />
+                                <Picker.Item label="15 h 00 min – 16 h 00 min" value="15 h 00 min – 16 h 00 min" />
+                                <Picker.Item label="16 h 00 min – 17 h 00 min" value="16 h 00 min – 17 h 00 min" />
+                                <Picker.Item label="17 h 00 min – 18 h 00 min" value="17 h 00 min – 18 h 00 min" />
                             </Picker>
                         </View>
+                        <Text style={[global.marginTop,global.labelForm]}> En quoi pouvons-nous vous aider ?  </Text>
+                        <View style={[global.marginTop]}>
+                        <TextInput
+                        style={[styles.descriptionText]}
+                        multiline={true}
+                        numberOfLines={5}
+                        onChangeText={(text) => setDescriptiond({text})}
+                        value={description}/>
+                        </View>
 
-                        <Button transparent onPress={()=>sendRdv()} style={[styles.validateRdvButton,global.marginTop]}>
+                        <Button transparent onPress={()=>recapRdv()} style={[styles.validateRdvButton,global.marginTop]}>
                             <Text style={{color:'#fff'}}>Valider le rendez-vous </Text>
                         </Button>
                        
-                        {show && (
-                            <DateTimePicker
-                            style={{
-                                shadowColor: '#fff',
-                                shadowRadius: 0,
-                                shadowOpacity: 1,
-                                shadowOffset: { height: 0, width: 0 },
-                              }}
-                            testID="dateTimePicker"
-                            value={date}
-                            mode={mode}
-                            is24Hour={true}
-                            display="default"
-                            onChange={onChange}
-                            locale="es-ES"
-                            minimumDate={new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate())}
-                            />
-                        )}
-
+                    
                     </View>
-        
-            </View>
+                    )}
+
+                        <Dialog
+                            width={'80%'}
+                            visible={visibleModal}
+                            dialogTitle={<DialogTitle title="Recapitulatif de rendez-vous" />}
+                            
+                            footer={
+                            <DialogFooter >
+                                <DialogButton
+                                text="Annuler"
+                                onPress={() => setVisibleModal(false)}
+                                />
+                                <DialogButton
+                                text="Je confirme"
+                                onPress={() => sendRdv() }
+                                />
+                            </DialogFooter>
+                            }
+                        >
+                            <DialogContent style={{padding:10}}>
+                                <Text style={{marginTop:6}}>Rdv le : { selectedDate.toLocaleDateString() }</Text>
+                                <Text style={{marginTop:6}}>Periode : { period }</Text>
+                                <Text style={{marginTop:6}}>Objet : { description != '' ? description:'Non specifié' }</Text>
+                            </DialogContent>
+                        </Dialog>
+
+                    </ScrollView>
                </Content>
-        <CustomFooter  name="RDV" navigation={navigation} />
+        
         </Container>
     );
 }

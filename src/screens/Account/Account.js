@@ -48,7 +48,7 @@ export default function accountScreen({ navigation }) {
 
                     <FontAwesome style={[{ alignSelf: 'center'},global.marginTop]} color={'#30336b'} name="handshake-o" size={55} />
 
-                    <Text style={[global.h2]}>Profil</Text>
+                    <Text style={[global.h1]}>Profil</Text>
 
                 <View style={[global.marginTop]}>
                 <List>
@@ -144,7 +144,7 @@ export default function accountScreen({ navigation }) {
                     
                 </Content>
 
-                <CustomFooter  name="Account" navigation={navigation} />
+               
 
             </Container>
         </>

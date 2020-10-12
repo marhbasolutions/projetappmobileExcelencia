@@ -29,23 +29,23 @@ const customStyles = {
     currentStepIndicatorSize:30,
     separatorStrokeWidth: 2,
     currentStepStrokeWidth: 3,
-    stepStrokeCurrentColor: '#fe7013',
+    stepStrokeCurrentColor: '#f6d147',
     stepStrokeWidth: 3,
-    stepStrokeFinishedColor: '#fe7013',
+    stepStrokeFinishedColor: '#f6d147',
     stepStrokeUnFinishedColor: '#aaaaaa',
-    separatorFinishedColor: '#fe7013',
+    separatorFinishedColor: '#f6d147',
     separatorUnFinishedColor: '#aaaaaa',
-    stepIndicatorFinishedColor: '#fe7013',
+    stepIndicatorFinishedColor: '#f6d147',
     stepIndicatorUnFinishedColor: '#ffffff',
     stepIndicatorCurrentColor: '#ffffff',
     stepIndicatorLabelFontSize: 13,
     currentStepIndicatorLabelFontSize: 13,
-    stepIndicatorLabelCurrentColor: '#fe7013',
+    stepIndicatorLabelCurrentColor: '#242c62',
     stepIndicatorLabelFinishedColor: '#ffffff',
     stepIndicatorLabelUnFinishedColor: '#aaaaaa',
     labelColor: '#999999',
     labelSize: 13,
-    currentStepLabelColor: '#fe7013'
+    currentStepLabelColor: '#f6d147'
   }
 
 export default function SimulerDevis({ navigation }) {
@@ -59,7 +59,9 @@ export default function SimulerDevis({ navigation }) {
     const [currentPosition, setcurrentPosition] = useState(0);
     const [ColorBack, setColorBack] = useState('#242c62');
 
-    const labels = ["Informations personneles", "Informations de vehicule", "Choix des garanties"];
+
+
+    const labels = ["Informations personneles",selectedIndex == 0 ? "Informations de vehicule":"Informations d'habitation" , "Choix des garanties"];
 
 
     const onChange = (event, selectedDate) => {
@@ -83,8 +85,8 @@ export default function SimulerDevis({ navigation }) {
             {renderHeader(ColorBack,navigation)}
             <Content style={[global.container]}>
             <View style={{ flex: 1, flexDirection: 'column' }}>
-                    <View style={{ width: '100%', height: 170, backgroundColor: ColorBack }} >
-                        <View style={{ paddingLeft: 20, paddingRight: 20, marginBottom: 10, marginTop: 10 }} >
+                    <View style={[{ width: '100%',  backgroundColor: ColorBack, },global.paddingContainer]} >
+                        <View>
 
                             <SegmentedControl
                                 values={['Auto', 'Habitation']}
@@ -96,37 +98,36 @@ export default function SimulerDevis({ navigation }) {
                                     setselectedIndex(event.nativeEvent.selectedSegmentIndex);
                                     if (selectedIndex == 0) {
                                         setColorBack('#6D214F')
-                                    } else (
-                                        setColorBack('#30336b')
-                                    )
-
+                                    } else {
+                                        setColorBack('#30336b');
+                                        
+                                    }
                                 }}
                             />
                         </View>
 
-                        <View style={{ padding: 10 }} >
+                        <View style={[global.marginTop]}>
 
                             <StepIndicator
                                 customStyles={customStyles}
                                 stepCount={3}
                                 currentPosition={currentPosition}
                                 labels={labels}
+                                
                             />
 
                         </View>
                     </View>
-                    <Content style={[global.paddingContainer]} >
-                        <View>
+                    <Content>
+                        <View style={{flex:1}}>
                         {selectedIndex == 0
-                        ? <AutoScreen handleInput={handleInputValue} ColorBack={ColorBack} />
-                        : <HabiatationScreen handleInput={handleInputValue} ColorBack={ColorBack} />}
+                        ? <AutoScreen navigation={navigation} handleInput={handleInputValue} ColorBack={ColorBack} />
+                        : <HabiatationScreen navigation={navigation} handleInput={handleInputValue} ColorBack={ColorBack} />}
                         </View>
                     </Content>
-                    </View>
+                </View>
 
             </Content>
-
-            <CustomFooter  name="Contrats" navigation={navigation} />
         </Container>
         
     );

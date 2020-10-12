@@ -79,7 +79,7 @@ export default function Services({navigation}) {
 
             </ScrollView>
             </Content>
-            <CustomFooter  name="Services" navigation={navigation} />
+          
         </Container>
     );
 }

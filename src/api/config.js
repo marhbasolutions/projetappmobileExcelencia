@@ -17,6 +17,8 @@ export const API_AGENCIES_BY_CITY = HOST+'/mobile/getagenciesbycity';
 
 export const API_CREATE_RDV = HOST+'/mobile/createrdv';
 
+export const API_CREATE_DEVIS = HOST+'/mobile/createdevis';
+
 export const API_PHARMACY = HOST+'/mobile/pharmacygarde';
 
 

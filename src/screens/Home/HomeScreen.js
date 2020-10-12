@@ -17,6 +17,17 @@ const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH - (SLIDER_WIDTH*0.05) );
 const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
 
+const slidesBottom = [
+    {name:'Assurance Vie Particulier',thumbnail:{uri:'http://excel-assurance.com/wp-content/uploads/2016/01/Retouche-Pension.jpg'},color:'#d7385e',
+    icon:require('../../assets/icon1.png')},
+    {name:'Assurance Vie Entreprises',thumbnail:{uri:'http://excel-assurance.com/wp-content/uploads/2019/09/Regional-MediaThon-Coming-to-Barbados.jpg'},color:'#0278ae',
+    icon:require('../../assets/icon2.png')},
+    {name:'Assurance Non Vie Particulier',thumbnail:{uri:'http://excel-assurance.com/wp-content/uploads/2019/10/NSIA-Auto-HD-inc.jpg'},color:'#463333',
+    icon:require('../../assets/icon3.png')},
+    {name:'Assurance Non Vie Entreprises',thumbnail:{uri:'http://excel-assurance.com/wp-content/uploads/2019/10/Cargo-StayUpToDate.jpg'},color:'#2a3d66',
+    icon:require('../../assets/icon4.png')},
+];
+
 
 import { SliderBox } from "react-native-image-slider-box";
 
@@ -24,23 +35,10 @@ export default function HomeScreen({ navigation }) {
 
     const [activeSlide, setActiveSlide] = useState(0);
     const [activeSlide2, setActiveSlide2] = useState(0);
-    const [slidesBottom, setSlidesBottom] = useState([]);
+    
 
     useEffect(() => {
-        fetch(API_GET_CATEGORIES,{
-            'method': 'get',
-            'credentials': 'include',
-            'headers': {
-                'Content-Type': 'application/json',
-            }})
-            .then((response) => response.json())
-            .then((json) => {
-                    setSlidesBottom(json.data);
-                   
-            })
-            .catch((error) => {
-            console.error(error);
-            });
+        
     }, []);
 
     let carouselRef = useRef(null);
@@ -57,19 +55,17 @@ export default function HomeScreen({ navigation }) {
 
       const renderItem2 = ({item, index}) => {
         return (
-            <TouchableOpacity key={index} onPress={() => navigation.navigate('ServiceDetails',{'service':item})}>
-                    <ImageBackground source={{uri:HOST+'/images/services/category/'+item.thumbnail}} style={{height:200}} imageStyle={{ borderRadius: 6 }}>
-                                    <LinearGradient
-                                    colors={['#30336b10', item.color]}
-                                    start={{ x: 0.9, y: 0 }}
-                                    style={{alignContent:'center',flex:1,flexDirection:'row',paddingLeft:20}}>
-                                      
-                                            <View style={{alignSelf:'center'}}>
-                                                <Icon type='material-community' name={item.icon} size={40} style={{alignSelf:'flex-start'}} color="white" />
-                                            <Text type='bold' style={{color:'#fff',fontSize:22}}>{item.name}</Text>
-                                            </View>
-                                       
-                                    </LinearGradient>
+            <TouchableOpacity key={index} onPress={() => navigation.navigate('Services')}>
+                    <ImageBackground source={item.thumbnail} style={{height:200}} imageStyle={{ borderRadius: 6 }}>
+                        <LinearGradient
+                        colors={['#30336b10', item.color]}
+                        start={{ x: 0.9, y: 0 }}
+                        style={{alignContent:'center',flex:1,flexDirection:'row',paddingLeft:20}}>
+                        <View style={{alignSelf:'center'}}>
+                            <Image source={item.icon}   style={{width:60,height:60,resizeMode: 'stretch',}}  />
+                            <Text type='bold' style={{color:'#fff',fontSize:22}}>{item.name}</Text>
+                        </View>
+                        </LinearGradient>
                     </ImageBackground>
             </TouchableOpacity>
         );
@@ -167,7 +163,7 @@ export default function HomeScreen({ navigation }) {
 
                                 <View style={[styles.rowServices,{marginTop:15}]}>
 
-                                    <View style={{paddingRight:5,width:'50%'}}>
+                                    <View style={{paddingLeft:5,paddingRight:5,width:'50%'}}>
 
                                                 <TouchableOpacity style={[styles.homeBigButton]}
                                                         onPress={() => navigation.navigate('Devis')} >
@@ -179,7 +175,7 @@ export default function HomeScreen({ navigation }) {
 
                                     </View>
 
-                                    <View style={{paddingLeft:5,width:'50%'}}>
+                                    <View style={{paddingLeft:5,paddingRight:5,width:'50%'}}>
 
                                         <TouchableOpacity style={[styles.homeBigButton]}
                                                 onPress={() => navigation.navigate('Assistance')} >
@@ -240,7 +236,6 @@ export default function HomeScreen({ navigation }) {
 
         </View>
         </Content>
-        <CustomFooter  name="Home" navigation={navigation} />
         </Container>
     );
 }

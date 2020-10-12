@@ -94,7 +94,7 @@ export default function NewDeclaration({ navigation }) {
                                 />
                        
             </Content>
-            <CustomFooter  name="Sinistre" navigation={navigation} />
+          
        </Container>
     );
 }

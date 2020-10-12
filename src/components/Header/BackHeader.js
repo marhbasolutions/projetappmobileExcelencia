@@ -7,10 +7,11 @@ import global from '../../styles/index';
 import { Content, Left, Right } from 'native-base';
 
 
+
 export default function BackHeader ({navigation , isReturn , title }) {
 
     const opneMenu = () =>{
-        navigation.openDrawer();
+        navigation.openDrawer()
     }
 
 

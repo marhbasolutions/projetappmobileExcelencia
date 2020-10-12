@@ -88,5 +88,6 @@ export default   StyleSheet.create({
         color:'white',
         marginLeft:3,
         fontSize:13
-    }
+    },
+    labelForm :{fontSize:18,color:'#242c62'}
 })

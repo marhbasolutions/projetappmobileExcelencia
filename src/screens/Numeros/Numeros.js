@@ -36,7 +36,7 @@ export default function NumerosScreen({navigation}) {
                  
 
             </Content>
-            <CustomFooter  name="Numeros" navigation={navigation} />
+         
         </Container>
         
     );

@@ -101,7 +101,7 @@ export default function ServiceDetails({navigation}) {
                     </View>
                
             </Content>
-            <CustomFooter  name="Services" navigation={navigation} />
+           
         </Container>
         ):(
             <ActivityIndicator size="large" color='#f6b932' style={[global.indicator]} />

@@ -17,7 +17,7 @@ export default function AgencesScreen({navigation}) {
     const onChangeSearch = query => setSearchQuery(query);
 
     const agences = [
-        ['Brazzaville','Dolisie','Loandjili','Madingou','Owando','Kinkala','Impfondo','Ouesso','Dolisie','Sibiti'],
+        ['Brazzaville','Dolisie'],
     ]
 
     const renderItem = (item) =>{
@@ -69,7 +69,7 @@ export default function AgencesScreen({navigation}) {
                 />
                 </SafeAreaView>
             </Content>
-            <CustomFooter  name="Agences" navigation={navigation} />
+            
         </Container>
         
     );

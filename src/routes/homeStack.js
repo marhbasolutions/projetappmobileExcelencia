@@ -9,6 +9,9 @@ import MesContractsScreen from '../screens/Contracts/MesContrats';
 import  MeteoScreen from '../screens/InfosPratiques/Meteo';
 import  NumerosScreen from '../screens/Numeros/Numeros';
 import  accountScreen from '../screens/Account/Account';
+import  faqScreen from '../screens/FAQ/FaqScreen';
+import payerScreen from '../screens/Cotisations/Payer';
+
 
 import { headerTitleStyle,headerStyle,headerBackImage } from './defaultNavigationsOptions';
 
@@ -34,6 +37,9 @@ const HomeStack = createStackNavigator({
             },
             RDV:{
                 screen: RdvScreen,
+                navigationOptions:{
+                    title:'Prendre un RDV'
+                }
             },
             Contrats:{
                 screen: MesContractsScreen,
@@ -49,6 +55,18 @@ const HomeStack = createStackNavigator({
             },
             Account:{
                 screen: accountScreen,
+            },
+            Faq:{
+                screen: faqScreen,
+                navigationOptions:{
+                    title:'Assistance'
+                }
+            },
+            Cotisations:{
+                screen: payerScreen,
+                navigationOptions:{
+                    title:'Payer mes cotisations'
+                }
             },
     },
     {

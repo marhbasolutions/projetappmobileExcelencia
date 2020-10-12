@@ -35,7 +35,7 @@ export default class SideMenu extends React.Component {
         {
           name: "Assistance",
           icon: "md-information-circle",
-          route:"Assistance"
+          route:"Faq"
         },
       ],
       routes2: [

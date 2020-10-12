@@ -23,20 +23,7 @@ containerView: {
       backgroundColor: '#fafafa',
   
   },
-  loginFormTextInput: {
-  //   height: 43,
-    fontSize: 14,
-  //   borderRadius: 5,
-    borderWidth: 1,
-    // borderColor: '#eaeaea',
-    // backgroundColor: '#fafafa',
-    paddingLeft: 10,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 5,
-    marginBottom: 5,
-  
-  },
+
   loginButton: {
         height: 53,
   
@@ -86,4 +73,10 @@ containerView: {
       shadowRadius: 15,
       flex: 1,backgroundColor:'#fff',borderRadius:8,marginTop:-220 
     },
+    genderContainer:{
+      flexDirection: 'row', justifyContent: 'space-between',padding:10,alignItems:'center'},
+      listItemForm:{height:50},
+      innerInputForm:{height:50,width:'100%'},
+      dropDownItem:{color:'black'},
+      dropDown:{color:'black'}
 })
