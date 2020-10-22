@@ -10,7 +10,7 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg'], true)) {
 }
 
 require dirname(__DIR__, 3).'/vendor/autoload.php';
-require __DIR__.'/ContainerIOh6cG1/srcApp_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerBRh3QzG/srcApp_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -41,6 +41,7 @@ $classes[] = 'App\Controller\Admin\CategoryCrudController';
 $classes[] = 'App\Controller\Admin\CityCrudController';
 $classes[] = 'App\Controller\Admin\CommentCrudController';
 $classes[] = 'App\Controller\Admin\ContractCrudController';
+$classes[] = 'App\Controller\Admin\ContributionCrudController';
 $classes[] = 'App\Controller\Admin\DashboardController';
 $classes[] = 'App\Controller\Admin\NewsCategoryCrudController';
 $classes[] = 'App\Controller\Admin\NewsCrudController';
@@ -58,6 +59,7 @@ $classes[] = 'App\Repository\CategoryRepository';
 $classes[] = 'App\Repository\CityRepository';
 $classes[] = 'App\Repository\CommentRepository';
 $classes[] = 'App\Repository\ContractRepository';
+$classes[] = 'App\Repository\ContributionRepository';
 $classes[] = 'App\Repository\NewsCategoryRepository';
 $classes[] = 'App\Repository\NewsRepository';
 $classes[] = 'App\Repository\QuoteRepository';

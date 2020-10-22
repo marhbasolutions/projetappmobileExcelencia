@@ -32,7 +32,8 @@ class CategoryCrudController extends AbstractCrudController
         $image = ImageField::new('thumbnail','Image')->setBasePath('/images/services/category');
         $fields =   [
             TextField::new('name','Nom'),
-            ColorField::new('color','Coleur arriere plan')
+            ColorField::new('color','Coleur arriere plan'),
+             TextField::new('icon','icon')->setHelp('Choisir une icon de <a target="_blank" href="https://materialdesignicons.com">https://materialdesignicons.com</a>'),
         ];
 
         if($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL )

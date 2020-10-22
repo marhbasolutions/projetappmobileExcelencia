@@ -6,6 +6,7 @@ use App\Entity\Agency;
 use App\Entity\Appointment;
 use App\Entity\Category;
 use App\Entity\City;
+use App\Entity\User;
 use App\Entity\Service;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,17 +20,82 @@ use Symfony\Component\Validator\Constraints\Date;
 
 class ApiController extends  AbstractController
 {
+  
+    
     /**
      * @Route("/mobile/login",name="auth_mobile")
      * @return Response
      */
     public function index(Request $request,UserService $userService)
     {
-        $email = $request->get('email') ;
-        $password = $request->get('password') ;
-        if(!$email or !$password)
-            return new JsonResponse(['success'=>false,'message'=>'email ou mot de passe non fourni']);
-        return $userService->getUserBy($email,$password);
+
+        try {
+            $data = json_decode($request->getContent());
+            $email = $data->email;
+            $password = $data->password;
+            $serialiser = new JsonSerialiser();
+            if(!$email || !$password || $email == null || $password == null  )
+                return new Response($serialiser->jsonSerialiser(['success'=>false,'message'=>'email ou mot de passe incorrect']));
+            $data=  $userService->getUserBy($email,$password);
+            return new Response($serialiser->jsonSerialiser($data));
+        }
+        catch (\Exception $ex)
+        {
+            return new Response($serialiser->jsonSerialiser(['success'=>false,'message'=>$ex->getMessage()]));
+        }
+        
+    }
+
+    /**
+     * @Route("/mobile/createrdv",name="create_rdv_mobile")
+     * @return Response
+     */
+    public function cerateRdv(Request $request)
+    {
+        $data = json_decode($request->getContent());
+
+        if($data)
+        {
+            $period = isset($data->period) ? $data->period:null;
+            $date = isset($data->date) ? $data->date:null;
+            $user =  isset($data->user) ? $data->user:null;
+            $description = isset($data->description) ? $data->description:null;
+
+            $serialiser = new JsonSerialiser();
+
+            if(is_null($period))
+                return new Response($serialiser->jsonSerialiser(['success'=>false,'message'=>'period non specifie']));
+
+            if(is_null($date))
+                return new Response($serialiser->jsonSerialiser(['success'=>false,'message'=>'date non specifie']));
+
+            if(is_null($user))
+                return new Response($serialiser->jsonSerialiser(['success'=>false,'message'=>'utilisateur non specifie']));
+
+            $user = $this->getDoctrine()->getRepository(User::class)->find($user);
+
+            if(!$user)
+                return new Response($serialiser->jsonSerialiser(['success'=>false,'message'=>'utilisateur non trouve']));
+
+
+            try {
+                $entityManager = $this->getDoctrine()->getManager();
+                $rdv = new Appointment();
+                $rdv->setAppointementDate(new \DateTime($date));
+                $rdv->setPeriod($period);
+                $rdv->setHelpDescription($description);
+                $rdv->setUser($user);
+                $entityManager->persist($rdv);
+                $entityManager->flush();
+                $data = $serialiser->jsonSerialiser(['success'=>true,'message'=>'Rendevous bien enregistre']);
+                return new Response($data);
+            }
+            catch (\Exception $ex)
+            {
+                $data = $serialiser->jsonSerialiser(['success'=>false,'message'=>$ex->getMessage()]);
+                return new Response($data);
+            }
+        }
     }
 
 
@@ -41,7 +107,7 @@ class ApiController extends  AbstractController
     {
         $serialiser = new JsonSerialiser();
           $categories =  $this->getDoctrine()->getRepository(Category::class)
-               ->findAll();
+               ->findAllCategories();
           $data = $serialiser->jsonSerialiser(['success'=>true,'data'=>$categories]);
           
         return new Response($data);
@@ -60,8 +126,8 @@ class ApiController extends  AbstractController
         $serialiser = new JsonSerialiser();
         $services =  $this->getDoctrine()->getRepository(Service::class)
             ->findBy(['category'=>$category]);
-        $data = $serialiser->jsonSerialiser($services);
-        return new JsonResponse(['success'=>true,'data'=>$data]);
+        $data = $serialiser->jsonSerialiser(['success'=>true,'data'=>$services]);
+        return new Response($data);
     }
 
     /**
@@ -111,43 +177,15 @@ class ApiController extends  AbstractController
         return new JsonResponse(['success'=>true,'data'=>$data]);
     }
 
-
-    /**
-     * @Route("/mobile/createrdv",name="create_rdv_mobile")
-     * @return Response
-     */
-    public function cerateRdv(Request $request)
-    {
-        $date = $request->get('date_appointement');
-        $period = $request->get('period');
-        $description = $request->get('help');
-        if(!$date || !$period || !$description)
-            return new JsonResponse(['success'=>false,'message'=>'Informations pas fournit']);
-
-        try {
-            $entityManager = $this->getDoctrine()->getManager();
-            $rdv = new Appointment();
-            $rdv->setAppointementDate(new \DateTime($date));
-            $rdv->setPeriod($period);
-            $rdv->setHelpDescription($description);
-            $entityManager->persist($rdv);
-            $entityManager->flush();
-            return new JsonResponse(['success'=>true,'message'=>'Rendevous bien enregistre']);
-        }
-        catch (\Exception $ex)
-        {
-            return new JsonResponse(['success'=>false,'message'=>$ex->getMessage()]);
-        }
-    }
-
-
     /**
      * @Route("/mobile/getcontratsbyuser",name="contrats_by_user_mobile")
      * @return Response
      */
     public function contratsByUser(Request $request)
     {
-            
+        
+        
+        
     }
 
 

@@ -27,10 +27,9 @@ class UserService
 
         // Check if the user exists !
         if(!$user){
-            return new JsonResponse(
-                ['success'=>false,'message'=>'Corones non correct'],
-                200
-            );
+            return
+                ['success'=>false,'message'=>'Corones non correct'];
+          
         }
 
         /// Start verification
@@ -38,22 +37,14 @@ class UserService
         $salt = $user->getSalt();
 
         if(!$encoder->isPasswordValid($user->getPassword(), $_password, $salt)) {
-            return new JsonResponse(
-                ['success'=>false,'message'=>'cordonnes non correct'],
-                200
-            );
+            return ['success'=>false,'message'=>'cordonnes non correct'];
         }
 
         /*
          * Now the user is authenticated !!!!
          * Do what you need to do now, like render a view, redirect to route etc.
          */
-        $serialiser = new JsonSerialiser();
-        $data = $serialiser->jsonSerialiser($user);
-        return new JsonResponse(
-            ['success'=>true,'user'=>$data],
-            200
-        );
+        return ['success'=>true,'user'=>['id'=>$user->getId(),'phone'=>$user->getPhone()]];
     }
 
 

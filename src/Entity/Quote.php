@@ -24,7 +24,7 @@ class Quote
     private $service;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="quotes")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="quotes")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $user;

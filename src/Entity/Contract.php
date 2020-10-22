@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ContractRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +29,16 @@ class Contract
      * @ORM\Column(type="date", nullable=true)
      */
     private $date_contract;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Contribution::class, mappedBy="contract")
+     */
+    private $contributions;
+
+    public function __construct()
+    {
+        $this->contributions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -53,6 +65,37 @@ class Contract
     public function setDateContract(?\DateTimeInterface $date_contract): self
     {
         $this->date_contract = $date_contract;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contribution[]
+     */
+    public function getContributions(): Collection
+    {
+        return $this->contributions;
+    }
+
+    public function addContribution(Contribution $contribution): self
+    {
+        if (!$this->contributions->contains($contribution)) {
+            $this->contributions[] = $contribution;
+            $contribution->setContract($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContribution(Contribution $contribution): self
+    {
+        if ($this->contributions->contains($contribution)) {
+            $this->contributions->removeElement($contribution);
+            // set the owning side to null (unless already changed)
+            if ($contribution->getContract() === $this) {
+                $contribution->setContract(null);
+            }
+        }
 
         return $this;
     }

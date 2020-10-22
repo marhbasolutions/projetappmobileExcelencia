@@ -34,7 +34,7 @@ class Appointment
     private $state;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string",length=255, nullable=true)
      */
     private $period;
 
@@ -84,12 +84,12 @@ class Appointment
         return $this;
     }
 
-    public function getPeriod(): ?int
+    public function getPeriod(): ?string
     {
         return $this->period;
     }
 
-    public function setPeriod(?int $period): self
+    public function setPeriod(?string $period): self
     {
         $this->period = $period;
 

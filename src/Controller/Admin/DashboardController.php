@@ -8,6 +8,7 @@ use App\Entity\Category;
 use App\Entity\City;
 use App\Entity\Comment;
 use App\Entity\Contract;
+use App\Entity\Contribution;
 use App\Entity\News;
 use App\Entity\NewsCategory;
 use App\Entity\Quote;
@@ -75,6 +76,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Villes', 'fa fa-map-marker', City::class);
 
         yield MenuItem::linkToCrud('Contrats', 'fa fa-folder-open-o', Contract::class);
+
+        yield MenuItem::linkToCrud('Cotisations', 'fa fa-money', Contribution::class);
 
     }
 }

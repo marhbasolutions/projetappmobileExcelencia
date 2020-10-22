@@ -30,7 +30,7 @@ class UserCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
-            ->setEntityLabelInSingular('utilisateur')
+            ->setEntityLabelInSingular('utilisateur/Client')
             ->setEntityLabelInPlural('utilisateurs')
             ;
     }
@@ -41,6 +41,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('firstName','Prenom'),
             TextField::new('lastName','Nom'),
             TextField::new('username','Login'),
+            TextField::new('phone','Telephone'),
             EmailField::new('email','Email'),
             ArrayField::new('roles','Roles')->formatValue(function($roles){
                 $roles = explode(',',$roles);

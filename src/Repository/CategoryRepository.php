@@ -36,15 +36,13 @@ class CategoryRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Category
+    
+    public function findAllCategories()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
+            ->select('c.name ,c.id,c.color,c.thumbnail, c.icon')
+            ->getQuery()->getResult();
         ;
     }
-    */
+    
 }

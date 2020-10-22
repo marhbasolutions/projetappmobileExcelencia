@@ -69,6 +69,11 @@ class Category
     private $updated_at;
 
     /**
+     * @ORM\Column(type="string", length=34, nullable=true)
+     */
+    private $icon;
+
+    /**
      * @return mixed
      */
     public function getThumbnail()
@@ -172,6 +177,18 @@ class Category
     public function setColor(?string $color): self
     {
         $this->color = $color;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }
